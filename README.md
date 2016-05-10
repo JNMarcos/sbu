@@ -1,0 +1,2 @@
+# sbu
+O $BU (Sistema Bancário Universitário) é um projeto em desenvolvimento para a disciplina de Engenharia de Software 2016.1 da UFRPE. É um sistema que permite aos usuários acesso aos serviços universitários de forma rápida e prática. Tem objetivo de facilitar o uso desses serviços, por meio de uma conta que está associada a cada um dos usuários, na qual usando-se um serviço, é descontado o valor do serviço da própria conta do usuário. Evita assim, o uso indiscriminado de dinheiro e a demora no pagamento/recebimento de dinheiro nesses serviços.
