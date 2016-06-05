@@ -199,6 +199,7 @@ public class RepositorioDivida implements IRepositorioDivida {
 			   dividas.get(index).getDataEmissao().equals(data) &&
 			   dividas.get(index).getHoraEmissao().equals(hora))
 			{
+				
 				divida = dividas.get(index);
 				break;
 				
