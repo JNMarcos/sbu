@@ -100,7 +100,7 @@ public class REP_Usuario implements IREP_Usuario {
 		}
 	}
 
-	private Usuario procurarPorCpf throws CpfNaoExisteException(String cpf){
+	private Usuario procurarPorCpf(String cpf) throws CpfNaoExisteException{
 		if(usuarios.isEmpty()){
 			this.lerArquivo();
 		}
