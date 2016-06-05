@@ -1,6 +1,7 @@
 package classes_basicas;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * @author Marcos Inacio de Paula Lima
@@ -18,7 +19,7 @@ public abstract class Usuario implements Comparable<Usuario>, Serializable {
 	private String endereco;
 	private String telefone;
 	private String email;
-	private String dataNascimento;
+	private LocalDate dataNascimento;
 	
 	/**
 	 * @param nome
@@ -31,8 +32,7 @@ public abstract class Usuario implements Comparable<Usuario>, Serializable {
 	 * @param dataNascimento
 	 */
 	public Usuario(String nome, char sexo, String cpf, String identidade, String endereco,
-			String telefone,
-			String email, String dataNascimento) {
+			String telefone, String email, LocalDate dataNascimento) {
 		setNome(nome);
 		setSexo(sexo);
 		setCpf(cpf);
@@ -99,17 +99,17 @@ public abstract class Usuario implements Comparable<Usuario>, Serializable {
 		this.email = email;
 	}
 	
-	public String getDataNascimento() {
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 	
-	public void setDataNascimento(String dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	
 	@Override
 	public int compareTo(Usuario usuario){
-		return this.getNome().compareTo(usuario.getNome());
+		return this.getCpf().compareTo(usuario.getCpf());
 	}
 
 	@Override
@@ -124,36 +124,40 @@ public abstract class Usuario implements Comparable<Usuario>, Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj){
+		if (this == obj) {
 			return true;
-		}	
-		if (obj == null){
+		}
+		if (obj == null) {
 			return false;
-		}	
-		if (getClass() != obj.getClass()){
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
-		}	
+		}
 		Usuario other = (Usuario) obj;
 		if (cpf == null) {
-			if (other.cpf != null)
+			if (other.cpf != null) {
 				return false;
-		} else if (!cpf.equals(other.cpf)){
+			}
+		} else if (!cpf.equals(other.cpf)) {
 			return false;
-	    }
+		}
 		if (identidade == null) {
-			if (other.identidade != null)
+			if (other.identidade != null) {
 				return false;
-		} else if (!identidade.equals(other.identidade)){
+			}
+		} else if (!identidade.equals(other.identidade)) {
 			return false;
-		}	
+		}
 		if (nome == null) {
-			if (other.nome != null){
+			if (other.nome != null) {
 				return false;
-			}	
-		} else if (!nome.equals(other.nome)){
+			}
+		} else if (!nome.equals(other.nome)) {
 			return false;
-		}	
+		}
 		return true;
 	}
+
+	
 		
 }
