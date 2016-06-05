@@ -16,7 +16,7 @@ import classes_basicas.Divida;
 
 public interface IRepositorioDivida {
 	
-	public void getInstancia();
+	public RepositorioDivida getInstancia();
 	public RepositorioDivida lerArquivo();
 	public void gravarArquivo();
 	public void cadastrarDivida(Divida divida);
