@@ -208,6 +208,7 @@ public class RepositorioDivida implements IRepositorioDivida {
 		}
 			
 		
+		return divida;
 		
 	}
 	
