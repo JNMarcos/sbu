@@ -8,9 +8,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import classes_basicas.Conta;
+import classes_basicas.Divida;
+import classes_basicas.Movimentacao;
 import classes_basicas.Usuario;
+
 
 public class RepositorioConta implements IRepositorioConta, Serializable {
 	private ArrayList<Conta> listaContas;
@@ -82,54 +86,24 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
     }
     
     
-	public boolean cadastrarConta(Conta conta) throws ContaJaCadastradaException{
-        int x = 0;
-        if (listaContas.isEmpty()) {
-        	listaContas.add(conta);
-        	gravarArquivo();
-            x++;
-            return true;
-        } else {
-            for (int i = 0; i < listaContas.size(); i++) {
-                if (listaContas.get(i).getUsuario().equals(conta.getUsuario())) {
-                    x++;
-                }
-            }
-        }
-        if (x == 0) {
-            listaContas.add(conta);
-            gravarArquivo();
-            return true;
-   
-        }else
-        	return false;
-   
-
+	public void cadastrarConta(Conta conta) throws ContaJaCadastradaException{        
+        listaContas.add(conta);
+        gravarArquivo();
+	}
+	
+	
+	public void removerConta(Conta conta) throws ContaNaoEncontradaException {		
+		listaContas.remove(conta);
+		gravarArquivo();
+	
     }
 	
 	
-	public boolean removerConta(Conta conta) throws ContaNaoEncontradaException {
-		for(int i = 0; i < listaContas.size(); i++){
-			if(listaContas.get(i).getUsuario().equals(conta.getUsuario())){
-				listaContas.remove(conta);
-				gravarArquivo();
-				}
-		}
-		return true;
-		
-    }
-	
-	
-	public boolean alterarDadosConta(Conta conta) throws ContaNaoEncontradaException {
-	     for (int i = 0; i < listaContas.size(); i++) {
-	         if (listaContas.get(i).getUsuario().equals(conta.getUsuario())) {
-	            listaContas.set(i, conta);
-	            gravarArquivo();
-	                break;
-	            }
-	        }
-	    return true;
-	 }
+	public void alterarDadosConta(Conta conta) throws ContaNaoEncontradaException {
+		int i = listaContas.indexOf(conta);
+		listaContas.set(i, conta);
+		gravarArquivo();
+	}	
 	
 	public Conta exibirConta(Usuario usuario) throws ContaNaoEncontradaException{
 		Conta encontra = null;
@@ -144,28 +118,25 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 	}
 	
 	
-	public void consultarSaldo(Conta conta) throws ContaNaoEncontradaException{		
+	public Double consultarSaldo(Conta conta) throws ContaNaoEncontradaException{		
 		for(int i = 0; i < listaContas.size(); i++){
 			if(listaContas.get(i).getUsuario().equals(conta.getUsuario())){
-				System.out.println(listaContas.get(i).getSaldo());
+				return listaContas.get(i).getSaldo();
 			}
 		}
 		
 	}
 	
-	public void verMovimentacoes(Conta conta) throws ContaNaoEncontradaException{
+	public List<Movimentacao> verMovimentacoes(Conta conta) throws ContaNaoEncontradaException{
 		for(int i = 0; i < listaContas.size(); i++){
 			if(listaContas.get(i).getUsuario().equals(conta.getUsuario())){
-				System.out.println(listaContas.get(i).getHistorico());
+				return listaContas.get(i).getHistorico();
 			}
 		}
 		
 }
-	public void listarContas(){
-		for(int i = 0;i <listaContas.size();i++){ 
-		     System.out.println(listaContas.get(i));    
-		}  
+	public ArrayList<Conta> listarContas(){		
+		return listaContas;		
 	}
-
-
+	
 }
