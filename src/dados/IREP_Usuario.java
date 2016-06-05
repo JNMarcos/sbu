@@ -13,7 +13,7 @@ public interface IREP_Usuario {
 		
 	public ArrayList<Usuario> listarUsuarios();
 	
-	public void lerArquivo();
+	private static REP_Usuario lerDoArquivo();
 	
 	public void gravarArquivo();
 	

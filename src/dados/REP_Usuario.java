@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
@@ -25,7 +26,7 @@ public class REP_Usuario implements IREP_Usuario {
 		return instancia;
 	}
 	public boolean cadastrarUsuário(Usuario usuario) throws CpfJaExistenteException{
-		if (this.usuario.contains(usuario)) {
+		if (this.usuarios.contains(usuario)) {
 			return false;
 		} 
 		else {
@@ -114,6 +115,13 @@ public class REP_Usuario implements IREP_Usuario {
 		return buscado;
 
 
+	}
+	
+	public ArrayList<Usuario> listarUsuarios(){
+		if(this.usuarios!=null){
+			Collections.sort(usuarios);
+		}
+		return usuarios;
 	}
 	
 	
