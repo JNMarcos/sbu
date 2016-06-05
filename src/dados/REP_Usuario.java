@@ -44,7 +44,7 @@ public class REP_Usuario implements IREP_Usuario {
 
 	public void alterarDadosUsuario(Usuario usuario) throws UsuarioNaoEncontradoException{
 		if (arrayUsuario(this.arquivoUsuario).isEmpty()) {
-			this.lerArquivo();
+			this.lerDoArquivo();
 		}
 		Usuario alterar = this.procurarPorCpf(usuario.getCpf());
 		this.usuarios.remove(alterar);
@@ -52,7 +52,7 @@ public class REP_Usuario implements IREP_Usuario {
 		return alterar;
 	}
 
-	private static REP_Usuario lerDoArquivo() {
+	public REP_Usuario lerDoArquivo() {
 		REP_Usuario instanciaLocal = null;
 
 		File in = new File("repositorioUsuario.dat");
@@ -100,9 +100,9 @@ public class REP_Usuario implements IREP_Usuario {
 		}
 	}
 
-	private Usuario procurarPorCpf(String cpf) throws CpfNaoExisteException{
+	public Usuario procurarPorCpf(String cpf) throws CpfNaoExisteException{
 		if(usuarios.isEmpty()){
-			this.lerArquivo();
+			this.lerDoArquivo();
 		}
 		Usuario buscado = null;
 		for(Usuario busca : this.usuarios){

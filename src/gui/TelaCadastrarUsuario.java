@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import classes_basicas.Usuario;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class TelaCadastrarUsuario {
 
@@ -23,6 +25,7 @@ public class TelaCadastrarUsuario {
 	private JTextField textTelefone;
 	private JTextField textEmail;
 	private JTextField textDataNascimento;
+	private static Fachada fachada = Fachada.getInstance();
 	
 	/**
 	 * Launch the application.
@@ -88,6 +91,11 @@ public class TelaCadastrarUsuario {
 		lblDataNascimento.setBounds(70, 344, 100, 14);
 		frame.getContentPane().add(lblDataNascimento);
 		
+		JComboBox comboBoxUsuario = new JComboBox();
+		comboBoxUsuario.setModel(new DefaultComboBoxModel(new String[] {"Aluno", "T\u00E9cnico", "Professor"}));
+		comboBoxUsuario.setBounds(259, 33, 28, 20);
+		frame.getContentPane().add(comboBoxUsuario);
+		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -136,26 +144,49 @@ public class TelaCadastrarUsuario {
 								JOptionPane.ERROR_MESSAGE);
 					}
 					else{
-						Usuario usuario = new Usuario();
-						usuario.setNome(textNome.getText()); 
-						char sexo[] = textSexo.getText().toCharArray();
-						char ch = sexo[0];//recebe o sexo 
-						usuario.setSexo(ch); 
-						usuario.setCpf(textCpf.getText());
-						usuario.setIdentidade(textIdentidade.getText());
-						usuario.setEndereco(textEndereco.getText());
-						usuario.setTelefone(textTelefone.getText());
-						usuario.setEmail(textEmail.getText());
-						usuario.setDataNascimento(textDataNascimento.getText());
 						
-						fachada.CadastrarUsuario(usuario);
-						fachada.Salvar
-						JOptionPane.showMessageDialog(null,
+						String nome = textNome.getText();
+						char ch[] = textSexo.getText().toCharArray();
+						char sexo = ch[0];//recebe o sexo 
+						String cpf = textCpf.getText();
+						String endereco = textEndereco.getText();
+						String identidade = textIdentidade.getText();
+						String telefone = textTelefone.getText();
+						String email = textEmail.getText();
+						String dataDeNascimento = textDataNascimento.getText();
+						
+						String tipoDeUsuario = (String)comboBoxUsuario.getSelectedItem();
+						
+						if(tipoDeUsuario.equals("Aluno")){
+							Aluno aluno = new Aluno(nome, sexo, cpf, endereco, 
+														identidade, telefone, email, 
+													dataDeNascimento);
+							fachada.cadastrarAluno(aluno);
+							fachada.salvarAluno();
+						}
+						else if(tipoDeUsuario.equals("Professor")){
+							Professor professor = new Professor(nome, sexo, cpf, endereco, 
+														identidade, telefone, email, 
+														dataDeNascimento);
+							fachada.cadastrarProfessor(professor);
+							fechada.salvarProfessor();
+						}
+						else {
+							Tecnico tecnico = new Tecnico(nome, sexo, cpf, endereco, 
+														identidade, telefone, email, 
+														dataDeNascimento);
+							fachada.cadastrarTecnico(tecnico);
+							fachada.salvarProfessor();
+						}
+							
+							JOptionPane.showMessageDialog(null,
 								"Cliente cadastrado com sucesso!");
 					}
 				
+				}
 			}
-		});
+			});
+		
 		btnCadastrar.setBounds(259, 406, 89, 23);
 		frame.getContentPane().add(btnCadastrar);
 		
@@ -200,5 +231,7 @@ public class TelaCadastrarUsuario {
 		textDataNascimento.setBounds(180, 341, 291, 20);
 		frame.getContentPane().add(textDataNascimento);
 		textDataNascimento.setColumns(10);
+		
+		
 	}
 }
