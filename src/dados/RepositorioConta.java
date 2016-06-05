@@ -82,7 +82,7 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
     }
     
     
-	public boolean cadastrarConta(Conta conta){
+	public boolean cadastrarConta(Conta conta) throws ContaJaCadastradaException{
         int x = 0;
         if (listaContas.isEmpty()) {
         	listaContas.add(conta);
@@ -108,12 +108,11 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
     }
 	
 	
-	public boolean removerConta(Conta conta) {
+	public boolean removerConta(Conta conta) throws ContaNaoEncontradaException {
 		for(int i = 0; i < listaContas.size(); i++){
 			if(listaContas.get(i).getUsuario().equals(conta.getUsuario())){
 				listaContas.remove(conta);
 				gravarArquivo();
-				break;
 				}
 		}
 		return true;
@@ -121,7 +120,7 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
     }
 	
 	
-	public boolean alterarDadosConta(Conta conta) {
+	public boolean alterarDadosConta(Conta conta) throws ContaNaoEncontradaException {
 	     for (int i = 0; i < listaContas.size(); i++) {
 	         if (listaContas.get(i).getUsuario().equals(conta.getUsuario())) {
 	            listaContas.set(i, conta);
@@ -132,7 +131,7 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 	    return true;
 	 }
 	
-	public Conta exibirConta(Usuario usuario){
+	public Conta exibirConta(Usuario usuario) throws ContaNaoEncontradaException{
 		Conta encontra = null;
 		for(int i = 0; i < listaContas.size(); i++){
 			if(listaContas.get(i).getUsuario().equals(usuario)){
@@ -145,7 +144,7 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 	}
 	
 	
-	public void consultarSaldo(Conta conta){		
+	public void consultarSaldo(Conta conta) throws ContaNaoEncontradaException{		
 		for(int i = 0; i < listaContas.size(); i++){
 			if(listaContas.get(i).getUsuario().equals(conta.getUsuario())){
 				System.out.println(listaContas.get(i).getSaldo());
@@ -154,7 +153,7 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 		
 	}
 	
-	public void verMovimentacoes(Conta conta){
+	public void verMovimentacoes(Conta conta) throws ContaNaoEncontradaException{
 		for(int i = 0; i < listaContas.size(); i++){
 			if(listaContas.get(i).getUsuario().equals(conta.getUsuario())){
 				System.out.println(listaContas.get(i).getHistorico());
