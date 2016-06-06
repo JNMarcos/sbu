@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import classes_basicas.Usuario;
 
 public interface IRepositorioUsuario {
-	public boolean cadastrarUsuário(Usuario usuario) throws CpfJaExistenteException;
+	public boolean cadastrarUsuário(Usuario usuario) ;
 	
-	public void removerUsuario(Usuario usuario) throws UsuarioNaoEncontradoException;
+	public void removerUsuario(Usuario usuario);
 	
-	public void alterarDadosUsuario(Usuario usuario) throws UsuarioNaoEncontradoException;
+	public void alterarDadosUsuario(Usuario usuario);
 		
 	public ArrayList<Usuario> listarUsuarios();
 	
@@ -17,7 +17,6 @@ public interface IRepositorioUsuario {
 	
 	public void gravarArquivo();
 	
-	public Usuario procurarPorCpf(String cpf) throws CpfNaoExisteException;
 	
 	
 	

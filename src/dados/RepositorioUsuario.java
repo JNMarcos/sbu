@@ -25,7 +25,7 @@ public class RepositorioUsuario implements IRepositorioUsuario {
 		}
 		return instancia;
 	}
-	public boolean cadastrarUsuário(Usuario usuario) throws CpfJaExistenteException{
+	public boolean cadastrarUsuário(Usuario usuario) {
 		if (this.usuarios.contains(usuario)) {
 			return false;
 		} 
@@ -37,12 +37,12 @@ public class RepositorioUsuario implements IRepositorioUsuario {
 		}
 	}
 
-	public void removerUsuario(Usuario usuario) throws UsuarioNaoEncontradoException{
+	public void removerUsuario(Usuario usuario) {
 		this.usuarios.remove(usuario);
 		this.gravarArquivo();
 	}
 
-	public void alterarDadosUsuario(Usuario usuario) throws UsuarioNaoEncontradoException{
+	public void alterarDadosUsuario(Usuario usuario) {
 		if (arrayUsuario(this.arquivoUsuario).isEmpty()) {
 			this.lerDoArquivo();
 		}
@@ -100,22 +100,7 @@ public class RepositorioUsuario implements IRepositorioUsuario {
 		}
 	}
 
-	public Usuario procurarPorCpf(String cpf) throws CpfNaoExisteException{
-		if(usuarios.isEmpty()){
-			this.lerDoArquivo();
-		}
-		Usuario buscado = null;
-		for(Usuario busca : this.usuarios){
-			if(busca.getCpf().equals(cpf)){
-				buscado = busca;
-			}
-		}
-		if (buscado == null) 
-			throw new CpfNaoEncontradoException();
-		return buscado;
 
-
-	}
 	
 	public ArrayList<Usuario> listarUsuarios(){
 		if(this.usuarios!=null){
