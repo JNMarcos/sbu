@@ -14,6 +14,7 @@ import classes_basicas.Conta;
 import classes_basicas.Divida;
 import classes_basicas.Movimentacao;
 import classes_basicas.Usuario;
+import negocio.ControladorConta;
 
 
 public class RepositorioConta implements IRepositorioConta, Serializable {
@@ -86,26 +87,26 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
     }
     
     
-	public void cadastrarConta(Conta conta) throws ContaJaCadastradaException{        
+	public void cadastrarConta(Conta conta){        
         listaContas.add(conta);
         gravarArquivo();
 	}
 	
 	
-	public void removerConta(Conta conta) throws ContaNaoEncontradaException {		
+	public void removerConta(Conta conta){		
 		listaContas.remove(conta);
 		gravarArquivo();
 	
     }
 	
 	
-	public void alterarDadosConta(Conta conta) throws ContaNaoEncontradaException {
+	public void alterarDadosConta(Conta conta){
 		int i = listaContas.indexOf(conta);
 		listaContas.set(i, conta);
 		gravarArquivo();
 	}	
 	
-	public Conta exibirConta(Usuario usuario) throws ContaNaoEncontradaException{
+	public Conta exibirConta(Usuario usuario){
 		Conta encontra = null;
 		for(int i = 0; i < listaContas.size(); i++){
 			if(listaContas.get(i).getUsuario().equals(usuario)){
@@ -118,22 +119,23 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 	}
 	
 	
-	public Double consultarSaldo(Conta conta) throws ContaNaoEncontradaException{		
+	public void consultarSaldo(Conta conta){	
 		for(int i = 0; i < listaContas.size(); i++){
 			if(listaContas.get(i).getUsuario().equals(conta.getUsuario())){
-				return listaContas.get(i).getSaldo();
+				listaContas.get(i).getSaldo();
+				
 			}
 		}
 		
 	}
 	
-	public List<Movimentacao> verMovimentacoes(Conta conta) throws ContaNaoEncontradaException{
+	public void verMovimentacoes(Conta conta){
 		for(int i = 0; i < listaContas.size(); i++){
 			if(listaContas.get(i).getUsuario().equals(conta.getUsuario())){
-				return listaContas.get(i).getHistorico();
+				listaContas.get(i).getHistorico();
 			}
 		}
-		
+				
 }
 	public ArrayList<Conta> listarContas(){		
 		return listaContas;		
