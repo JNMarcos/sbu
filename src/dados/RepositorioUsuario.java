@@ -14,12 +14,12 @@ import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import classes_basicas.Usuario;
 
 
-public class REP_Usuario implements IREP_Usuario {
+public class RepositorioUsuario implements IRepositorioUsuario {
 	ArrayList<Usuario> usuarios =  new ArrayList<Usuario>();
 	public static ControladorUsuario controladorUsuario = new ControladorUsuario();
-	private static REP_Usuario instancia;
+	private static RepositorioUsuario instancia;
 
-	public static REP_Usuario getInstancia() {
+	public static RepositorioUsuario getInstancia() {
 		if (instancia == null) {
 			instancia = lerDoArquivo();
 		}
@@ -52,8 +52,8 @@ public class REP_Usuario implements IREP_Usuario {
 		return alterar;
 	}
 
-	public REP_Usuario lerDoArquivo() {
-		REP_Usuario instanciaLocal = null;
+	public RepositorioUsuario lerDoArquivo() {
+		RepositorioUsuario instanciaLocal = null;
 
 		File in = new File("repositorioUsuario.dat");
 		FileInputStream fis = null;
@@ -62,9 +62,9 @@ public class REP_Usuario implements IREP_Usuario {
 			fis = new FileInputStream(in);
 			ois = new ObjectInputStream(fis);
 			Object o = ois.readObject();
-			instanciaLocal = (REP_Usuario) o;
+			instanciaLocal = (RepositorioUsuario) o;
 		} catch (Exception e) {
-			instanciaLocal = new REP_Usuario();
+			instanciaLocal = new RepositorioUsuario();
 		} finally {
 			if (ois != null) {
 				try {

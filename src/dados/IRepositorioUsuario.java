@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import classes_basicas.Usuario;
 
-public interface IREP_Usuario {
+public interface IRepositorioUsuario {
 	public boolean cadastrarUsuário(Usuario usuario) throws CpfJaExistenteException;
 	
 	public void removerUsuario(Usuario usuario) throws UsuarioNaoEncontradoException;
@@ -13,7 +13,7 @@ public interface IREP_Usuario {
 		
 	public ArrayList<Usuario> listarUsuarios();
 	
-	public REP_Usuario lerDoArquivo();
+	public RepositorioUsuario lerDoArquivo();
 	
 	public void gravarArquivo();
 	
