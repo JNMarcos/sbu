@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import classes_basicas.Usuario;
 import dados.IRepositorioUsuario;
 import dados.RepositorioUsuario;
+import excecao.CpfJaExisteException;
+import excecao.UsuarioNaoEncontradoException;
 
 /**
  * 
@@ -26,9 +28,7 @@ public class ControladorUsuario {
 	}
 	
 
-	public void cadastrarUsuario(Usuario usuario) throws 
-
-CpfJaExistenteException
+	public void cadastrarUsuario(Usuario usuario) throws CpfJaExistenteException
 	{
 		
 		int index;
@@ -74,9 +74,7 @@ repositorioUsuario.listarUsuarios();
 		
 	}
 	
-	public void removerUsuario(Usuario usuario) throws 
-
-UsuarioNaoEncontradoException
+	public void removerUsuario(Usuario usuario) throws UsuarioNaoEncontradoException
 	{
 		
 		ArrayList<Usuario> repositorioUsuarioLocal = 
@@ -96,9 +94,7 @@ repositorioUsuario.listarUsuarios();
 	}
 	
 	
-	public void alterarDadosUsuario(Usuario usuario) throws 
-
-UsuarioNaoEncontradoException
+	public void alterarDadosUsuario(Usuario usuario) throws UsuarioNaoEncontradoException
 	{
 		
 		ArrayList<Usuario> repositorioUsuarioLocal = 
@@ -117,9 +113,7 @@ repositorioUsuario.listarUsuarios();
 	}
 	
 	
-	public Usuario procurarPorCpf(String cpf) throws 
-
-CpfJaExistenteException
+	public Usuario procurarPorCpf(String cpf) throws CpfJaExistenteException
 	{
 		
 		int index;
