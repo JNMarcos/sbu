@@ -113,8 +113,8 @@ public class RepositorioDivida implements IRepositorioDivida, Serializable {
 	
 		
 		File f;
-		FileOutputStream fos;
-		ObjectOutputStream oos;
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
 		
 		try
 		{
