@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -14,9 +15,13 @@ import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import classes_basicas.Usuario;
 
 
-public class RepositorioUsuario implements IRepositorioUsuario {
+public class RepositorioUsuario implements IRepositorioUsuario, Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ArrayList<Usuario> usuarios =  new ArrayList<Usuario>();
-	public static ControladorUsuario controladorUsuario = new ControladorUsuario();
 	private static RepositorioUsuario instancia;
 
 	public static RepositorioUsuario getInstancia() {
@@ -25,13 +30,13 @@ public class RepositorioUsuario implements IRepositorioUsuario {
 		}
 		return instancia;
 	}
-	public boolean cadastrarUsuário(Usuario usuario) {
+	public boolean cadastrarUsuario(Usuario usuario) {
 		if (this.usuarios.contains(usuario)) {
 			return false;
 		} 
 		else {
 			this.usuarios.add(usuario);
-			this.gravarArquivo();
+			gravarArquivo();
 
 			return true;
 		}
@@ -39,20 +44,19 @@ public class RepositorioUsuario implements IRepositorioUsuario {
 
 	public void removerUsuario(Usuario usuario) {
 		this.usuarios.remove(usuario);
-		this.gravarArquivo();
+		gravarArquivo();
 	}
 
 	public void alterarDadosUsuario(Usuario usuario) {
 		if (arrayUsuario(this.arquivoUsuario).isEmpty()) {
-			this.lerDoArquivo();
+			lerDoArquivo();
 		}
 		Usuario alterar = this.procurarPorCpf(usuario.getCpf());
 		this.usuarios.remove(alterar);
-		this.gravarArquivo();
-		return alterar;
+		gravarArquivo();
 	}
 
-	public RepositorioUsuario lerDoArquivo() {
+	public static RepositorioUsuario lerDoArquivo() {
 		RepositorioUsuario instanciaLocal = null;
 
 		File in = new File("repositorioUsuario.dat");
@@ -76,7 +80,7 @@ public class RepositorioUsuario implements IRepositorioUsuario {
 
 		return instanciaLocal;
 	}
-	public void gravarArquivo()   {
+	public static void gravarArquivo()   {
 		if (instancia == null) {
 			return;
 		}
@@ -108,7 +112,4 @@ public class RepositorioUsuario implements IRepositorioUsuario {
 		}
 		return usuarios;
 	}
-	
-	
-
 }

@@ -12,6 +12,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,23 +22,25 @@ import classes_basicas.Conta;
 import classes_basicas.Divida;
 import negocio.ControladorADMBiblioteca;
 
-public class RepositorioDivida implements IRepositorioDivida {
+public class RepositorioDivida implements IRepositorioDivida, Serializable {
 	
-	private List<Divida> dividas;
-	public static ControladorADMBiblioteca controladorDivida;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private ArrayList<Divida> dividas;
 	private static RepositorioDivida instanciaRepositorio;
 	
 	public RepositorioDivida()
 	{
 		
 		dividas = new ArrayList<Divida>();
-		controladorDivida = new ControladorADMBiblioteca();
 		
 		
 	}
 	
 	
-	public RepositorioDivida getInstancia()
+	public static RepositorioDivida getInstancia()
 	{
 		
 		if(instanciaRepositorio == null)
@@ -50,14 +55,14 @@ public class RepositorioDivida implements IRepositorioDivida {
 	}
 	
 	
-	public RepositorioDivida lerArquivo()
+	public static RepositorioDivida lerArquivo()
 	{	
 		
 		RepositorioDivida instanciaLocal = null;
 		
 		File f;
 		FileInputStream fis;
-		ObjectInputStream ois;
+		ObjectInputStream ois = null;
 		
 		try
 		{
@@ -102,7 +107,7 @@ public class RepositorioDivida implements IRepositorioDivida {
 	}
 	
 	
-	public void gravarArquivo()
+	public static void gravarArquivo()
 	{	
 		
 		if(instanciaRepositorio == null)
@@ -114,8 +119,8 @@ public class RepositorioDivida implements IRepositorioDivida {
 	
 		
 		File f;
-		FileOutputStream fos;
-		ObjectOutputStream oos;
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
 		
 		try
 		{
