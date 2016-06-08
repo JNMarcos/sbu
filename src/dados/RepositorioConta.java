@@ -8,19 +8,20 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import classes_basicas.Conta;
-import classes_basicas.Divida;
-import classes_basicas.Movimentacao;
 import classes_basicas.Usuario;
-import negocio.ControladorConta;
 
 
 public class RepositorioConta implements IRepositorioConta, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private ArrayList<Conta> listaContas;
 	private static RepositorioConta instancia;
-	public static ControladorConta controladorConta = new ControladorConta();
+	
 	
     public RepositorioConta() {
         this.listaContas = new ArrayList<>();

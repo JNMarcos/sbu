@@ -6,7 +6,7 @@ import classes_basicas.Divida;
 import dados.IRepositorioDivida;
 import dados.RepositorioDivida;
 import excecao.DividaNaoEncontradaException;
-import excecao.DividaExisteException;
+import excecao.DividaJaExistenteException;
 
 /*
  * 
@@ -52,7 +52,7 @@ public class ControladorADMBiblioteca {
 	}
 	
 	
-	public void adicionarDivida(Divida divida) throws DividaExisteException
+	public void adicionarDivida(Divida divida) throws DividaJaExistenteException
 	{
 		
 		
@@ -64,7 +64,7 @@ public class ControladorADMBiblioteca {
 		if(i == 0)
 			interfaceRepositorio.cadastrarDivida(divida);
 		else
-			throw new DividaExisteException();
+			throw new DividaJaExistenteException();
 		
 		
 	}

@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,10 @@ import negocio.ControladorADMBiblioteca;
 
 public class RepositorioDivida implements IRepositorioDivida, Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Divida> dividas;
 	private static RepositorioDivida instanciaRepositorio;
 	
@@ -56,7 +62,7 @@ public class RepositorioDivida implements IRepositorioDivida, Serializable {
 		
 		File f;
 		FileInputStream fis;
-		ObjectInputStream ois;
+		ObjectInputStream ois = null;
 		
 		try
 		{
@@ -101,7 +107,7 @@ public class RepositorioDivida implements IRepositorioDivida, Serializable {
 	}
 	
 	
-	public void gravarArquivo()
+	public static void gravarArquivo()
 	{	
 		
 		if(instanciaRepositorio == null)
