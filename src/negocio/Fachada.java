@@ -3,14 +3,19 @@
  */
 package negocio;
 
+import java.util.ArrayList;
+
 import classes_basicas.Conta;
 import classes_basicas.Divida;
 import classes_basicas.Usuario;
 import excecao.ContaJaCadastradaException;
 import excecao.ContaNaoEncontradaException;
+import excecao.CpfJaExistenteException;
+import excecao.DividaExisteException;
 import excecao.DividaNaoEncontradaException;
 import excecao.SaldoInsuficenteException;
 import excecao.SenhaIncorretaException;
+import excecao.UsuarioNaoEncontradoException;
 import excecao.ValorInseridoNaoCondizException;
 import negocio.ControladorUsuario;
 
@@ -38,8 +43,9 @@ public class Fachada implements IFachada{
 		}
     	return instance;
     }
-	
+
 	//serviço
+	
 	@Override
 	public void pagarDivida(Conta conta, Divida divida) throws ContaNaoEncontradaException,
 	DividaNaoEncontradaException, SaldoInsuficenteException{
@@ -127,5 +133,37 @@ public class Fachada implements IFachada{
 	@Override
 	public void removerUsuario(Usuario usuario) throws UsuarioNaoEncontradoException{
 		ctrUsuario.removerUsuario(usuario);
+	}
+	
+	@Override
+	public void alterarDadosUsuario(Usuario usuario) throws UsuarioNaoEncontradoException{
+		ctrUsuario.alterarDadosUsuario(usuario);
+	}
+	
+	@Override
+	public Usuario procurarPorCpf(String cpf) throws CpfJaExistenteException{
+		ctrUsuario.procurarPorCpf(cpf);
+	}
+	
+	//ADMBiblioteca
+	
+	@Override
+	public int pesquisar(ArrayList<Divida> repositorioLocal, Divida divida){
+		ctrADMBiblioteca.pesquisar(repositorioLocal, divida);
+	}
+	
+	@Override
+	public void adicionarDivida(Divida divida) throws DividaExisteException{
+		ctrADMBiblioteca.adicionarDivida(divida);
+	}
+	
+	@Override
+	public void alterarDadosDivida(Divida divida) throws DividaNaoEncontradaException{
+		ctrADMBiblioteca.alterarDadosDivida(divida);
+	}
+		
+	@Override
+	public void removerDivida(Divida divida) throws DividaNaoEncontradaException{
+		ctrADMBiblioteca.removerDivida(divida);
 	}
 }

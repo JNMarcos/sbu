@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import classes_basicas.Usuario;
 import dados.IRepositorioUsuario;
 import dados.RepositorioUsuario;
-import excecao.CpfJaExisteException;
+import excecao.CpfJaExistenteException;
 import excecao.UsuarioNaoEncontradoException;
 
 /**
