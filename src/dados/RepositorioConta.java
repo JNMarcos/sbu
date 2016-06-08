@@ -117,8 +117,7 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 			}
 		}
 		return encontra;
-	}
-	
+	}	
 	
 	public void consultarSaldo(Conta conta){	
 		for(int i = 0; i < listaContas.size(); i++){

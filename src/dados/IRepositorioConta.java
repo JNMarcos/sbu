@@ -18,5 +18,4 @@ public interface IRepositorioConta {
 	public boolean verificarNomeUsuarioJaExiste(String nomeUsuario);
 	public boolean verificarSenhaJaExiste(String senha);
 	public Conta verificarLogin(String nome, String senha);
-
 }
