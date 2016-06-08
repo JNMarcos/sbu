@@ -141,4 +141,45 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 		return listaContas;		
 	}
 	
+	public boolean verificarNomeUsuarioJaExiste(String nomeUsuario) {
+		boolean nomeUsuarioJaExiste = false;
+		if (nomeUsuario != null){
+			if (listaContas.size() > 0){
+				for (int i = 0; i < listaContas.size(); i++){
+					if (listaContas.get(i).getUsuario().getNome().equals(nomeUsuario)){
+						nomeUsuarioJaExiste = true;
+						break;
+					}
+				}
+			}
+		} else nomeUsuarioJaExiste = true;
+		return nomeUsuarioJaExiste;
+	}
+
+	public boolean verificarSenhaJaExiste(String senha) {
+		boolean senhaJaExiste = false;
+		if (senha != null){
+			for (int i = 0; i < listaContas.size(); i++){
+				if (listaContas.get(i).getSenha().equals(senha)){
+					senhaJaExiste = true;
+					break;
+				}
+			}
+		} else senhaJaExiste = true;
+		return senhaJaExiste;
+	}
+
+	
+	public Conta verificarLogin(String nome, String senha) {
+		Conta conta = null;
+		for (int i = 0; i < listaContas.size(); i++){
+			if (listaContas.get(i).getUsuario().getNome().equals(nome) && listaContas.get(i).getSenha().equals(senha)){
+				conta = listaContas.get(i);
+				break;
+			}
+		}
+
+		return conta;
+	}
+	
 }
