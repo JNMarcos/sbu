@@ -3,17 +3,19 @@
  */
 package negocio;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
-import java.util.List;
-
 import classes_basicas.Conta;
-import classes_basicas.Movimentacao;
+import classes_basicas.Divida;
+import classes_basicas.Servico;
 import classes_basicas.Usuario;
 import dados.IRepositorioConta;
 import dados.RepositorioConta;
 import excecao.ContaJaCadastradaException;
 import excecao.ContaNaoEncontradaException;
 import excecao.SenhaIncorretaException;
+import excecao.UsuarioNaoEncontradoException;
 
 
 /**
@@ -22,6 +24,8 @@ import excecao.SenhaIncorretaException;
  */
 public class ControladorConta {
 	public IRepositorioConta repositorioConta;
+	private final static int QUANTIDADE_DIAS_NO_ANO = 365;
+	private final static int QUANTIDADE_DIAS_NO_MES = 30;
 	
 	public ControladorConta(){
 		this.repositorioConta = RepositorioConta.getInstancia();
@@ -125,10 +129,26 @@ public class ControladorConta {
 
 		if (nomeU && conta == null) throw new SenhaIncorretaException();
 		return conta;
-	
-		
 	}
 	
+	public double verificarValorMultaBiblioteca(Conta conta){
+		double valorDivida = 0.0;
+		int diasTotal;
+		Period p;
+		for(Divida d: conta.getDividas()){
+			if (d.estaPago() == false){ // se conta não foi paga
+				//verifica a diferença entre as datas
+				p = Period.between(d.getDataEmissao(), LocalDate.now());
+				//transforma a diferença entre as datas apenas para dias 
+				diasTotal = p.getYears() * QUANTIDADE_DIAS_NO_ANO
+				+ p.getMonths() * QUANTIDADE_DIAS_NO_MES + p.getDays();
+				d.setValor(diasTotal * Servico.getPrecos().get("multaDiáriaBiblioteca"));
+				//põe o valor da dívida atualizado
+				valorDivida = valorDivida + d.getValor();
+			}
+		}
+		return valorDivida;
+	}
 
 }
 
