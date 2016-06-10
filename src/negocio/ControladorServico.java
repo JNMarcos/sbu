@@ -27,7 +27,7 @@ public class ControladorServico {
 	} 
 
 	//opção: almoço ou jantar
-	public void comprarFicaRu(Conta conta, boolean isAlmoco) throws SaldoInsuficenteException{
+	public void comprarFichaRU(Conta conta, boolean isAlmoco) throws SaldoInsuficenteException{
 		if(conta.getUsuario() instanceof Aluno){
 			if (isAlmoco){
 				if (conta.getSaldo() >= Servico.getPrecos().get("almocoAlunoRU"))

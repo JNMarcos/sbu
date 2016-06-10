@@ -11,7 +11,7 @@ import classes_basicas.Usuario;
 import excecao.ContaJaCadastradaException;
 import excecao.ContaNaoEncontradaException;
 import excecao.CpfJaExistenteException;
-import excecao.DividaExisteException;
+import excecao.DividaJaExistenteException;
 import excecao.DividaNaoEncontradaException;
 import excecao.SaldoInsuficenteException;
 import excecao.SenhaIncorretaException;
@@ -24,13 +24,13 @@ import excecao.ValorInseridoNaoCondizException;
  */
 public interface IFachada {
 	
-	//serviço
+	//serviços
 	void pagarDivida(Conta conta, Divida divida) throws ContaNaoEncontradaException,
 	DividaNaoEncontradaException, SaldoInsuficenteException;
-	void comprarFichaRU(Conta conta) throws SaldoInsuficenteException;
-	void solicitarDocumento(Conta conta) throws ContaNaoEncontradaException;
-	void solicitarCarteiraEstudante(Conta conta) throws ContaNaoEncontradaException;
-	void solicitarCarteira(Conta conta) throws ContaNaoEncontradaException;
+	void comprarFichaRU(Conta conta, boolean isAlmoco) throws ContaNaoEncontradaException, SaldoInsuficenteException;
+	void solicitarDocumento(Conta conta, boolean[] isSolicitado) throws ContaNaoEncontradaException,
+	SaldoInsuficenteException;
+	void solicitarCarteira(Conta conta) throws ContaNaoEncontradaException, SaldoInsuficenteException;
 	
 	//Conta
 	void cadastrarConta(Conta conta) throws ContaJaCadastradaException, 
@@ -44,6 +44,7 @@ public interface IFachada {
 	void verMovimentacoes(Conta conta) throws ContaNaoEncontradaException;
 	Conta verificarLogin(String nome, String senha) throws ContaNaoEncontradaException,
 	SenhaIncorretaException;
+	void verificarValorMultaBiblioteca(Conta conta) throws ContaNaoEncontradaException;
 	
 	//Usuario
 	void cadastrarUsuario(Usuario usuario) throws CpfJaExistenteException, 
@@ -54,7 +55,7 @@ public interface IFachada {
 	
 	//ADMBiblioteca
 	int pesquisar(ArrayList<Divida> repositorioLocal, Divida divida);
-	void adicionarDivida(Divida divida) throws DividaExisteException;
+	void adicionarDivida(Divida divida) throws DividaJaExistenteException;
 	void alterarDadosDivida(Divida divida) throws DividaNaoEncontradaException;
 	void removerDivida(Divida divida) throws DividaNaoEncontradaException;
 }
