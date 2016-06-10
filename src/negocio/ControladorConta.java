@@ -149,7 +149,17 @@ public class ControladorConta {
 		}
 		return valorDivida;
 	}
-
+	public void inserirCreditos(int valor, Conta conta){
+		ArrayList<Conta> repositorio = repositorioConta.listarContas();
+		Double saldo;
+		for(int i = 0; i < repositorio.size(); i++){
+			if(repositorio.get(i).getUsuario().equals(conta.getUsuario())){
+				saldo = repositorio.get(i).getSaldo() + valor;
+				repositorio.get(i).setSaldo(saldo);
+			}
+		}
+		
+	}
 }
 
 
