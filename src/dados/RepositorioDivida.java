@@ -20,7 +20,6 @@ import java.util.List;
 
 import classes_basicas.Conta;
 import classes_basicas.Divida;
-import negocio.ControladorADMBiblioteca;
 
 public class RepositorioDivida implements IRepositorioDivida, Serializable {
 	
@@ -218,15 +217,21 @@ public class RepositorioDivida implements IRepositorioDivida, Serializable {
 		
 	}
 	
-	
+	public boolean procurarDivida (Divida divida){
+		boolean dividaExiste = false;
+		for (Divida d : dividas){
+			if (d.equals(divida)){
+				dividaExiste = true;
+				break;
+			}
+		}
+		return dividaExiste;
+	}
 	
 	public List<Divida> listarDividas()
 	{
 		
 		return dividas;
 		
-	}
-	
- 
-	
+	}	
 }

@@ -20,6 +20,7 @@ public interface IRepositorioDivida {
 	public void removerDivida(Divida divida);
 	public void alterarDadosDivida(Divida divida);
 	public Divida exibirDivida (Conta nome, LocalDate data, LocalTime hora);
+	public boolean procurarDivida(Divida divida);
 	public List<Divida> listarDividas();
 	
 }

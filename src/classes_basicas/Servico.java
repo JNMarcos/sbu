@@ -13,8 +13,6 @@ import java.util.Hashtable;
  */
 public abstract class Servico {
 	private static Hashtable<String, Double> precos;
-	private final static int QUANTIDADE_DIAS_NO_ANO = 365;
-	private final static int QUANTIDADE_DIAS_NO_MES = 30;
 	
 	// private no construtor impede que a classe seja instanciada por fora
 	private Servico(){
@@ -69,25 +67,7 @@ public abstract class Servico {
 	// serviços dívida (Biblioteca)
 	//provavelmente esse método será transferido para ControladorConta
 	//pois não é um serviço
-	public static double valorMultaBiblioteca(Conta conta){
-		double valorDivida = 0.0;
-		int diasTotal;
-		Period p;
-		for(Divida d: conta.getDividas()){
-			if (d.estaPago() == false){ // se conta não foi paga
-				//verifica a diferença entre as datas
-				p = Period.between(d.getDataEmissao(), LocalDate.now());
-				//transforma a diferença entre as datas apenas para dias 
-				diasTotal = p.getYears() * QUANTIDADE_DIAS_NO_ANO
-				+ p.getMonths() * QUANTIDADE_DIAS_NO_MES + p.getDays();
-				d.setValor(diasTotal * Servico.getPrecos().get("multaDiáriaBiblioteca"));
-				//põe o valor da dívida atualizado
-				valorDivida = valorDivida + d.getValor();
-			}
-		}
-		return valorDivida;
-	}
-	
+		
 	public static void pagarDivida(Conta conta, Divida divida){
 		conta.setSaldo(conta.getSaldo() - divida.getValor()); // desconta o valor da dívida da conta do usuário
 		divida.setEstaPago(true); // põe como paga
@@ -104,7 +84,7 @@ public abstract class Servico {
 				get("diplomaGraducao"));
 	}
 	
-	public static void solicitarDiplomaPosGraducao(Conta conta){
+	public static void solicitarDiplomaPosGraduacao(Conta conta){
 		conta.setSaldo(conta.getSaldo() - Servico.getPrecos().
 				get("diplomaPosGraducao"));
 	}
@@ -114,7 +94,7 @@ public abstract class Servico {
 				get("historicoCompletoGraducao"));	
 	}
 	
-	public static void solicitarHistoricoCompletoPosGraducao(Conta conta){
+	public static void solicitarHistoricoCompletoPosGraduacao(Conta conta){
 		conta.setSaldo(conta.getSaldo() - Servico.getPrecos().
 				get("historicoCompletoPosGraducao"));
 	}
