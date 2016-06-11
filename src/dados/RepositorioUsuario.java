@@ -48,11 +48,9 @@ public class RepositorioUsuario implements IRepositorioUsuario, Serializable {
 	}
 
 	public void alterarDadosUsuario(Usuario usuario) {
-		if (arrayUsuario(this.arquivoUsuario).isEmpty()) {
-			lerDoArquivo();
-		}
-		Usuario alterar = this.procurarPorCpf(usuario.getCpf());
-		this.usuarios.remove(alterar);
+		
+		int i = usuarios.indexOf(usuario);
+		usuarios.set(i, usuario);
 		gravarArquivo();
 	}
 
