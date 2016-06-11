@@ -1,5 +1,12 @@
 package gui;
 
+/**
+ * 
+ * @author ramices
+ * 
+ */
+
+
 import java.awt.BorderLayout;
 
 import gui.TelaPrincipalADMGeral;
