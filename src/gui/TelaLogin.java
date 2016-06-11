@@ -20,6 +20,7 @@ import negocio.ControladorConta;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class TelaLogin extends JPanel {
 	private JTextField txtCPF;
@@ -75,14 +76,14 @@ public class TelaLogin extends JPanel {
 				
 			}
 		});
-		btnLogin.setBounds(111, 218, 89, 23);
+		btnLogin.setBounds(123, 218, 89, 23);
 		add(btnLogin);
 		
-		JButton btnVoltar = new JButton("Voltar");
+		JButton btnVoltar = new JButton("Fechar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				telaPrincipal.setVisible(true);
+				dispose();
 		
 			}
 		});
@@ -90,22 +91,27 @@ public class TelaLogin extends JPanel {
 		add(btnVoltar);
 		
 		txtCPF = new JTextField();
-		txtCPF.setBounds(200, 62, 162, 20);
+		txtCPF.setBounds(200, 119, 162, 20);
 		add(txtCPF);
 		txtCPF.setColumns(10);
 		
 		textSenha = new JTextField();
-		textSenha.setBounds(200, 112, 162, 20);
+		textSenha.setBounds(200, 150, 162, 20);
 		add(textSenha);
 		textSenha.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("CPF:");
-		lblNewLabel.setBounds(111, 65, 46, 14);
+		lblNewLabel.setBounds(133, 122, 46, 14);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Senha:");
-		lblNewLabel_1.setBounds(111, 115, 46, 14);
+		lblNewLabel_1.setBounds(133, 153, 46, 14);
 		add(lblNewLabel_1);
+		
+		JLabel lblbu = new JLabel("$BU");
+		lblbu.setFont(new Font("Verdana", Font.ITALIC, 33));
+		lblbu.setBounds(200, 11, 168, 60);
+		add(lblbu);
 
 	}
 }
