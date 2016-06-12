@@ -72,23 +72,23 @@ public class TelaLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblbu = new JLabel("$BU");
-		lblbu.setFont(new Font("Verdana", Font.ITALIC, 26));
-		lblbu.setBounds(179, 11, 65, 57);
-		contentPane.add(lblbu);
+		JLabel lblTitulo = new JLabel("$BU");
+		lblTitulo.setFont(new Font("Verdana", Font.ITALIC, 26));
+		lblTitulo.setBounds(179, 11, 65, 57);
+		contentPane.add(lblTitulo);
 		
 		txtCPF = new JTextField();
 		txtCPF.setBounds(166, 91, 162, 20);
 		contentPane.add(txtCPF);
 		txtCPF.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("CPF:");
-		lblNewLabel.setBounds(88, 94, 46, 14);
-		contentPane.add(lblNewLabel);
+		JLabel lblCPF = new JLabel("CPF:");
+		lblCPF.setBounds(88, 94, 46, 14);
+		contentPane.add(lblCPF);
 		
-		JLabel lblNewLabel_1 = new JLabel("Senha:");
-		lblNewLabel_1.setBounds(88, 139, 46, 14);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblSenha = new JLabel("Senha:");
+		lblSenha.setBounds(88, 139, 46, 14);
+		contentPane.add(lblSenha);
 		
 		textSenha = new JTextField();
 		textSenha.setBounds(166, 136, 162, 20);
