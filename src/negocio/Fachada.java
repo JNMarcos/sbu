@@ -138,6 +138,13 @@ public class Fachada implements IFachada{
 		return ctrUsuario.pesquisar(user, usuario);
 	}
 	
+	public ArrayList<Usuario> listarUsuarios()
+	{
+		
+		return ctrUsuario.listarUsuarios();
+		
+	}
+	
 	//ADMBiblioteca
 	@Override
 	public int pesquisar(ArrayList<Divida> repositorioLocal, Divida divida){

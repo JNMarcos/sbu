@@ -49,6 +49,7 @@ public interface IFachada {
 	void alterarDadosUsuario(Usuario usuario) throws UsuarioNaoEncontradoException;
 	Usuario procurarPorCpf(String cpf) throws CpfJaExistenteException;
 	int pesquisar(ArrayList<Usuario> user, Usuario usuario);
+	ArrayList<Usuario>  listarUsuarios();
 	
 	//ADMBiblioteca
 	int pesquisar(ArrayList<Divida> repositorioLocal, Divida divida);
