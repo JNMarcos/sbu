@@ -47,8 +47,7 @@ public class Fachada implements IFachada{
 	//serviço
 	
 	@Override
-	public void pagarDivida(Conta conta, Divida divida) throws ContaNaoEncontradaException,
-	DividaNaoEncontradaException, SaldoInsuficenteException{
+	public void pagarDivida(Conta conta, Divida divida) throws SaldoInsuficenteException, DividaNaoEncontradaException{
 		ctrServico.pagarDivida(conta,divida);
 	}
 	
@@ -58,21 +57,19 @@ public class Fachada implements IFachada{
 	}
 	
 	@Override
-	public void solicitarDocumento(Conta conta, boolean[] isSolicitar) throws ContaNaoEncontradaException,
-	SaldoInsuficenteException{
+	public void solicitarDocumento(Conta conta, boolean[] isSolicitar) throws SaldoInsuficenteException{
 		ctrServico.solicitarDocumento(conta, isSolicitar);
 	}
 	
 	@Override
-	public void solicitarCarteira(Conta conta) throws ContaNaoEncontradaException, SaldoInsuficenteException{
+	public void solicitarCarteira(Conta conta) throws SaldoInsuficenteException{
 		ctrServico.solicitarCarteira(conta);
 	}
 	
 
 	//Conta
 	@Override
-	public void cadastrarConta(Conta conta) throws ContaJaCadastradaException, 
-	IllegalArgumentException{
+	public void cadastrarConta(Conta conta) throws ContaJaCadastradaException{
 		ctrConta.cadastrarConta(conta);
 	}
 	
@@ -100,7 +97,7 @@ public class Fachada implements IFachada{
 	@Override
 	public void inserirCreditos(int valor, Conta conta) throws ContaNaoEncontradaException,
 	ValorInseridoNaoCondizException{
-		ctrConta.inserirCreditos(valor, conta); //falta implementar
+		ctrConta.inserirCreditos(valor, conta);
 	}
 	
 	@Override
@@ -109,23 +106,16 @@ public class Fachada implements IFachada{
 	}
 	
 	@Override
-	public Conta verificarLogin(String nome, String senha) throws ContaNaoEncontradaException,
-	SenhaIncorretaException{
+	public Conta verificarLogin(String nome, String senha) throws SenhaIncorretaException, 
+	UsuarioNaoEncontradoException{
 		Conta c = ctrConta.verificarLogin(nome, senha);
+		return c;
 		
-		//não entendi a necessidade
-		if (senha.equals(c.getSenha())){
-			return c;
-		}
-		else{
-			throw new SenhaIncorretaException("Senha incorreta login:" +nome); //errado
-		}
 	}
 	
 	//Usuario
 	@Override
-	public void cadastrarUsuario(Usuario usuario) throws CpfJaExistenteException, 
-	ContaJaCadastradaException{
+	public void cadastrarUsuario(Usuario usuario) throws CpfJaExistenteException{
 		ctrUsuario.cadastrarUsuario(usuario);
 	}
 	
@@ -144,10 +134,12 @@ public class Fachada implements IFachada{
 		return ctrUsuario.procurarPorCpf(cpf);
 	}
 	
-	//ADMBiblioteca
+	public int pesquisar(ArrayList<Usuario> user, Usuario usuario){
+		return ctrUsuario.pesquisar(user, usuario);
+	}
 	
+	//ADMBiblioteca
 	@Override
-	//verificar método
 	public int pesquisar(ArrayList<Divida> repositorioLocal, Divida divida){
 		return ctrADMBiblioteca.pesquisar(repositorioLocal, divida);
 	}
