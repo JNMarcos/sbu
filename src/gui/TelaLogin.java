@@ -1,117 +1,156 @@
 package gui;
+
 /**
  * 
  * @author ramices
  * 
  */
+
+
+import java.awt.BorderLayout;
+
+import gui.TelaPrincipalADMGeral;
+import gui.TelaPrincipalADM;
+import gui.TelaPrincipalNaoADM;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
+import java.awt.Font;
+
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+import negocio.Fachada;
 import classes_basicas.ADMBiblioteca;
 import classes_basicas.ADMGeral;
-import classes_basicas.Aluno;
-import classes_basicas.Professor;
-import classes_basicas.Tecnico;
-import classes_basicas.Usuario;
-import negocio.ControladorConta;
+import classes_basicas.Conta;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Font;
 
-public class TelaLogin extends JPanel {
+public class TelaLogin extends JFrame {
+
+	private JPanel contentPane;
 	private JTextField txtCPF;
 	private JTextField textSenha;
+	private TelaPrincipalADM telaPrincipalADM;
+    private TelaPrincipalADMGeral telaPrincipalADMGeral;
+    private TelaPrincipalNaoADM TelaPrincipalNaoADM;
+    private static Fachada fachada = Fachada.getInstance();
+	
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaLogin frame = new TelaLogin();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-
+	/**
+	 * Create the frame.
+	 */
 	public TelaLogin() {
-		setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblbu = new JLabel("$BU");
+		lblbu.setFont(new Font("Verdana", Font.ITALIC, 26));
+		lblbu.setBounds(179, 11, 65, 57);
+		contentPane.add(lblbu);
+		
+		txtCPF = new JTextField();
+		txtCPF.setBounds(166, 91, 162, 20);
+		contentPane.add(txtCPF);
+		txtCPF.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("CPF:");
+		lblNewLabel.setBounds(88, 94, 46, 14);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Senha:");
+		lblNewLabel_1.setBounds(88, 139, 46, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		textSenha = new JTextField();
+		textSenha.setBounds(166, 136, 162, 20);
+		contentPane.add(textSenha);
+		textSenha.setColumns(10);
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+			
+				Conta conta = null;
 				
 				try
 				{
 					
-					usuario = controladorConta.verificarLogin(txtCPF.getText(), textSenha.getText());
+					conta = fachada.verificarLogin(txtCPF.getText(), textSenha.getText());
 					
-					try
+					if(conta.getUsuario() instanceof ADMGeral)
 					{
-						if(usuario instanceof ADMGeral)
-							telaPrincipalADMGeral.setVisible(true);
+						telaPrincipalADMGeral = new TelaPrincipalADMGeral();
+						contentPane.setVisible(false);
+						telaPrincipalADMGeral.setVisible(true);
+					}	
+					else if(conta.getUsuario()  instanceof ADMBiblioteca)
+					{	
+						telaPrincipalADMBiblioteca = new TelaPrincipalADMBiblioteca();
+						contentPane.setVisible(false);
+						telaPrincipalADMBiblioteca.setVisible(true);
+				
 					}
-					catch(Exception e2)
+					else
 					{
-						
-						try
-						{
-							if(usuario instanceof ADMBiblioteca)
-								telaPrincipalADMBiblioteca.setVisible(true);
-						}
-						catch(Exception e3)
-						{
-							
-							telaPrincipalNaoADM.setVisible(true);
-							
-						}
-						
+						telaPrincipalNaoADM = new TelaPrincipalNaoADM();
+						contentPane.setVisible(false);
+						telaPrincipalNaoADM.setVisible(true);
 					}
-					
-					
-					
 				}
+				
 				catch(Exception e)
 				{
 					
 					JOptionPane.showMessageDialog(null, e.getMessage());
-					
-					
+		
 				}
 							
 				
 				
 			}
+			
 		});
-		btnLogin.setBounds(123, 218, 89, 23);
-		add(btnLogin);
+		btnLogin.setBounds(88, 202, 89, 23);
+		contentPane.add(btnLogin);
 		
-		JButton btnVoltar = new JButton("Fechar");
-		btnVoltar.addActionListener(new ActionListener() {
+		JButton btnFechar = new JButton("Fechar");
+		btnFechar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				dispose();
-		
+			
+				System.exit(0);
+			
 			}
 		});
-		btnVoltar.setBounds(273, 218, 89, 23);
-		add(btnVoltar);
-		
-		txtCPF = new JTextField();
-		txtCPF.setBounds(200, 119, 162, 20);
-		add(txtCPF);
-		txtCPF.setColumns(10);
-		
-		textSenha = new JTextField();
-		textSenha.setBounds(200, 150, 162, 20);
-		add(textSenha);
-		textSenha.setColumns(10);
-		
-		JLabel lblNewLabel = new JLabel("CPF:");
-		lblNewLabel.setBounds(133, 122, 46, 14);
-		add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("Senha:");
-		lblNewLabel_1.setBounds(133, 153, 46, 14);
-		add(lblNewLabel_1);
-		
-		JLabel lblbu = new JLabel("$BU");
-		lblbu.setFont(new Font("Verdana", Font.ITALIC, 33));
-		lblbu.setBounds(200, 11, 168, 60);
-		add(lblbu);
-
+		btnFechar.setBounds(239, 202, 89, 23);
+		contentPane.add(btnFechar);
 	}
 }

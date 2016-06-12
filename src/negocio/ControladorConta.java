@@ -16,6 +16,7 @@ import excecao.ContaJaCadastradaException;
 import excecao.ContaNaoEncontradaException;
 import excecao.SenhaIncorretaException;
 import excecao.UsuarioNaoEncontradoException;
+import excecao.ValorInseridoNaoCondizException;
 
 
 /**
@@ -109,7 +110,8 @@ public class ControladorConta {
 		return repositorioConta.listarContas();
 	}
 
-	public Conta verificarLogin(String nome, String senha) throws SenhaIncorretaException, UsuarioNaoEncontradoException{
+	public Conta verificarLogin(String nome, String senha) throws SenhaIncorretaException, 
+	UsuarioNaoEncontradoException{
 		Conta conta = null;
 		boolean senhaU = false;
 		boolean nomeU = false;
@@ -131,7 +133,7 @@ public class ControladorConta {
 		return conta;
 	}
 	
-	public double verificarValorMultaBiblioteca(Conta conta){
+	public double verificarValorMultaBiblioteca(Conta conta) throws ContaNaoEncontradaException{
 		double valorDivida = 0.0;
 		int diasTotal;
 		Period p;
@@ -149,7 +151,8 @@ public class ControladorConta {
 		}
 		return valorDivida;
 	}
-	public void inserirCreditos(int valor, Conta conta){
+	public void inserirCreditos(int valor, Conta conta) throws ContaNaoEncontradaException,
+	ValorInseridoNaoCondizException{
 		ArrayList<Conta> repositorio = repositorioConta.listarContas();
 		Double saldo;
 		for(int i = 0; i < repositorio.size(); i++){

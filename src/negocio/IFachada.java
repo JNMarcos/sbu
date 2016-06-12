@@ -25,16 +25,13 @@ import excecao.ValorInseridoNaoCondizException;
 public interface IFachada {
 	
 	//serviços
-	void pagarDivida(Conta conta, Divida divida) throws ContaNaoEncontradaException,
-	DividaNaoEncontradaException, SaldoInsuficenteException;
-	void comprarFichaRU(Conta conta, boolean isAlmoco) throws ContaNaoEncontradaException, SaldoInsuficenteException;
-	void solicitarDocumento(Conta conta, boolean[] isSolicitado) throws ContaNaoEncontradaException,
-	SaldoInsuficenteException;
-	void solicitarCarteira(Conta conta) throws ContaNaoEncontradaException, SaldoInsuficenteException;
+	void pagarDivida(Conta conta, Divida divida) throws DividaNaoEncontradaException, SaldoInsuficenteException;
+	void comprarFichaRU(Conta conta, boolean isAlmoco) throws SaldoInsuficenteException;
+	void solicitarDocumento(Conta conta, boolean[] isSolicitado) throws SaldoInsuficenteException;
+	void solicitarCarteira(Conta conta) throws SaldoInsuficenteException;
 	
 	//Conta
-	void cadastrarConta(Conta conta) throws ContaJaCadastradaException, 
-	IllegalArgumentException;
+	void cadastrarConta(Conta conta) throws ContaJaCadastradaException;
 	void removerConta(Conta conta) throws ContaNaoEncontradaException;
 	void alterarDadosConta(Conta conta) throws ContaNaoEncontradaException;
 	Conta exibirConta(Usuario usuario) throws ContaNaoEncontradaException;
@@ -42,16 +39,16 @@ public interface IFachada {
 	void inserirCreditos(int valor, Conta conta) throws ContaNaoEncontradaException,
 	ValorInseridoNaoCondizException;
 	void verMovimentacoes(Conta conta) throws ContaNaoEncontradaException;
-	Conta verificarLogin(String nome, String senha) throws ContaNaoEncontradaException,
-	SenhaIncorretaException;
+	Conta verificarLogin(String nome, String senha) throws SenhaIncorretaException, 
+	UsuarioNaoEncontradoException;
 	void verificarValorMultaBiblioteca(Conta conta) throws ContaNaoEncontradaException;
 	
 	//Usuario
-	void cadastrarUsuario(Usuario usuario) throws CpfJaExistenteException, 
-	ContaJaCadastradaException;
+	void cadastrarUsuario(Usuario usuario) throws CpfJaExistenteException;
 	void removerUsuario(Usuario usuario) throws UsuarioNaoEncontradoException;
 	void alterarDadosUsuario(Usuario usuario) throws UsuarioNaoEncontradoException;
 	Usuario procurarPorCpf(String cpf) throws CpfJaExistenteException;
+	int pesquisar(ArrayList<Usuario> user, Usuario usuario);
 	
 	//ADMBiblioteca
 	int pesquisar(ArrayList<Divida> repositorioLocal, Divida divida);
