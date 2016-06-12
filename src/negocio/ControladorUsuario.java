@@ -10,9 +10,11 @@ import excecao.UsuarioNaoEncontradoException;
 
 /**
  * 
- * @author ramicesmoises
+ * @author ramices
  *
  */
+
+
 
 
 public class ControladorUsuario {
@@ -27,7 +29,14 @@ public class ControladorUsuario {
 
 	}
 
-
+	
+	public ArrayList<Usuario> listarUsuarios()
+	{
+		
+		return repositorioUsuario.listarUsuarios();
+		
+	}
+	
 	public void cadastrarUsuario(Usuario usuario) throws CpfJaExistenteException
 	{
 
