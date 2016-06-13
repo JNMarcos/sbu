@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -11,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import classes_basicas.Aluno;
+import classes_basicas.Professor;
 import excecao.CpfJaExistenteException;
 import negocio.Fachada;
 
@@ -35,7 +37,6 @@ public class TelaCadastroAluno extends JPanel {
 	public TelaCadastroAluno() {
 		setLayout(null);
 		fachada = Fachada.getInstance();
-		aluno = new Aluno();
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setBounds(70, 85, 112, 14);
@@ -210,20 +211,14 @@ public class TelaCadastroAluno extends JPanel {
 						JOptionPane.showMessageDialog(null, "O campo 'Periodo Atual' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
 					}
 					else{
-						aluno.setNome(textFieldNome.getText());
-						aluno.setSexo(textFieldSexo.getText().charAt(0));
-						aluno.setCpf(textFieldCpf.getText());
-						aluno.setIdentidade(textFieldIdentidade.getText());
-						aluno.setEndereco(textFieldEndereco.getText());
-						aluno.setTelefone(textFieldTelefone.getText());
-						aluno.setEmail(textFieldEmail.getText());
-						aluno.setnMatricula(textFieldMatricula.getText());
-						aluno.setCurso(textFieldCurso.getText());
-						aluno.setPeriodoAdmissao(textFieldAdmissao.getText());
-						aluno.setPeriodoAtual(Integer.parseInt(textFieldPeriodoAtual.getText()));
-						aluno.setDataNascimento(Integer.parseInt((String)comboBoxDia.getSelectedItem()), comboBoxMes.getSelectedIndex(), Integer.parseInt((String)comboBoxAno.getSelectedItem()));
+						LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
+						aluno = new Aluno(textFieldNome.getText(), textFieldSexo.getText().charAt(0),
+								textFieldCpf.getText(),textFieldIdentidade.getText(), textFieldEndereco.getText(),
+								textFieldTelefone.getText(), textFieldEmail.getText(), dataDeNascimento,
+								textFieldMatricula.getText(),textFieldCurso.getText(),textFieldAdmissao.getText(),
+								Integer.parseInt(textFieldPeriodoAtual.getText()));
 						fachada.cadastrarUsuario(aluno);
-						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+						JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
 						
 						
 					}
@@ -239,6 +234,7 @@ public class TelaCadastroAluno extends JPanel {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
 			}
 		});
 		btnCancelar.setBounds(384, 594, 89, 23);

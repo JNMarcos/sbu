@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -24,6 +25,9 @@ public class TelaCadastroTecnico extends JPanel {
 	private JTextField textFieldEmail;
 	private Fachada fachada;
 	private Tecnico tecnico;
+	private JTextField textFieldArea;
+	private JTextField textFieldDepartamento;
+	private JTextField textFieldNtecnico;
 
 	/**
 	 * Create the panel.
@@ -31,7 +35,7 @@ public class TelaCadastroTecnico extends JPanel {
 	public TelaCadastroTecnico() {
 		setLayout(null);
 		fachada = Fachada.getInstance();
-		tecnico = new Tecnico();
+		
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setBounds(70, 85, 112, 14);
@@ -100,6 +104,33 @@ public class TelaCadastroTecnico extends JPanel {
 		add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
+		JLabel lblArea = new JLabel("Area:");
+		lblArea.setBounds(70, 413, 112, 14);
+		add(lblArea);
+		
+		JLabel lblDepartamento = new JLabel("Departamento:");
+		lblDepartamento.setBounds(70, 457, 112, 14);
+		add(lblDepartamento);
+		
+		JLabel lblNtecnico = new JLabel("nTecnico:");
+		lblNtecnico.setBounds(70, 495, 112, 14);
+		add(lblNtecnico);
+		
+		textFieldArea = new JTextField();
+		textFieldArea.setBounds(192, 410, 303, 20);
+		add(textFieldArea);
+		textFieldArea.setColumns(10);
+		
+		textFieldDepartamento = new JTextField();
+		textFieldDepartamento.setBounds(192, 454, 303, 20);
+		add(textFieldDepartamento);
+		textFieldDepartamento.setColumns(10);
+		
+		textFieldNtecnico = new JTextField();
+		textFieldNtecnico.setBounds(192, 492, 303, 20);
+		add(textFieldNtecnico);
+		textFieldNtecnico.setColumns(10);
+		
 		JComboBox comboBoxDia = new JComboBox();
 		comboBoxDia.setBounds(192, 369, 28, 20);
 		String[] arrayDia = {"", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11","12", "13", "14","15", "16", "17", "18",
@@ -132,6 +163,8 @@ public class TelaCadastroTecnico extends JPanel {
 		}
 		add(comboBoxAno);
 		
+		
+		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -159,16 +192,14 @@ public class TelaCadastroTecnico extends JPanel {
 					}
 					
 					else{
-						tecnico.setNome(textFieldNome.getText());
-						tecnico.setSexo(textFieldSexo.getText().charAt(0));
-						tecnico.setCpf(textFieldCpf.getText());
-						tecnico.setIdentidade(textFieldIdentidade.getText());
-						tecnico.setEndereco(textFieldEndereco.getText());
-						tecnico.setTelefone(textFieldTelefone.getText());
-						tecnico.setEmail(textFieldEmail.getText());
-						tecnico.setDataNascimento(Integer.parseInt((String)comboBoxDia.getSelectedItem()), comboBoxMes.getSelectedIndex(), Integer.parseInt((String)comboBoxAno.getSelectedItem()));
+						LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
+						tecnico = new Tecnico(textFieldNome.getText(), textFieldSexo.getText().charAt(0),
+								textFieldCpf.getText(),textFieldIdentidade.getText(), textFieldEndereco.getText(),
+								textFieldTelefone.getText(), textFieldEmail.getText(), dataDeNascimento,
+								textFieldArea.getText(),textFieldDepartamento.getText(), textFieldNtecnico.getText());
+	
 						fachada.cadastrarUsuario(tecnico);
-						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+						JOptionPane.showMessageDialog(null, "Tecnico cadastrado com sucesso!");
 						
 						
 					}
@@ -184,10 +215,13 @@ public class TelaCadastroTecnico extends JPanel {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
 			}
 		});
 		btnCancelar.setBounds(384, 594, 89, 23);
 		add(btnCancelar);
+		
+		
 		
 		
 

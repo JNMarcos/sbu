@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -11,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import classes_basicas.Professor;
+import classes_basicas.Tecnico;
 import excecao.CpfJaExistenteException;
 import negocio.Fachada;
 
@@ -33,8 +35,7 @@ public class TelaCadastroProfessor extends JPanel {
 	public TelaCadastroProfessor() {
 		setLayout(null);
 		fachada = Fachada.getInstance();
-		professor = new Professor();
-		
+	
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setBounds(70, 85, 112, 14);
 		add(lblNome);
@@ -184,18 +185,13 @@ public class TelaCadastroProfessor extends JPanel {
 						JOptionPane.showMessageDialog(null, "O campo 'nProfessor' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
 					}
 					else{
-						professor.setNome(textFieldNome.getText());
-						professor.setSexo(textFieldSexo.getText().charAt(0));
-						professor.setCpf(textFieldCpf.getText());
-						professor.setIdentidade(textFieldIdentidade.getText());
-						professor.setEndereco(textFieldEndereco.getText());
-						professor.setTelefone(textFieldTelefone.getText());
-						professor.setEmail(textFieldEmail.getText());
-						professor.setDepartamento(textFieldDepartamento.getText());
-						professor.setnProfessor(textFieldNprofessor.getText());
-						professor.setDataNascimento(Integer.parseInt((String)comboBoxDia.getSelectedItem()), comboBoxMes.getSelectedIndex(), Integer.parseInt((String)comboBoxAno.getSelectedItem()));
+						LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
+						professor = new Professor(textFieldNome.getText(), textFieldSexo.getText().charAt(0),
+								textFieldCpf.getText(),textFieldIdentidade.getText(), textFieldEndereco.getText(),
+								textFieldTelefone.getText(), textFieldEmail.getText(), dataDeNascimento,
+								textFieldDepartamento.getText(),textFieldNprofessor.getText());
 						fachada.cadastrarUsuario(professor);
-						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+						JOptionPane.showMessageDialog(null, "Professor cadastrado com sucesso!");
 						
 						
 					}
@@ -211,7 +207,7 @@ public class TelaCadastroProfessor extends JPanel {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				setVisible(false);
 			}
 		});
 		btnCancelar.setBounds(375, 518, 89, 23);
