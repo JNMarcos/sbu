@@ -13,7 +13,7 @@ import excecao.ContaNaoEncontradaException;
 import excecao.CpfJaExistenteException;
 import excecao.DividaJaExistenteException;
 import excecao.DividaNaoEncontradaException;
-import excecao.SaldoInsuficenteException;
+import excecao.SaldoInsuficienteException;
 import excecao.SenhaIncorretaException;
 import excecao.UsuarioNaoEncontradoException;
 import excecao.ValorInseridoNaoCondizException;
@@ -47,22 +47,22 @@ public class Fachada implements IFachada{
 	//serviço
 	
 	@Override
-	public void pagarDivida(Conta conta, Divida divida) throws SaldoInsuficenteException, DividaNaoEncontradaException{
+	public void pagarDivida(Conta conta, Divida divida) throws SaldoInsuficienteException, DividaNaoEncontradaException{
 		ctrServico.pagarDivida(conta,divida);
 	}
 	
 	@Override
-	public void comprarFichaRU(Conta conta, boolean isAlmoco) throws SaldoInsuficenteException{
+	public void comprarFichaRU(Conta conta, boolean isAlmoco) throws SaldoInsuficienteException{
 		ctrServico.comprarFichaRU(conta, isAlmoco);
 	}
 	
 	@Override
-	public void solicitarDocumento(Conta conta, boolean[] isSolicitar) throws SaldoInsuficenteException{
+	public void solicitarDocumento(Conta conta, boolean[] isSolicitar) throws SaldoInsuficienteException{
 		ctrServico.solicitarDocumento(conta, isSolicitar);
 	}
 	
 	@Override
-	public void solicitarCarteira(Conta conta) throws SaldoInsuficenteException{
+	public void solicitarCarteira(Conta conta) throws SaldoInsuficienteException{
 		ctrServico.solicitarCarteira(conta);
 	}
 	
