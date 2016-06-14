@@ -62,116 +62,95 @@ public class TelaCadastroTecnico extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblNome.setBounds(32, 29, 52, 14);
 		panel.add(lblNome);
 		
 		JLabel lblSexo = new JLabel("Sexo:");
-		lblSexo.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblSexo.setBounds(32, 64, 52, 14);
 		panel.add(lblSexo);
 		
 		JLabel lblCpf = new JLabel("CPF:");
-		lblCpf.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblCpf.setBounds(32, 101, 52, 14);
 		panel.add(lblCpf);
 		
 		JLabel lblIdentidade = new JLabel("Identidade:");
-		lblIdentidade.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblIdentidade.setBounds(32, 143, 70, 14);
 		panel.add(lblIdentidade);
 		
 		JLabel lblEndereco = new JLabel("Endere\u00E7o:");
-		lblEndereco.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblEndereco.setBounds(32, 181, 70, 14);
 		panel.add(lblEndereco);
 		
 		JLabel lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblTelefone.setBounds(33, 228, 112, 14);
 		panel.add(lblTelefone);
 		
 		JLabel lblEmail = new JLabel("E-mail:");
-		lblEmail.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblEmail.setBounds(32, 266, 112, 14);
 		panel.add(lblEmail);
 		
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento:");
-		lblDataDeNascimento.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblDataDeNascimento.setBounds(32, 307, 139, 14);
 		panel.add(lblDataDeNascimento);
 		
 		textFieldNome = new JTextField();
-		textFieldNome.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		textFieldNome.setBounds(94, 26, 340, 20);
 		panel.add(textFieldNome);
 		textFieldNome.setColumns(10);
 		
 		textFieldSexo = new JTextField();
-		textFieldSexo.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		textFieldSexo.setBounds(94, 61, 340, 20);
 		panel.add(textFieldSexo);
 		textFieldSexo.setColumns(10);
 		
 		textFieldCpf = new JTextField();
-		textFieldCpf.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		textFieldCpf.setBounds(94, 98, 340, 20);
 		panel.add(textFieldCpf);
 		textFieldCpf.setColumns(10);
 		
 		textFieldIdentidade = new JTextField();
-		textFieldIdentidade.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		textFieldIdentidade.setBounds(113, 140, 321, 20);
 		panel.add(textFieldIdentidade);
 		textFieldIdentidade.setColumns(10);
 		
 		textFieldEndereco = new JTextField();
-		textFieldEndereco.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		textFieldEndereco.setBounds(102, 178, 332, 20);
 		panel.add(textFieldEndereco);
 		textFieldEndereco.setColumns(10);
 		
 		textFieldTelefone = new JTextField();
-		textFieldTelefone.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		textFieldTelefone.setBounds(102, 226, 332, 20);
 		panel.add(textFieldTelefone);
 		textFieldTelefone.setColumns(10);
 		
 		textFieldEmail = new JTextField();
-		textFieldEmail.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		textFieldEmail.setBounds(87, 264, 347, 20);
 		panel.add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
 		JLabel lblArea = new JLabel("Área:");
-		lblArea.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblArea.setBounds(32, 353, 112, 14);
 		panel.add(lblArea);
 		
 		JLabel lblDepartamento = new JLabel("Departamento:");
-		lblDepartamento.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblDepartamento.setBounds(32, 399, 90, 14);
 		panel.add(lblDepartamento);
 		
 		JLabel lblNtecnico = new JLabel("Número Técnico:");
-		lblNtecnico.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblNtecnico.setBounds(32, 437, 113, 14);
 		panel.add(lblNtecnico);
 		
 		textFieldArea = new JTextField();
-		textFieldArea.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		textFieldArea.setBounds(94, 351, 340, 20);
 		panel.add(textFieldArea);
 		textFieldArea.setColumns(10);
 		
 		textFieldDepartamento = new JTextField();
-		textFieldDepartamento.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		textFieldDepartamento.setBounds(132, 397, 302, 20);
 		panel.add(textFieldDepartamento);
 		textFieldDepartamento.setColumns(10);
 		
 		textFieldNtecnico = new JTextField();
-		textFieldNtecnico.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		textFieldNtecnico.setBounds(142, 434, 292, 20);
 		panel.add(textFieldNtecnico);
 		textFieldNtecnico.setColumns(10);
@@ -295,28 +274,23 @@ public class TelaCadastroTecnico extends JFrame {
 		panel.add(btnCancelar);
 		
 		JLabel lblTipo = new JLabel("Tipo:");
-		lblTipo.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblTipo.setBounds(237, 561, 41, 14);
 		panel.add(lblTipo);
 		
 		JLabel lblLogin = new JLabel("Login:");
-		lblLogin.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblLogin.setBounds(32, 476, 46, 20);
 		panel.add(lblLogin);
 		
 		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblSenha.setBounds(32, 517, 46, 20);
 		panel.add(lblSenha);
 		
 		textFieldLogin = new JTextField();
-		textFieldLogin.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		textFieldLogin.setColumns(10);
 		textFieldLogin.setBounds(87, 477, 347, 20);
 		panel.add(textFieldLogin);
 		
 		textFieldSenha = new JTextField();
-		textFieldSenha.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		textFieldSenha.setColumns(10);
 		textFieldSenha.setBounds(87, 518, 347, 20);
 		panel.add(textFieldSenha);
