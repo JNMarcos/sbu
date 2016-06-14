@@ -14,6 +14,11 @@ public class ADMBiblioteca extends Tecnico{
 	
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * @param nome
 	 * @param sexo
 	 * @param cpf

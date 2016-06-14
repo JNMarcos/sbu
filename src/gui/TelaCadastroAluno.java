@@ -12,11 +12,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import classes_basicas.Aluno;
-import classes_basicas.Professor;
+import classes_basicas.Conta;
 import excecao.CpfJaExistenteException;
 import negocio.Fachada;
 
 public class TelaCadastroAluno extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textFieldNome;
 	private JTextField textFieldSexo;
 	private JTextField textFieldCpf;
@@ -30,11 +34,14 @@ public class TelaCadastroAluno extends JPanel {
 	private JTextField textFieldPeriodoAtual;
 	private Fachada fachada;
 	private Aluno aluno;
+	
+	private Conta conta;
 
 	/**
 	 * Create the panel.
 	 */
-	public TelaCadastroAluno() {
+	public TelaCadastroAluno(Conta conta) {
+		setConta(conta);
 		setLayout(null);
 		fachada = Fachada.getInstance();
 		
@@ -141,7 +148,7 @@ public class TelaCadastroAluno extends JPanel {
 		add(textFieldPeriodoAtual);
 		textFieldPeriodoAtual.setColumns(10);
 		
-		JComboBox comboBoxDia = new JComboBox();
+		JComboBox<String> comboBoxDia = new JComboBox<String>();
 		comboBoxDia.setBounds(192, 369, 28, 20);
 		String[] arrayDia = {"", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11","12", "13", "14","15", "16", "17", "18",
 				"19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
@@ -149,7 +156,7 @@ public class TelaCadastroAluno extends JPanel {
 			comboBoxDia.addItem(arrayDia[i]);
 		add(comboBoxDia);
 		
-		JComboBox comboBoxMes = new JComboBox();
+		JComboBox<String> comboBoxMes = new JComboBox<String>();
 		comboBoxMes.setBounds(280, 369, 28, 20);
 		String[] arrayMes = {"", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro",
 				"Outubro", "Novembro", "Dezembro"};
@@ -157,7 +164,7 @@ public class TelaCadastroAluno extends JPanel {
 			comboBoxMes.addItem(arrayMes[i]);
 		add(comboBoxMes);
 		
-		JComboBox comboBoxAno = new JComboBox();
+		JComboBox<String> comboBoxAno = new JComboBox<String>();
 		comboBoxAno.setBounds(362, 369, 28, 20);
 		Integer ano = 2000;
 		String[] arrayAno = new String[84];
@@ -211,6 +218,7 @@ public class TelaCadastroAluno extends JPanel {
 						JOptionPane.showMessageDialog(null, "O campo 'Periodo Atual' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
 					}
 					else{
+						Conta conta;
 						LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
 						aluno = new Aluno(textFieldNome.getText(), textFieldSexo.getText().charAt(0),
 								textFieldCpf.getText(),textFieldIdentidade.getText(), textFieldEndereco.getText(),
@@ -218,9 +226,9 @@ public class TelaCadastroAluno extends JPanel {
 								textFieldMatricula.getText(),textFieldCurso.getText(),textFieldAdmissao.getText(),
 								Integer.parseInt(textFieldPeriodoAtual.getText()));
 						fachada.cadastrarUsuario(aluno);
+						conta = new Conta(aluno, LOGIN, SENHA);
+						fachada.cadastrarConta(conta);
 						JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
-						
-						
 					}
 				}catch(CpfJaExistenteException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
@@ -239,8 +247,9 @@ public class TelaCadastroAluno extends JPanel {
 		});
 		btnCancelar.setBounds(384, 594, 89, 23);
 		add(btnCancelar);
-		
-		
+	}
 
+	private void setConta(Conta conta) {
+		this.conta = conta;
 	}
 }
