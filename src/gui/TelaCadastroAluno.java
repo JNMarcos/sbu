@@ -1,11 +1,13 @@
 package gui;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -13,10 +15,11 @@ import javax.swing.JTextField;
 
 import classes_basicas.Aluno;
 import classes_basicas.Conta;
+import excecao.ContaJaCadastradaException;
 import excecao.CpfJaExistenteException;
 import negocio.Fachada;
 
-public class TelaCadastroAluno extends JPanel {
+public class TelaCadastroAluno extends JFrame {
 	/**
 	 * 
 	 */
@@ -34,118 +37,130 @@ public class TelaCadastroAluno extends JPanel {
 	private JTextField textFieldPeriodoAtual;
 	private Fachada fachada;
 	private Aluno aluno;
-	
+	private JPanel panel;
 	private Conta conta;
+	private JTextField textFieldLogin;
+	private JTextField textFieldSenha;
 
 	/**
 	 * Create the panel.
 	 */
 	public TelaCadastroAluno(Conta conta) {
 		setConta(conta);
-		setLayout(null);
+		getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 11));
+		setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		setTitle("Cadastrar Professor");
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 		fachada = Fachada.getInstance();
+		
+		panel = new JPanel();
+		panel.setBounds(0, 0, 543, 728);
+		getContentPane().add(panel);
+		panel.setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setBounds(70, 85, 112, 14);
-		add(lblNome);
+		panel.add(lblNome);
 		
 		JLabel lblSexo = new JLabel("Sexo:");
 		lblSexo.setBounds(70, 126, 112, 14);
-		add(lblSexo);
+		panel.add(lblSexo);
 		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setBounds(70, 167, 112, 14);
-		add(lblCpf);
+		panel.add(lblCpf);
 		
 		JLabel lblIdentidade = new JLabel("Identidade:");
 		lblIdentidade.setBounds(70, 208, 112, 14);
-		add(lblIdentidade);
+		panel.add(lblIdentidade);
 		
 		JLabel lblEndereco = new JLabel("Endere\u00E7o:");
 		lblEndereco.setBounds(70, 249, 112, 14);
-		add(lblEndereco);
+		panel.add(lblEndereco);
 		
 		JLabel lblTelefone = new JLabel("Telefone:");
 		lblTelefone.setBounds(70, 290, 112, 14);
-		add(lblTelefone);
+		panel.add(lblTelefone);
 		
 		JLabel lblEmail = new JLabel("E-mail:");
 		lblEmail.setBounds(70, 331, 112, 14);
-		add(lblEmail);
+		panel.add(lblEmail);
 		
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento:");
 		lblDataDeNascimento.setBounds(70, 372, 112, 14);
-		add(lblDataDeNascimento);
+		panel.add(lblDataDeNascimento);
 		
 		JLabel lblMatricula = new JLabel("Matricula:");
 		lblMatricula.setBounds(70, 413, 112, 14);
-		add(lblMatricula);
+		panel.add(lblMatricula);
 		
 		JLabel lblCurso = new JLabel("Curso:");
 		lblCurso.setBounds(70, 454, 112, 14);
-		add(lblCurso);
+		panel.add(lblCurso);
 		
 		JLabel lblPeriodoAdmissao = new JLabel("Periodo de Admiss\u00E3o:");
 		lblPeriodoAdmissao.setBounds(70, 495, 112, 14);
-		add(lblPeriodoAdmissao);
+		panel.add(lblPeriodoAdmissao);
 		
 		JLabel lblPeriodoAtual = new JLabel("Periodo Atual:");
 		lblPeriodoAtual.setBounds(70, 536, 112, 14);
-		add(lblPeriodoAtual);
+		panel.add(lblPeriodoAtual);
 		
 		textFieldNome = new JTextField();
 		textFieldNome.setBounds(192, 82, 303, 20);
-		add(textFieldNome);
+		panel.add(textFieldNome);
 		textFieldNome.setColumns(10);
 		
 		textFieldSexo = new JTextField();
 		textFieldSexo.setBounds(192, 123, 303, 20);
-		add(textFieldSexo);
+		panel.add(textFieldSexo);
 		textFieldSexo.setColumns(10);
 		
 		textFieldCpf = new JTextField();
 		textFieldCpf.setBounds(192, 164, 303, 20);
-		add(textFieldCpf);
+		panel.add(textFieldCpf);
 		textFieldCpf.setColumns(10);
 		
 		textFieldIdentidade = new JTextField();
 		textFieldIdentidade.setBounds(192, 205, 303, 20);
-		add(textFieldIdentidade);
+		panel.add(textFieldIdentidade);
 		textFieldIdentidade.setColumns(10);
 		
 		textFieldEndereco = new JTextField();
 		textFieldEndereco.setBounds(192, 246, 303, 20);
-		add(textFieldEndereco);
+		panel.add(textFieldEndereco);
 		textFieldEndereco.setColumns(10);
 		
 		textFieldTelefone = new JTextField();
 		textFieldTelefone.setBounds(192, 287, 303, 20);
-		add(textFieldTelefone);
+		panel.add(textFieldTelefone);
 		textFieldTelefone.setColumns(10);
 		
 		textFieldEmail = new JTextField();
 		textFieldEmail.setBounds(192, 328, 303, 20);
-		add(textFieldEmail);
+		panel.add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
 		textFieldMatricula = new JTextField();
 		textFieldMatricula.setBounds(192, 410, 303, 20);
-		add(textFieldMatricula);
+		panel.add(textFieldMatricula);
 		textFieldMatricula.setColumns(10);
 		
 		textFieldCurso = new JTextField();
 		textFieldCurso.setBounds(192, 451, 303, 20);
-		add(textFieldCurso);
+		panel.add(textFieldCurso);
 		textFieldCurso.setColumns(10);
 		
 		textFieldAdmissao = new JTextField();
 		textFieldAdmissao.setBounds(192, 492, 303, 20);
-		add(textFieldAdmissao);
+		panel.add(textFieldAdmissao);
 		textFieldAdmissao.setColumns(10);
 		
 		textFieldPeriodoAtual = new JTextField();
 		textFieldPeriodoAtual.setBounds(192, 533, 303, 20);
-		add(textFieldPeriodoAtual);
+		panel.add(textFieldPeriodoAtual);
 		textFieldPeriodoAtual.setColumns(10);
 		
 		JComboBox<String> comboBoxDia = new JComboBox<String>();
@@ -154,7 +169,7 @@ public class TelaCadastroAluno extends JPanel {
 				"19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
 		for(int i = 0; i < 32; i++)
 			comboBoxDia.addItem(arrayDia[i]);
-		add(comboBoxDia);
+		panel.add(comboBoxDia);
 		
 		JComboBox<String> comboBoxMes = new JComboBox<String>();
 		comboBoxMes.setBounds(280, 369, 28, 20);
@@ -162,7 +177,7 @@ public class TelaCadastroAluno extends JPanel {
 				"Outubro", "Novembro", "Dezembro"};
 		for(int i=0; i<13; i++)
 			comboBoxMes.addItem(arrayMes[i]);
-		add(comboBoxMes);
+		panel.add(comboBoxMes);
 		
 		JComboBox<String> comboBoxAno = new JComboBox<String>();
 		comboBoxAno.setBounds(362, 369, 28, 20);
@@ -178,7 +193,25 @@ public class TelaCadastroAluno extends JPanel {
 				comboBoxAno.addItem(arrayAno[i]);
 			}		
 		}
-		add(comboBoxAno);
+		panel.add(comboBoxAno);
+		
+		JLabel lblLogin = new JLabel("Login:");
+		lblLogin.setBounds(70, 577, 112, 14);
+		panel.add(lblLogin);
+		
+		textFieldLogin = new JTextField();
+		textFieldLogin.setBounds(192, 574, 303, 20);
+		panel.add(textFieldLogin);
+		textFieldLogin.setColumns(10);
+		
+		JLabel lblSenha = new JLabel("Senha:");
+		lblSenha.setBounds(70, 618, 112, 14);
+		panel.add(lblSenha);
+		
+		textFieldSenha = new JTextField();
+		textFieldSenha.setBounds(192, 615, 303, 20);
+		panel.add(textFieldSenha);
+		textFieldSenha.setColumns(10);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
@@ -217,6 +250,12 @@ public class TelaCadastroAluno extends JPanel {
 					else if(textFieldPeriodoAtual.equals("")){
 						JOptionPane.showMessageDialog(null, "O campo 'Periodo Atual' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
 					}
+					else if(textFieldLogin.equals("")){
+						JOptionPane.showMessageDialog(null, "O campo 'Login' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+					}
+					else if(textFieldSenha.equals("")){
+						JOptionPane.showMessageDialog(null, "O campo 'Senha' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+					}
 					else{
 						Conta conta;
 						LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
@@ -226,27 +265,36 @@ public class TelaCadastroAluno extends JPanel {
 								textFieldMatricula.getText(),textFieldCurso.getText(),textFieldAdmissao.getText(),
 								Integer.parseInt(textFieldPeriodoAtual.getText()));
 						fachada.cadastrarUsuario(aluno);
-						conta = new Conta(aluno, LOGIN, SENHA);
+						conta = new Conta(aluno, textFieldLogin.getText(), textFieldSenha.getText());
 						fachada.cadastrarConta(conta);
 						JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
+						dispose();
+						TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(this.conta); 
+						telaPrincipalADMGeral.setVisible(true);
 					}
 				}catch(CpfJaExistenteException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 					textFieldCpf.setText("");
+				}catch(ContaJaCadastradaException e){
+					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
 			}
 		});
-		btnCadastrar.setBounds(152, 594, 89, 23);
-		add(btnCadastrar);
+		btnCadastrar.setBounds(155, 669, 89, 23);
+		panel.add(btnCadastrar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+				dispose();
+				TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(this.conta); 
+				telaPrincipalADMGeral.setVisible(true);
 			}
 		});
-		btnCancelar.setBounds(384, 594, 89, 23);
-		add(btnCancelar);
+		btnCancelar.setBounds(386, 669, 89, 23);
+		panel.add(btnCancelar);
+		
+		
 	}
 
 	private void setConta(Conta conta) {

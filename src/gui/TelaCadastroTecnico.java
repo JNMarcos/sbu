@@ -57,7 +57,7 @@ public class TelaCadastroTecnico extends JFrame {
 		fachada = Fachada.getInstance();
 		
 		panel = new JPanel();
-		panel.setBounds(0, 0, 444, 644);
+		panel.setBounds(0, 0, 473, 666);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -294,7 +294,7 @@ public class TelaCadastroTecnico extends JFrame {
 		btnCancelar.setBounds(345, 610, 89, 23);
 		panel.add(btnCancelar);
 		
-		JLabel lblTipo = new JLabel("Tipo");
+		JLabel lblTipo = new JLabel("Tipo:");
 		lblTipo.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		lblTipo.setBounds(237, 561, 41, 14);
 		panel.add(lblTipo);
