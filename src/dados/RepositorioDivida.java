@@ -32,10 +32,7 @@ public class RepositorioDivida implements IRepositorioDivida, Serializable {
 	
 	public RepositorioDivida()
 	{
-		
-		dividas = new ArrayList<Divida>();
-		
-		
+		dividas = new ArrayList<Divida>();	
 	}
 	
 	
@@ -101,45 +98,34 @@ public class RepositorioDivida implements IRepositorioDivida, Serializable {
 			
 		}
 		
-		return instanciaLocal;
-		
+		return instanciaLocal;	
 	}
 	
 	
 	public static void gravarArquivo()
 	{	
-		
 		if(instanciaRepositorio == null)
 		{
-		
 			return;
-		
 		}
-	
-		
 		File f;
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
 		
 		try
 		{
-			
 			f = new File("RepositorioDivida.dat");
 			fos = new FileOutputStream(f);
 			oos = new ObjectOutputStream(fos);
 			
 			oos.writeObject(instanciaRepositorio);
-			
-			
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			
 		}
 		finally
 		{
-			
 			if (oos != null) 
 			{
 				
@@ -152,69 +138,49 @@ public class RepositorioDivida implements IRepositorioDivida, Serializable {
 				{
 				
 				}
-			}
-			
-			
-		}
-		
-		
+			}	
+		}		
 	}
 
 	
 	public void cadastrarDivida(Divida divida)
 	{
-		
 		dividas.add(divida);
 		gravarArquivo();
-		
 	}
 	
 	
 	public void removerDivida(Divida divida)
 	{
-	
 		dividas.remove(divida);
-		gravarArquivo();
-		
+		gravarArquivo();	
 	}
 	
 	
 	public void alterarDadosDivida(Divida divida)
 	{
-		
 		int index = dividas.indexOf(divida);
 		dividas.set(index, divida);
 		gravarArquivo();
-		
-		
 	}
 	
 	
 	public Divida exibirDivida(Conta nome, LocalDate data, LocalTime hora)
 	{	
-		
 		int index;
 		Divida divida = null;
 		
 		for(index = 0; index < dividas.size(); index++)
 		{
-			
 			if(dividas.get(index).getConta().equals(nome) && 
 			   dividas.get(index).getDataEmissao().equals(data) &&
 			   dividas.get(index).getHoraEmissao().equals(hora))
 			{
-				
 				divida = dividas.get(index);
-				break;
-				
-			}
-				
-			
+				break;	
+			}	
 		}
-			
-		
 		return divida;
-		
 	}
 	
 	public boolean procurarDivida (Divida divida){
@@ -230,8 +196,6 @@ public class RepositorioDivida implements IRepositorioDivida, Serializable {
 	
 	public List<Divida> listarDividas()
 	{
-		
-		return dividas;
-		
+		return dividas;	
 	}	
 }

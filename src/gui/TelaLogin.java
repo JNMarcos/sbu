@@ -30,12 +30,17 @@ import negocio.Fachada;
 import classes_basicas.ADMBiblioteca;
 import classes_basicas.ADMGeral;
 import classes_basicas.Conta;
+import classes_basicas.Servico;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class TelaLogin extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtCPF;
 	private JTextField textSenha;
@@ -49,6 +54,7 @@ public class TelaLogin extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		Servico.setPrecos();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

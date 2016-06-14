@@ -47,22 +47,22 @@ public class Fachada implements IFachada{
 	//serviço
 	
 	@Override
-	public void pagarDivida(Conta conta, Divida divida) throws SaldoInsuficienteException, DividaNaoEncontradaException{
+	public void pagarDivida(Conta conta, Divida divida) throws SaldoInsuficienteException, DividaNaoEncontradaException, ContaNaoEncontradaException{
 		ctrServico.pagarDivida(conta,divida);
 	}
 	
 	@Override
-	public void comprarFichaRU(Conta conta, boolean isAlmoco) throws SaldoInsuficienteException{
-		ctrServico.comprarFichaRU(conta, isAlmoco);
+	public void comprarFichaRU(Conta conta, boolean isAlmoco, short quantidadeFichas) throws SaldoInsuficienteException, ContaNaoEncontradaException{
+		ctrServico.comprarFichaRU(conta, isAlmoco, quantidadeFichas);
 	}
 	
 	@Override
-	public void solicitarDocumento(Conta conta, boolean[] isSolicitar) throws SaldoInsuficienteException{
+	public void solicitarDocumento(Conta conta, boolean[] isSolicitar) throws SaldoInsuficienteException, ContaNaoEncontradaException{
 		ctrServico.solicitarDocumento(conta, isSolicitar);
 	}
 	
 	@Override
-	public void solicitarCarteira(Conta conta) throws SaldoInsuficienteException{
+	public void solicitarCarteira(Conta conta) throws SaldoInsuficienteException, ContaNaoEncontradaException{
 		ctrServico.solicitarCarteira(conta);
 	}
 	
@@ -170,5 +170,10 @@ public class Fachada implements IFachada{
 	public void verificarValorMultaBiblioteca(Conta conta) throws ContaNaoEncontradaException {
 		ctrConta.verificarValorMultaBiblioteca(conta);
 		
+	}
+
+	@Override
+	public boolean procurarConta(Conta conta) {
+		return ctrConta.procurarConta(conta);
 	}
 }

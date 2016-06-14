@@ -25,10 +25,10 @@ import excecao.ValorInseridoNaoCondizException;
 public interface IFachada {
 	
 	//serviços
-	void pagarDivida(Conta conta, Divida divida) throws DividaNaoEncontradaException, SaldoInsuficienteException;
-	void comprarFichaRU(Conta conta, boolean isAlmoco) throws SaldoInsuficienteException;
-	void solicitarDocumento(Conta conta, boolean[] isSolicitado) throws SaldoInsuficienteException;
-	void solicitarCarteira(Conta conta) throws SaldoInsuficienteException;
+	void pagarDivida(Conta conta, Divida divida) throws ContaNaoEncontradaException,DividaNaoEncontradaException, SaldoInsuficienteException;
+	void comprarFichaRU(Conta conta, boolean isAlmoco, short quantidadeFichas) throws ContaNaoEncontradaException, SaldoInsuficienteException;
+	void solicitarDocumento(Conta conta, boolean[] isSolicitado) throws ContaNaoEncontradaException, SaldoInsuficienteException;
+	void solicitarCarteira(Conta conta) throws ContaNaoEncontradaException, SaldoInsuficienteException;
 	
 	//Conta
 	void cadastrarConta(Conta conta) throws ContaJaCadastradaException;
@@ -36,6 +36,7 @@ public interface IFachada {
 	void alterarDadosConta(Conta conta) throws ContaNaoEncontradaException;
 	Conta exibirConta(Usuario usuario) throws ContaNaoEncontradaException;
 	void consultarSaldo(Conta conta) throws ContaNaoEncontradaException;
+	public boolean procurarConta (Conta conta);
 	void inserirCreditos(int valor, Conta conta) throws ContaNaoEncontradaException,
 	ValorInseridoNaoCondizException;
 	void verMovimentacoes(Conta conta) throws ContaNaoEncontradaException;

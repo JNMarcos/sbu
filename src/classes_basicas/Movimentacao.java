@@ -3,13 +3,18 @@
  */
 package classes_basicas;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * @author JN
  *
  */
-public class Movimentacao {
+public class Movimentacao implements Comparable<Movimentacao>, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nomeServico;
 	private String descricao;
 	private LocalDateTime dataHora;
@@ -49,7 +54,6 @@ public class Movimentacao {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((dataHora == null) ? 0 : dataHora.hashCode());
-		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((nomeServico == null) ? 0 : nomeServico.hashCode());
 		return result;
 	}
@@ -73,13 +77,6 @@ public class Movimentacao {
 		} else if (!dataHora.equals(other.dataHora)) {
 			return false;
 		}
-		if (descricao == null) {
-			if (other.descricao != null) {
-				return false;
-			}
-		} else if (!descricao.equals(other.descricao)) {
-			return false;
-		}
 		if (nomeServico == null) {
 			if (other.nomeServico != null) {
 				return false;
@@ -89,7 +86,10 @@ public class Movimentacao {
 		}
 		return true;
 	}
-	
-	
 
+	@Override
+	public int compareTo(Movimentacao movimentacao) {
+		return this.getNomeServico().compareTo(movimentacao.getNomeServico()) + 
+				this.getDataHora().compareTo(movimentacao.getDataHora());
+	}
 }

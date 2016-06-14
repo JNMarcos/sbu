@@ -10,8 +10,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-
 import classes_basicas.Usuario;
 
 
@@ -30,6 +28,7 @@ public class RepositorioUsuario implements IRepositorioUsuario, Serializable {
 		}
 		return instancia;
 	}
+	
 	public boolean cadastrarUsuario(Usuario usuario) {
 		if (this.usuarios.contains(usuario)) {
 			return false;

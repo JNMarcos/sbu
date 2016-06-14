@@ -19,12 +19,12 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private ArrayList<Conta> listaContas;
+	private ArrayList<Conta> contas;
 	private static RepositorioConta instancia;
 	
 	
     public RepositorioConta() {
-        this.listaContas = new ArrayList<>();
+        this.contas = new ArrayList<>();
     }
     
     public static RepositorioConta getInstancia(){
@@ -83,70 +83,73 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 		}
 	}
 
-    public ArrayList<Conta> getListaContas() {
-        return listaContas;
-    }
-    
-    
-	public void cadastrarConta(Conta conta){        
-        listaContas.add(conta);
+ 	public void cadastrarConta(Conta conta){        
+		contas.add(conta);
         gravarArquivo();
 	}
 	
 	
 	public void removerConta(Conta conta){		
-		listaContas.remove(conta);
+		contas.remove(conta);
 		gravarArquivo();
 	
     }
 	
 	
 	public void alterarDadosConta(Conta conta){
-		int i = listaContas.indexOf(conta);
-		listaContas.set(i, conta);
+		int i = contas.indexOf(conta);
+		contas.set(i, conta);
 		gravarArquivo();
 	}	
 	
 	public Conta exibirConta(Usuario usuario){
 		Conta encontra = null;
-		for(int i = 0; i < listaContas.size(); i++){
-			if(listaContas.get(i).getUsuario().equals(usuario)){
-				encontra = listaContas.get(i);
-				break;
-				
+		for(int i = 0; i < contas.size(); i++){
+			if(contas.get(i).getUsuario().equals(usuario)){
+				encontra = contas.get(i);
+				break;		
 			}
 		}
 		return encontra;
 	}	
 	
+	public boolean procurarConta (Conta conta){
+		boolean contaExiste = false;
+		for (Conta c : contas){
+			if (c.equals(conta)){
+				contaExiste = true;
+				break;
+			}
+		}
+		return contaExiste;
+	}
+	
 	public void consultarSaldo(Conta conta){	
-		for(int i = 0; i < listaContas.size(); i++){
-			if(listaContas.get(i).getUsuario().equals(conta.getUsuario())){
-				listaContas.get(i).getSaldo();
-				
+		for(int i = 0; i < contas.size(); i++){
+			if(contas.get(i).getUsuario().equals(conta.getUsuario())){
+				contas.get(i).getSaldo();			
 			}
 		}
 		
 	}
 	
 	public void verMovimentacoes(Conta conta){
-		for(int i = 0; i < listaContas.size(); i++){
-			if(listaContas.get(i).getUsuario().equals(conta.getUsuario())){
-				listaContas.get(i).getHistorico();
+		for(int i = 0; i < contas.size(); i++){
+			if(contas.get(i).getUsuario().equals(conta.getUsuario())){
+				contas.get(i).getHistorico();
 			}
-		}
-				
+		}			
 }
 	public ArrayList<Conta> listarContas(){		
-		return listaContas;		
+		return contas;		
 	}
 	
 	public boolean verificarNomeUsuarioJaExiste(String nomeUsuario) {
 		boolean nomeUsuarioJaExiste = false;
 		if (nomeUsuario != null){
-			if (listaContas.size() > 0){
-				for (int i = 0; i < listaContas.size(); i++){
-					if (listaContas.get(i).getUsuario().getNome().equals(nomeUsuario)){
+			if (contas.size() > 0){
+				for (int i = 0; i < contas.size(); i++){
+					if (contas.get(i).getUsuario().getNome().equals(nomeUsuario)){
 						nomeUsuarioJaExiste = true;
 						break;
 					}
@@ -159,8 +162,8 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 	public boolean verificarSenhaJaExiste(String senha) {
 		boolean senhaJaExiste = false;
 		if (senha != null){
-			for (int i = 0; i < listaContas.size(); i++){
-				if (listaContas.get(i).getSenha().equals(senha)){
+			for (int i = 0; i < contas.size(); i++){
+				if (contas.get(i).getSenha().equals(senha)){
 					senhaJaExiste = true;
 					break;
 				}
@@ -172,13 +175,12 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 	
 	public Conta verificarLogin(String nome, String senha) {
 		Conta conta = null;
-		for (int i = 0; i < listaContas.size(); i++){
-			if (listaContas.get(i).getUsuario().getNome().equals(nome) && listaContas.get(i).getSenha().equals(senha)){
-				conta = listaContas.get(i);
+		for (int i = 0; i < contas.size(); i++){
+			if (contas.get(i).getUsuario().getNome().equals(nome) && contas.get(i).getSenha().equals(senha)){
+				conta = contas.get(i);
 				break;
 			}
 		}
-
 		return conta;
 	}
 	

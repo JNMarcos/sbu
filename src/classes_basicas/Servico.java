@@ -46,20 +46,20 @@ public abstract class Servico {
 	}
 	
 	// serviços RU
-	public static void servirAlmocoAluno(Conta conta){
-		conta.setSaldo(conta.getSaldo() - Servico.getPrecos().get("almocoAlunoRU"));
+	public static void comprarAlmocoAluno(Conta conta, short quantidadeFichas){
+		conta.setSaldo(conta.getSaldo() - (Servico.getPrecos().get("almocoAlunoRU") * quantidadeFichas));
 	}
 	
-	public static void servirAlmocoFuncionario(Conta conta){
-		conta.setSaldo(conta.getSaldo() - Servico.getPrecos().get("almocoFuncionarioRU"));
+	public static void comprarAlmocoFuncionario(Conta conta, short quantidadeFichas){
+		conta.setSaldo(conta.getSaldo() - (Servico.getPrecos().get("almocoFuncionarioRU") * quantidadeFichas));
 	}
 	
-	public static void servirJantaAluno(Conta conta){
-		conta.setSaldo(conta.getSaldo() - Servico.getPrecos().get("jantaAlunoRU"));
+	public static void comprarJantaAluno(Conta conta, short quantidadeFichas){
+		conta.setSaldo(conta.getSaldo() - (Servico.getPrecos().get("jantaAlunoRU") * quantidadeFichas));
 	}
 	
-	public static void servirJantaFuncionario(Conta conta){
-		conta.setSaldo(conta.getSaldo() - Servico.getPrecos().get("jantaFuncionarioRU"));
+	public static void comprarJantaFuncionario(Conta conta, short quantidadeFichas){
+		conta.setSaldo(conta.getSaldo() - (Servico.getPrecos().get("jantaFuncionarioRU") * quantidadeFichas));
 	}
 	
 	// serviços dívida (Biblioteca)
