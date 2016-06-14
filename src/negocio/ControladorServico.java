@@ -16,6 +16,7 @@ import dados.RepositorioConta;
 import dados.RepositorioDivida;
 import excecao.ContaNaoEncontradaException;
 import excecao.DividaNaoEncontradaException;
+import excecao.FichasInsuficientesException;
 import excecao.SaldoInsuficienteException;
 
 /**
@@ -71,6 +72,26 @@ public class ControladorServico {
 		} else {
 			throw new ContaNaoEncontradaException();
 		}
+	}
+
+	public void simularRU(Conta conta, boolean isAlmoco) throws ContaNaoEncontradaException, FichasInsuficientesException{
+		boolean podeEntrar = false;
+		if (repositorioConta.procurarConta(conta)){
+			if (isAlmoco){
+				podeEntrar = Servico.simularEntradaAlmocoRU(conta);
+				if (!podeEntrar){
+					throw new FichasInsuficientesException();
+				}
+			} else {
+				podeEntrar = Servico.simularEntradaJantarRU(conta);
+				if (!podeEntrar){
+					throw new FichasInsuficientesException();
+				}
+			}
+		} else {
+			throw new ContaNaoEncontradaException();
+		}
+
 	}
 
 	//array que indica ee documento foi solicitado

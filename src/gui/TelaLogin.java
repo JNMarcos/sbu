@@ -47,27 +47,9 @@ public class TelaLogin extends JFrame {
 	private TelaPrincipalADM telaPrincipalADM;
     private TelaPrincipalADMGeral telaPrincipalADMGeral;
     private TelaPrincipalNaoADM TelaPrincipalNaoADM;
+    
     private static Fachada fachada = Fachada.getInstance();
 	
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		Servico.setPrecos();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaLogin frame = new TelaLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-
 	public TelaLogin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

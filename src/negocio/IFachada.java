@@ -13,6 +13,7 @@ import excecao.ContaNaoEncontradaException;
 import excecao.CpfJaExistenteException;
 import excecao.DividaJaExistenteException;
 import excecao.DividaNaoEncontradaException;
+import excecao.FichasInsuficientesException;
 import excecao.SaldoInsuficienteException;
 import excecao.SenhaIncorretaException;
 import excecao.UsuarioNaoEncontradoException;
@@ -29,6 +30,7 @@ public interface IFachada {
 	void comprarFichaRU(Conta conta, boolean isAlmoco, short quantidadeFichas) throws ContaNaoEncontradaException, SaldoInsuficienteException;
 	void solicitarDocumento(Conta conta, boolean[] isSolicitado) throws ContaNaoEncontradaException, SaldoInsuficienteException;
 	void solicitarCarteira(Conta conta) throws ContaNaoEncontradaException, SaldoInsuficienteException;
+	void simularRU(Conta conta, boolean isAlmoco) throws ContaNaoEncontradaException, FichasInsuficientesException;
 	
 	//Conta
 	void cadastrarConta(Conta conta) throws ContaJaCadastradaException;
