@@ -5,9 +5,11 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
 import classes_basicas.Conta;
+import excecao.SaldoInsuficienteException;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import negocio.Fachada;
 import negocio.IFachada;
@@ -49,48 +51,48 @@ public class TelaInserirCredito extends JFrame {
 		getContentPane().setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(0, 0, 444, 271);
+		panel.setBounds(0, 0, 333, 215);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		rdbtnR = new JRadioButton("R$ 5,00");
 		rdbtnR.setSelected(true);
 		rdbtnR.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		rdbtnR.setBounds(41, 135, 109, 23);
+		rdbtnR.setBounds(50, 68, 109, 23);
 		panel.add(rdbtnR);
 		
 		rdbtnR_1 = new JRadioButton("R$ 10,00");
 		rdbtnR_1.setSelected(true);
 		rdbtnR_1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		rdbtnR_1.setBounds(41, 157, 109, 23);
+		rdbtnR_1.setBounds(50, 90, 109, 23);
 		panel.add(rdbtnR_1);
 		
 		rdbtnR_2 = new JRadioButton("R$ 20,00");
 		rdbtnR_2.setSelected(true);
 		rdbtnR_2.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		rdbtnR_2.setBounds(41, 180, 109, 23);
+		rdbtnR_2.setBounds(50, 113, 109, 23);
 		panel.add(rdbtnR_2);
 		
 		rdbtnR_3 = new JRadioButton("R$ 50,00");
 		rdbtnR_3.setSelected(true);
 		rdbtnR_3.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		rdbtnR_3.setBounds(41, 203, 109, 23);
+		rdbtnR_3.setBounds(50, 136, 109, 23);
 		panel.add(rdbtnR_3);
 		
 		rdbtnR_4 = new JRadioButton("R$ 2,00");
 		rdbtnR_4.setSelected(true);
 		rdbtnR_4.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		rdbtnR_4.setBounds(41, 114, 109, 23);
+		rdbtnR_4.setBounds(50, 47, 109, 23);
 		panel.add(rdbtnR_4);
 		
 		lblEscolhaOValor = new JLabel("Escolha o valor desejado:");
 		lblEscolhaOValor.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		lblEscolhaOValor.setBounds(38, 90, 164, 14);
+		lblEscolhaOValor.setBounds(47, 23, 164, 14);
 		panel.add(lblEscolhaOValor);
 		
 		btnInserir = new JButton("Inserir");
 		btnInserir.setFont(new Font("Segoe UI", Font.PLAIN, 11));
-		btnInserir.setBounds(345, 237, 89, 23);
+		btnInserir.setBounds(230, 166, 89, 23);
 		panel.add(btnInserir);
 		
 		EventoBotaoInserir acaoInserir = new EventoBotaoInserir(); 
@@ -98,7 +100,7 @@ public class TelaInserirCredito extends JFrame {
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setFont(new Font("Segoe UI", Font.PLAIN, 11));
-		btnCancelar.setBounds(231, 237, 89, 23);
+		btnCancelar.setBounds(138, 166, 89, 23);
 		panel.add(btnCancelar);
 		
 		EventoBotaoCancelar acaoCancelar = new EventoBotaoCancelar(); 
@@ -155,7 +157,27 @@ public class TelaInserirCredito extends JFrame {
 				conta.getSaldo();
 				conta.setSaldo(conta.getSaldo()+valorEscolhido);
 			}
-			//TA INCOMPLETO ESTÁ PARTE
+			
+			JOptionPane painel;
+			try {
+				painel = new JOptionPane("Voce deseja inserir" + valorEscolhido + "em sua conta",
+						JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
+				painel.setVisible(true);
+				Object valor = painel.getValue();
+				if (valor instanceof Integer){
+					if (((Integer) valor).intValue() == JOptionPane.YES_OPTION){
+						fachada.inserirCreditos(valor, conta);
+						JOptionPane.showMessageDialog(null, "Operação realizada com sucesso." + 
+								" Você inseriu credito em sua conta com sucesso");
+					}
+				
+			} 
+			catch (SaldoInsuficienteException e) {
+				JOptionPane.showMessageDialog(null, e.getMessage());
+				dispose();
+				telaPrincipalNaoADM = new TelaPrincipalNaoADM(); 
+				telaPrincipalNaoADM.setVisible(true);
+			}
 		}
 	}	
 }
