@@ -32,9 +32,7 @@ import java.awt.Font;
 
 public class TelaAlterarUsuario extends JFrame {
 	private static Fachada fachada = Fachada.getInstance();
-	private Aluno al;
-	private Professor prof;
-	private Tecnico tec;
+	
 	private Usuario usuario;
 	private Conta conta;
 	
@@ -74,6 +72,10 @@ public class TelaAlterarUsuario extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	public void setConta(Conta conta){
+		this.conta = conta;
+	}
+	
 	public TelaAlterarUsuario() {
 		setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		setTitle("Alterar Dados do Usu\u00E1rio");
@@ -96,66 +98,69 @@ public class TelaAlterarUsuario extends JFrame {
 		textArea.setVisible(false);
 		textDep.setVisible(false);
 		
+		
+		JComboBox<String> comboBoxDia = new JComboBox();
+		comboBoxDia.setBounds(126, 238, 28, 20);
+		String[] arrayDia = {"", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11","12", "13", "14","15", "16", "17", "18",
+				"19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
+		for(int i = 0; i < 32; i++)
+			comboBoxDia.addItem(arrayDia[i]);
+		contentPane.add(comboBoxDia);
+		
+		JComboBox<String> comboBoxMes = new JComboBox();
+		comboBoxMes.setBounds(184, 238, 28, 20);
+		String[] arrayMes = {"", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro",
+				"Outubro", "Novembro", "Dezembro"};
+		for(int i=0; i<13; i++)
+			comboBoxMes.addItem(arrayMes[i]);
+		contentPane.add(comboBoxMes);
+		
+		JComboBox comboBoxAno = new JComboBox();
+		comboBoxAno.setBounds(236, 238, 28, 20);
+		Integer ano = 2000;
+		String[] arrayAno = new String[84];
+		for(int i=0; i<84; i++, ano--) {
+			if(i != 0) {
+				arrayAno[i] = ano.toString();						
+				comboBoxAno.addItem(arrayAno[i]);
+			}
+			else {
+				arrayAno[i] = "";
+				comboBoxAno.addItem(arrayAno[i]);
+			}		
+		}
+		contentPane.add(comboBoxAno);
+		
 				
 		Button Buscar = new Button("Buscar");
 		Buscar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		Buscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 try {
-					 if(fachada.procurarPorCpf(textCPF.getText()) instanceof Aluno){
-						 	textMat.setVisible(true);
-							textCurso.setVisible(true);
-							textAd.setVisible(true);
-							textAt.setVisible(true);
-							textCPF.setVisible(false);
-						 	textNome.setText(fachada.toString());
-							textSexo.setText(fachada.toString());
-							textID.setText(fachada.toString());
-							textEnd.setText(fachada.toString());
-							textTel.setText(fachada.toString());
-							textEmail.setText(fachada.toString());
-							textMat.setText(fachada.toString());
-							textCurso.setText(fachada.toString());
-							textAd.setText(fachada.toString());
-							textAt.setText(fachada.toString());
-							
-							
-						}else if(fachada.procurarPorCpf(textCPF.getText()) instanceof Professor){
-							textNum.setVisible(true);							
-							textDep.setVisible(true);
-							textCPF.setVisible(false);
-							textNome.setText(fachada.toString());
-							textSexo.setText(fachada.toString());
-							textID.setText(fachada.toString());
-							textEnd.setText(fachada.toString());
-							textTel.setText(fachada.toString());
-							textEmail.setText(fachada.toString());
-							textDep.setText(fachada.toString());
-							textNum.setText(fachada.toString());
-							
-						}else if(fachada.procurarPorCpf(textCPF.getText()) instanceof Tecnico){
-							textNum.setVisible(true);
-							textArea.setVisible(true);
-							textDep.setVisible(true);
-							textCPF.setVisible(false);
-							textNome.setText(fachada.toString());
-							textSexo.setText(fachada.toString());
-							textID.setText(fachada.toString());
-							textEnd.setText(fachada.toString());
-							textTel.setText(fachada.toString());
-							textEmail.setText(fachada.toString());
-							textDep.setText(fachada.toString());
-							textArea.setText(fachada.toString());
-							textNum.setText(fachada.toString());
-						}
-					else{
-						 JOptionPane.showMessageDialog(null,"Usuario nao cadastrado!");
-					 }
-						 
-				} catch (CpfJaExistenteException e1) {
-					
-					JOptionPane.showInputDialog(e1.getMessage());
-				}
+				 if(conta.getUsuario() instanceof Aluno){
+					 	textMat.setVisible(true);
+						textCurso.setVisible(true);
+						textAd.setVisible(true);
+						textAt.setVisible(true);
+						textCPF.setVisible(false);
+					 	
+						
+					}else if(conta.getUsuario() instanceof Professor){
+						textNum.setVisible(true);							
+						textDep.setVisible(true);
+						textCPF.setVisible(false);
+						
+						
+					}else if(conta.getUsuario()  instanceof Tecnico){
+						textNum.setVisible(true);
+						textArea.setVisible(true);
+						textDep.setVisible(true);
+						textCPF.setVisible(false);
+												
+					}
+				else{
+					 JOptionPane.showMessageDialog(null,"Usuario não cadastrado!");
+					 textCPF.setText("");
+				 }
 			}
 		});
 		Buscar.setBounds(417, 10, 70, 22);
@@ -194,6 +199,7 @@ public class TelaAlterarUsuario extends JFrame {
 		contentPane.add(textEnd);
 		textEnd.setColumns(10);
 		
+		
 		JLabel lblTelefone = new JLabel("Telefone:");
 		lblTelefone.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblTelefone.setBounds(10, 169, 78, 14);
@@ -229,47 +235,53 @@ public class TelaAlterarUsuario extends JFrame {
 				if(JOptionPane.showConfirmDialog(null, "Deseja atualizar esse usuario?")==0){
 					
 						try{
-							try {
-								if(fachada.procurarPorCpf(textCPF.getText()) instanceof Aluno){
-									
-									LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
-									al = new Aluno(textNome.getText(), textSexo.getText().charAt(0),
-											textCPF.getText(),textID.getText(), textEnd.getText(),
-											textTel.getText(), textEmail.getText(), dataDeNascimento,
-											textMat.getText(),textCurso.getText(),textAd.getText(),
-											Integer.parseInt(textAt.getText()));
-									
-									fachada.alterarDadosUsuario(al);
-									JOptionPane.showMessageDialog(null, "Usuário alterado com sucesso!");
-								}
-								else if(fachada.procurarPorCpf(textCPF.getText()) instanceof Professor){
-									
-									LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
-									prof = new Professor(textNome.getText(), textSexo.getText().charAt(0),
-											textCPF.getText(),textID.getText(), textEnd.getText(),
-											textTel.getText(), textEmail.getText(), dataDeNascimento,
-											textDep.getText(),textNum.getText());
-									
-									fachada.alterarDadosUsuario(prof);
-									JOptionPane.showMessageDialog(null, "Usuário alterado com sucesso!");							
-									
-									
-								}else if(fachada.procurarPorCpf(textCPF.getText()) instanceof Tecnico){
-									
-									LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
-									tec = new Tecnico(textNome.getText(), textSexo.getText().charAt(0),
-											textCPF.getText(),textID.getText(), textEnd.getText(),
-											textTel.getText(), textEmail.getText(), dataDeNascimento,
-											textDep.getText(),textArea.getText(), textNum.getText());
-									
-									fachada.alterarDadosUsuario(tec);
-									JOptionPane.showMessageDialog(null, "Usuário alterado com sucesso!");
-								}
-							}  catch (CpfJaExistenteException e1) {
-								JOptionPane.showMessageDialog(null, e1.getMessage());
+							if(conta.getUsuario() instanceof Aluno){
+								
+								LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
+								usuario = new Aluno(textNome.getText(), textSexo.getText().charAt(0),
+										textCPF.getText(),textID.getText(), textEnd.getText(),
+										textTel.getText(), textEmail.getText(), dataDeNascimento,
+										textMat.getText(),textCurso.getText(),textAd.getText(),
+										Integer.parseInt(textAt.getText()));
+								
+								fachada.alterarDadosUsuario(usuario);
+								JOptionPane.showMessageDialog(null, "Usuário alterado com sucesso!");								
+								dispose();
+								TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(this.conta); 
+								telaPrincipalADMGeral.setVisible(true);
+							}
+							else if(conta.getUsuario() instanceof Professor){
+								
+								LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
+								usuario = new Professor(textNome.getText(), textSexo.getText().charAt(0),
+										textCPF.getText(),textID.getText(), textEnd.getText(),
+										textTel.getText(), textEmail.getText(), dataDeNascimento,
+										textDep.getText(),textNum.getText());
+								
+								fachada.alterarDadosUsuario(usuario);
+								JOptionPane.showMessageDialog(null, "Usuário alterado com sucesso!");	
+								dispose();
+								TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(this.conta); 
+								telaPrincipalADMGeral.setVisible(true);
+								
+								
+							}else if(conta.getUsuario() instanceof Tecnico){
+								
+								LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
+								usuario = new Tecnico(textNome.getText(), textSexo.getText().charAt(0),
+										textCPF.getText(),textID.getText(), textEnd.getText(),
+										textTel.getText(), textEmail.getText(), dataDeNascimento,
+										textDep.getText(),textArea.getText(), textNum.getText());
+								
+								fachada.alterarDadosUsuario(usuario);
+								JOptionPane.showMessageDialog(null, "Usuário alterado com sucesso!");
+								dispose();
+								TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(this.conta); 
+								telaPrincipalADMGeral.setVisible(true);
 							}
 						}catch (UsuarioNaoEncontradoException e1) {
 							JOptionPane.showMessageDialog(null, e1.getMessage());
+							textCPF.setText("");
 							
 						}
 				}
@@ -346,7 +358,9 @@ public class TelaAlterarUsuario extends JFrame {
 		btnCancelar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
+				dispose();
+				TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(conta); 
+				telaPrincipalADMGeral.setVisible(true);
 			}
 		});
 		btnCancelar.setBounds(335, 550, 89, 23);
@@ -388,6 +402,7 @@ public class TelaAlterarUsuario extends JFrame {
 		contentPane.add(textArea);
 		textArea.setColumns(10);
 		
+			
 		
 		
 	}
