@@ -8,6 +8,7 @@ import java.time.Period;
 import java.util.ArrayList;
 import classes_basicas.Conta;
 import classes_basicas.Divida;
+import classes_basicas.Movimentacao;
 import classes_basicas.Servico;
 import classes_basicas.Usuario;
 import dados.IRepositorioConta;
@@ -153,15 +154,22 @@ public class ControladorConta {
 	}
 	public void inserirCreditos(int valor, Conta conta) throws ContaNaoEncontradaException,
 	ValorInseridoNaoCondizException{
+		Movimentacao movimentacao;
 		ArrayList<Conta> repositorio = repositorioConta.listarContas();
 		Double saldo;
 		for(int i = 0; i < repositorio.size(); i++){
 			if(repositorio.get(i).getUsuario().equals(conta.getUsuario())){
 				saldo = repositorio.get(i).getSaldo() + valor;
 				repositorio.get(i).setSaldo(saldo);
+				movimentacao = new Movimentacao("Inserir crédito", "Inserção de R$ " + valor + " em sua conta." );
+				conta.getHistorico().add(movimentacao);
 			}
 		}
 		
+	}
+
+	public boolean procurarConta(Conta conta) {
+		return repositorioConta.procurarConta(conta);
 	}
 }
 

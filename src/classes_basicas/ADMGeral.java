@@ -10,6 +10,10 @@ import java.time.LocalDate;
  *
  */
 public class ADMGeral extends Usuario {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String idADMGeral;
 
 	/**

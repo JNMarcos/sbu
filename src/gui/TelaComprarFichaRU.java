@@ -18,6 +18,7 @@ import javax.swing.SpinnerNumberModel;
 import classes_basicas.Aluno;
 import classes_basicas.Conta;
 import classes_basicas.Servico;
+import excecao.ContaNaoEncontradaException;
 import excecao.SaldoInsuficienteException;
 import gui.TelaPrincipalNaoADM;
 import negocio.Fachada;
@@ -131,7 +132,7 @@ public class TelaComprarFichaRU extends JFrame {
 	private class EventoBotaoCancelar implements ActionListener { 
 		public void actionPerformed(ActionEvent evento) { 
 			dispose(); 
-			telaPrincipalNaoADM = new TelaPrincipalNaoADM(); 
+			TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(); 
 			telaPrincipalNaoADM.setVisible(true);
 
 		}
@@ -172,7 +173,7 @@ public class TelaComprarFichaRU extends JFrame {
 				Object valor = painel.getValue();
 				if (valor instanceof Integer){
 					if (((Integer) valor).intValue() == JOptionPane.YES_OPTION){
-						fachada.comprarFichaRU(conta, isAlmoco);
+						fachada.comprarFichaRU(conta, isAlmoco, quantidadeTiquetes);
 						JOptionPane.showMessageDialog(null, "Operação realizada com sucesso." + 
 								" Você comprou " + quantidadeTiquetes + " tipo " + escolha + ". Valor total da operação: " 
 								+  (valorServico*quantidadeTiquetes) + ". Seu saldo é: " + conta.getSaldo());
@@ -181,7 +182,12 @@ public class TelaComprarFichaRU extends JFrame {
 			} catch (SaldoInsuficienteException e){
 				JOptionPane.showMessageDialog(null, e.getMessage());
 				dispose();
-				telaPrincipalNaoADM = new TelaPrincipalNaoADM(); 
+				TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(); 
+				telaPrincipalNaoADM.setVisible(true);
+			} catch (ContaNaoEncontradaException e){
+				JOptionPane.showMessageDialog(null, e.getMessage());
+				dispose();
+				TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(); 
 				telaPrincipalNaoADM.setVisible(true);
 			}
 		}

@@ -77,7 +77,9 @@ public class Divida implements Comparable<Divida>, Serializable {
 
 	@Override
 	public int compareTo(Divida divida) {
-		return this.getConta().compareTo(divida.getConta());
+		return this.getConta().compareTo(divida.getConta()) +
+				this.getDataEmissao().compareTo(divida.getDataEmissao()) +
+				this.getHoraEmissao().compareTo(divida.getHoraEmissao());
 	}
 	
 	public int hashCode() {

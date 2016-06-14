@@ -1,10 +1,8 @@
 package dados;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import classes_basicas.Conta;
-import classes_basicas.Movimentacao;
 import classes_basicas.Usuario;
 
 public interface IRepositorioConta {
@@ -15,6 +13,7 @@ public interface IRepositorioConta {
 	public void consultarSaldo(Conta conta);	
 	public void verMovimentacoes(Conta conta);		
 	public ArrayList<Conta> listarContas();
+	public boolean procurarConta (Conta conta);
 	public boolean verificarNomeUsuarioJaExiste(String nomeUsuario);
 	public boolean verificarSenhaJaExiste(String senha);
 	public Conta verificarLogin(String nome, String senha);
