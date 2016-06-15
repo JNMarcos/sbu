@@ -47,7 +47,7 @@ public class TelaInserirCredito extends JFrame {
 	public TelaInserirCredito() {
 		getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 11));
 		setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		setTitle("Inserir Crédito");
+		setTitle("$BU - Inserir Crédito");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
