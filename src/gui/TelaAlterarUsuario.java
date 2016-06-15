@@ -1,11 +1,18 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.HeadlessException;
+import java.awt.Font;
+import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import classes_basicas.Aluno;
@@ -13,22 +20,8 @@ import classes_basicas.Conta;
 import classes_basicas.Professor;
 import classes_basicas.Tecnico;
 import classes_basicas.Usuario;
-import excecao.CpfJaExistenteException;
 import excecao.UsuarioNaoEncontradoException;
 import negocio.Fachada;
-
-import java.awt.Label;
-import java.awt.TextField;
-import java.awt.Button;
-import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import java.awt.Font;
 
 public class TelaAlterarUsuario extends JFrame {
 	/**
@@ -240,7 +233,7 @@ public class TelaAlterarUsuario extends JFrame {
 							fachada.alterarDadosUsuario(usuario);
 							JOptionPane.showMessageDialog(null, "Usuário alterado com sucesso!");								
 							dispose();
-							TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(contaDosDadosAlterados); 
+							TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(conta); 
 							telaPrincipalADMGeral.setVisible(true);
 						}
 						else if(contaDosDadosAlterados.getUsuario() instanceof Professor){
@@ -254,7 +247,9 @@ public class TelaAlterarUsuario extends JFrame {
 							fachada.alterarDadosUsuario(usuario);
 							JOptionPane.showMessageDialog(null, "Usuário alterado com sucesso!");	
 							dispose();
-							TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(contaDosDadosAlterados); 
+							// o atributo conta possui a conta do adm, a do contaASerAlterada tem o que acabei de alterar
+							// que não tem acesso
+							TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(conta); 
 							telaPrincipalADMGeral.setVisible(true);
 
 
@@ -269,7 +264,7 @@ public class TelaAlterarUsuario extends JFrame {
 							fachada.alterarDadosUsuario(usuario);
 							JOptionPane.showMessageDialog(null, "Usuário alterado com sucesso!");
 							dispose();
-							TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(contaDosDadosAlterados); 
+							TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(conta); 
 							telaPrincipalADMGeral.setVisible(true);
 						}
 					}catch (UsuarioNaoEncontradoException e1) {

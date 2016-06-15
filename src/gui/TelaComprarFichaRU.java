@@ -132,7 +132,7 @@ public class TelaComprarFichaRU extends JFrame {
 	private class EventoBotaoCancelar implements ActionListener { 
 		public void actionPerformed(ActionEvent evento) { 
 			dispose(); 
-			TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(); 
+			TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta); 
 			telaPrincipalNaoADM.setVisible(true);
 
 		}
@@ -182,12 +182,12 @@ public class TelaComprarFichaRU extends JFrame {
 			} catch (SaldoInsuficienteException e){
 				JOptionPane.showMessageDialog(null, e.getMessage());
 				dispose();
-				TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(); 
+				TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta); 
 				telaPrincipalNaoADM.setVisible(true);
 			} catch (ContaNaoEncontradaException e){
 				JOptionPane.showMessageDialog(null, e.getMessage());
 				dispose();
-				TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(); 
+				TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta); 
 				telaPrincipalNaoADM.setVisible(true);
 			}
 		}

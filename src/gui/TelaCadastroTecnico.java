@@ -21,7 +21,7 @@ import excecao.CpfJaExistenteException;
 import negocio.Fachada;
 
 public class TelaCadastroTecnico extends JFrame {
-	
+
 	/**
 	 * 
 	 */
@@ -29,7 +29,7 @@ public class TelaCadastroTecnico extends JFrame {
 	private Fachada fachada;
 	private Tecnico tecnico;
 	private Conta conta;
-	
+
 	private JPanel panel;
 	private JTextField textFieldNome;
 	private JTextField textFieldSexo;
@@ -43,6 +43,11 @@ public class TelaCadastroTecnico extends JFrame {
 	private JTextField textFieldNtecnico;
 	private JTextField textFieldLogin;
 	private JTextField textFieldSenha;
+	private JComboBox<String> comboBoxDia;
+	private JComboBox<String> comboBoxMes;
+	private JComboBox<String> comboBoxAno;
+	private JComboBox<String> comboBoxTipo;
+	private String[] tipo = { "Administrador da biblioteca", "Técnico comum" };
 	/**
 	 * Create the panel.
 	 */
@@ -54,125 +59,125 @@ public class TelaCadastroTecnico extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-		
+
 		fachada = Fachada.getInstance();
-		
+
 		panel = new JPanel();
 		panel.setBounds(0, 0, 473, 666);
 		getContentPane().add(panel);
 		panel.setLayout(null);
-		
+
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setBounds(32, 29, 52, 14);
 		panel.add(lblNome);
-		
+
 		JLabel lblSexo = new JLabel("Sexo:");
 		lblSexo.setBounds(32, 64, 52, 14);
 		panel.add(lblSexo);
-		
+
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setBounds(32, 101, 52, 14);
 		panel.add(lblCpf);
-		
+
 		JLabel lblIdentidade = new JLabel("Identidade:");
 		lblIdentidade.setBounds(32, 143, 70, 14);
 		panel.add(lblIdentidade);
-		
+
 		JLabel lblEndereco = new JLabel("Endere\u00E7o:");
 		lblEndereco.setBounds(32, 181, 70, 14);
 		panel.add(lblEndereco);
-		
+
 		JLabel lblTelefone = new JLabel("Telefone:");
 		lblTelefone.setBounds(33, 228, 112, 14);
 		panel.add(lblTelefone);
-		
+
 		JLabel lblEmail = new JLabel("E-mail:");
 		lblEmail.setBounds(32, 266, 112, 14);
 		panel.add(lblEmail);
-		
+
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento:");
 		lblDataDeNascimento.setBounds(32, 307, 139, 14);
 		panel.add(lblDataDeNascimento);
-		
+
 		textFieldNome = new JTextField();
 		textFieldNome.setBounds(94, 26, 340, 20);
 		panel.add(textFieldNome);
 		textFieldNome.setColumns(10);
-		
+
 		textFieldSexo = new JTextField();
 		textFieldSexo.setBounds(94, 61, 340, 20);
 		panel.add(textFieldSexo);
 		textFieldSexo.setColumns(10);
-		
+
 		textFieldCpf = new JTextField();
 		textFieldCpf.setBounds(94, 98, 340, 20);
 		panel.add(textFieldCpf);
 		textFieldCpf.setColumns(10);
-		
+
 		textFieldIdentidade = new JTextField();
 		textFieldIdentidade.setBounds(113, 140, 321, 20);
 		panel.add(textFieldIdentidade);
 		textFieldIdentidade.setColumns(10);
-		
+
 		textFieldEndereco = new JTextField();
 		textFieldEndereco.setBounds(102, 178, 332, 20);
 		panel.add(textFieldEndereco);
 		textFieldEndereco.setColumns(10);
-		
+
 		textFieldTelefone = new JTextField();
 		textFieldTelefone.setBounds(102, 226, 332, 20);
 		panel.add(textFieldTelefone);
 		textFieldTelefone.setColumns(10);
-		
+
 		textFieldEmail = new JTextField();
 		textFieldEmail.setBounds(87, 264, 347, 20);
 		panel.add(textFieldEmail);
 		textFieldEmail.setColumns(10);
-		
+
 		JLabel lblArea = new JLabel("Área:");
 		lblArea.setBounds(32, 353, 112, 14);
 		panel.add(lblArea);
-		
+
 		JLabel lblDepartamento = new JLabel("Departamento:");
 		lblDepartamento.setBounds(32, 399, 90, 14);
 		panel.add(lblDepartamento);
-		
+
 		JLabel lblNtecnico = new JLabel("Número Técnico:");
 		lblNtecnico.setBounds(32, 437, 113, 14);
 		panel.add(lblNtecnico);
-		
+
 		textFieldArea = new JTextField();
 		textFieldArea.setBounds(94, 351, 340, 20);
 		panel.add(textFieldArea);
 		textFieldArea.setColumns(10);
-		
+
 		textFieldDepartamento = new JTextField();
 		textFieldDepartamento.setBounds(132, 397, 302, 20);
 		panel.add(textFieldDepartamento);
 		textFieldDepartamento.setColumns(10);
-		
+
 		textFieldNtecnico = new JTextField();
 		textFieldNtecnico.setBounds(142, 434, 292, 20);
 		panel.add(textFieldNtecnico);
 		textFieldNtecnico.setColumns(10);
-		
-		JComboBox<String> comboBoxDia = new JComboBox<String>();
+
+		comboBoxDia = new JComboBox<String>();
 		comboBoxDia.setBounds(185, 305, 28, 20);
 		String[] arrayDia = {"", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11","12", "13", "14","15", "16", "17", "18",
 				"19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
 		for(int i = 0; i < 32; i++)
 			comboBoxDia.addItem(arrayDia[i]);
 		panel.add(comboBoxDia);
-		
-		JComboBox<String> comboBoxMes = new JComboBox<String>();
+
+		comboBoxMes = new JComboBox<String>();
 		comboBoxMes.setBounds(277, 305, 28, 20);
 		String[] arrayMes = {"", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro",
 				"Outubro", "Novembro", "Dezembro"};
 		for(int i=0; i<13; i++)
 			comboBoxMes.addItem(arrayMes[i]);
 		panel.add(comboBoxMes);
-		
-		JComboBox<String> comboBoxAno = new JComboBox<String>();
+
+		comboBoxAno = new JComboBox<String>();
 		comboBoxAno.setBounds(362, 305, 28, 20);
 		Integer ano = 2000;
 		String[] arrayAno = new String[84];
@@ -187,119 +192,122 @@ public class TelaCadastroTecnico extends JFrame {
 			}		
 		}
 		panel.add(comboBoxAno);
-		
-		JComboBox<String> comboBoxTipo = new JComboBox<String>();
+
+		comboBoxTipo = new JComboBox<String>();
 		comboBoxTipo.setBounds(392, 559, 28, 20);
-		String[] tipo = { "Administrador da biblioteca", "Técnico comum" };
 		comboBoxTipo.addItem(tipo[0]);
 		comboBoxTipo.addItem(tipo[1]);
 		panel.add(comboBoxTipo);
-		
+
 		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try{
-					if(textFieldNome.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'Nome' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else if(textFieldSexo.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'Sexo' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else if(textFieldCpf.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'CPF' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else if(textFieldIdentidade.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'Identidade' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else if(textFieldEndereco.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'Endereco' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else if(textFieldTelefone.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'Telefone' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else if(textFieldEmail.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'Email' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					
-					else{
-						Conta conta;
-						LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
-						if(comboBoxTipo.getSelectedItem().equals(tipo[0])){
-							tecnico = new ADMBiblioteca(textFieldNome.getText(), textFieldSexo.getText().charAt(0),
-									textFieldCpf.getText(),textFieldIdentidade.getText(), textFieldEndereco.getText(),
-									textFieldTelefone.getText(), textFieldEmail.getText(), dataDeNascimento,
-									textFieldArea.getText(),textFieldDepartamento.getText(), textFieldNtecnico.getText());
-							fachada.cadastrarUsuario(tecnico);
-							conta = new Conta(tecnico, textFieldLogin.getText(), textFieldSenha.getText());
-							fachada.cadastrarConta(conta);
-							JOptionPane.showMessageDialog(null, "Técnico cadastrado com sucesso!");
-							dispose();
-							TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(this.conta); 
-							telaPrincipalADMGeral.setVisible(true);
-						}
-						else if(comboBoxTipo.getSelectedItem().equals(tipo[1])){
-							tecnico = new Tecnico(textFieldNome.getText(), textFieldSexo.getText().charAt(0),
-									textFieldCpf.getText(),textFieldIdentidade.getText(), textFieldEndereco.getText(),
-									textFieldTelefone.getText(), textFieldEmail.getText(), dataDeNascimento,
-									textFieldArea.getText(),textFieldDepartamento.getText(), textFieldNtecnico.getText());
-							fachada.cadastrarUsuario(tecnico);
-							conta = new Conta(tecnico, textFieldLogin.getText(), textFieldSenha.getText());
-							fachada.cadastrarConta(conta);
-							JOptionPane.showMessageDialog(null, "Técnico cadastrado com sucesso!");
-							dispose();
-							TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(this.conta); 
-							telaPrincipalADMGeral.setVisible(true);
-						}
-						else{
-							JOptionPane.showMessageDialog(null, "Selecione tecnico comum ou administrador!", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-						}
-					}
-				}catch(CpfJaExistenteException e) {
-					JOptionPane.showMessageDialog(null, e.getMessage());
-					textFieldCpf.setText("");
-				}catch(ContaJaCadastradaException e){
-					JOptionPane.showMessageDialog(null, e.getMessage());
-				}
-			}
-		});
+		EventoCadastrar acaoCadastrar = new EventoCadastrar();
+		btnCadastrar.addActionListener(acaoCadastrar);
 		btnCadastrar.setBounds(160, 610, 89, 23);
 		panel.add(btnCadastrar);
-		
+
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(this.conta); 
+				TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(conta); 
 				telaPrincipalADMGeral.setVisible(true);
 			}
 		});
 		btnCancelar.setBounds(345, 610, 89, 23);
 		panel.add(btnCancelar);
-		
+
 		JLabel lblTipo = new JLabel("Tipo:");
 		lblTipo.setBounds(237, 561, 41, 14);
 		panel.add(lblTipo);
-		
+
 		JLabel lblLogin = new JLabel("Login:");
 		lblLogin.setBounds(32, 476, 46, 20);
 		panel.add(lblLogin);
-		
+
 		JLabel lblSenha = new JLabel("Senha:");
 		lblSenha.setBounds(32, 517, 46, 20);
 		panel.add(lblSenha);
-		
+
 		textFieldLogin = new JTextField();
 		textFieldLogin.setColumns(10);
 		textFieldLogin.setBounds(87, 477, 347, 20);
 		panel.add(textFieldLogin);
-		
+
 		textFieldSenha = new JTextField();
 		textFieldSenha.setColumns(10);
 		textFieldSenha.setBounds(87, 518, 347, 20);
 		panel.add(textFieldSenha);
 	}
-	
+
 	private void setConta(Conta conta) {
 		this.conta=conta;
+	}
+
+	private class EventoCadastrar implements ActionListener{			
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			try{
+				if(textFieldNome.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'Nome' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(textFieldSexo.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'Sexo' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(textFieldCpf.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'CPF' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(textFieldIdentidade.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'Identidade' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(textFieldEndereco.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'Endereco' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(textFieldTelefone.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'Telefone' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(textFieldEmail.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'Email' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+
+				else{
+					Conta contaASerCadastrada;
+					LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
+					if(comboBoxTipo.getSelectedItem().equals(tipo[0])){
+						tecnico = new ADMBiblioteca(textFieldNome.getText(), textFieldSexo.getText().charAt(0),
+								textFieldCpf.getText(),textFieldIdentidade.getText(), textFieldEndereco.getText(),
+								textFieldTelefone.getText(), textFieldEmail.getText(), dataDeNascimento,
+								textFieldArea.getText(),textFieldDepartamento.getText(), textFieldNtecnico.getText());
+						fachada.cadastrarUsuario(tecnico);
+						contaASerCadastrada = new Conta(tecnico, textFieldLogin.getText(), textFieldSenha.getText());
+						fachada.cadastrarConta(contaASerCadastrada);
+						JOptionPane.showMessageDialog(null, "Técnico cadastrado com sucesso!");
+						dispose();
+						TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(conta); 
+						telaPrincipalADMGeral.setVisible(true);
+					}
+					else if(comboBoxTipo.getSelectedItem().equals(tipo[1])){
+						tecnico = new Tecnico(textFieldNome.getText(), textFieldSexo.getText().charAt(0),
+								textFieldCpf.getText(),textFieldIdentidade.getText(), textFieldEndereco.getText(),
+								textFieldTelefone.getText(), textFieldEmail.getText(), dataDeNascimento,
+								textFieldArea.getText(),textFieldDepartamento.getText(), textFieldNtecnico.getText());
+						fachada.cadastrarUsuario(tecnico);
+						contaASerCadastrada = new Conta(tecnico, textFieldLogin.getText(), textFieldSenha.getText());
+						fachada.cadastrarConta(contaASerCadastrada);
+						JOptionPane.showMessageDialog(null, "Técnico cadastrado com sucesso!");
+						dispose();
+						TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(conta); 
+						telaPrincipalADMGeral.setVisible(true);
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "Selecione tecnico comum ou administrador!", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}catch(CpfJaExistenteException e) {
+				JOptionPane.showMessageDialog(null, e.getMessage());
+				textFieldCpf.setText("");
+			}catch(ContaJaCadastradaException e){
+				JOptionPane.showMessageDialog(null, e.getMessage());
+			}
+		}
 	}
 }

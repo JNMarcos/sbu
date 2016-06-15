@@ -19,10 +19,14 @@ import negocio.Fachada;
 
 public class TelaPrincipalNaoADM extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Fachada fachada;
 	private Conta conta;
 	private JPanel panel;
-	
+	private JComboBox<String> comboBoxServico;
 	
 	
 	public TelaPrincipalNaoADM(Conta conta) {
@@ -52,7 +56,7 @@ public class TelaPrincipalNaoADM extends JFrame {
 		lblSaldo.setBounds(435, 29, 46, 19);
 		panel.add(lblSaldo);
 		
-		JComboBox comboBoxServico = new JComboBox();
+		comboBoxServico = new JComboBox<String>();
 		comboBoxServico.setBounds(122, 126, 28, 20);
 		String[] opcoes = {"Comprar Ficha do R.U", "Pagar Multa da Biblioteca",
 							"Solicitar Documentos", "Inserir Credito", "Ver Movimentações", "Exibir Informações"};

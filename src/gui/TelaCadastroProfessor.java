@@ -39,6 +39,9 @@ public class TelaCadastroProfessor extends JFrame {
 	private Conta conta;
 	private JTextField textFieldLogin;
 	private JTextField textFieldSenha;
+	private JComboBox<String> comboBoxDia;
+	private JComboBox<String> comboBoxMes;
+	private JComboBox<String> comboBoxAno;
 	/**
 	 * Create the panel.
 	 */
@@ -150,7 +153,7 @@ public class TelaCadastroProfessor extends JFrame {
 			comboBoxDia.addItem(arrayDia[i]);
 		panel.add(comboBoxDia);
 		
-		JComboBox<String> comboBoxMes = new JComboBox<String>();
+		comboBoxMes = new JComboBox<String>();
 		comboBoxMes.setBounds(280, 369, 28, 20);
 		String[] arrayMes = {"", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro",
 				"Outubro", "Novembro", "Dezembro"};
@@ -158,7 +161,7 @@ public class TelaCadastroProfessor extends JFrame {
 			comboBoxMes.addItem(arrayMes[i]);
 		panel.add(comboBoxMes);
 		
-		JComboBox<String> comboBoxAno = new JComboBox<String>();
+		comboBoxAno = new JComboBox<String>();
 		comboBoxAno.setBounds(362, 369, 28, 20);
 		Integer ano = 2000;
 		String[] arrayAno = new String[84];
@@ -193,65 +196,8 @@ public class TelaCadastroProfessor extends JFrame {
 		textFieldSenha.setColumns(10);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try{
-					if(textFieldNome.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'Nome' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else if(textFieldSexo.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'Sexo' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else if(textFieldCpf.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'CPF' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else if(textFieldIdentidade.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'Identidade' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else if(textFieldEndereco.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'Endereco' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else if(textFieldTelefone.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'Telefone' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else if(textFieldEmail.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'Email' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else if(textFieldDepartamento.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'Departamento' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else if(textFieldNprofessor.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'nProfessor' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else if(textFieldLogin.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'Login' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else if(textFieldSenha.equals("")){
-						JOptionPane.showMessageDialog(null, "O campo 'Senha' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
-					}
-					else{
-						Conta conta;
-						LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
-						professor = new Professor(textFieldNome.getText(), textFieldSexo.getText().charAt(0),
-								textFieldCpf.getText(),textFieldIdentidade.getText(), textFieldEndereco.getText(),
-								textFieldTelefone.getText(), textFieldEmail.getText(), dataDeNascimento,
-								textFieldDepartamento.getText(),textFieldNprofessor.getText());
-						fachada.cadastrarUsuario(professor);
-						conta = new Conta(professor, textFieldLogin.getText(), textFieldSenha.getText());
-						fachada.cadastrarConta(conta);
-						JOptionPane.showMessageDialog(null, "Professor cadastrado com sucesso!");
-						dispose();
-						TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(this.conta); 
-						telaPrincipalADMGeral.setVisible(true);
-					}
-				}catch(CpfJaExistenteException e) {
-					JOptionPane.showMessageDialog(null, e.getMessage());
-					textFieldCpf.setText("");
-				}catch(ContaJaCadastradaException e){
-					JOptionPane.showMessageDialog(null, e.getMessage());
-				}
-			}
-		});
+		EventoCadastrar acaoCadastrar = new EventoCadastrar();
+		btnCadastrar.addActionListener(acaoCadastrar);
 		btnCadastrar.setBounds(144, 615, 89, 23);
 		panel.add(btnCadastrar);
 		
@@ -259,7 +205,7 @@ public class TelaCadastroProfessor extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(this.conta); 
+				TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(conta); 
 				telaPrincipalADMGeral.setVisible(true);
 			}
 		});
@@ -269,5 +215,66 @@ public class TelaCadastroProfessor extends JFrame {
 
 	private void setConta(Conta conta) {
 	this.conta = conta;
+	}
+	
+	private class EventoCadastrar implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+			try{
+				if(textFieldNome.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'Nome' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(textFieldSexo.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'Sexo' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(textFieldCpf.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'CPF' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(textFieldIdentidade.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'Identidade' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(textFieldEndereco.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'Endereco' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(textFieldTelefone.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'Telefone' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(textFieldEmail.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'Email' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(textFieldDepartamento.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'Departamento' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(textFieldNprofessor.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'nProfessor' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(textFieldLogin.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'Login' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(textFieldSenha.equals("")){
+					JOptionPane.showMessageDialog(null, "O campo 'Senha' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					Conta contaASerCadastrada;
+					LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
+					professor = new Professor(textFieldNome.getText(), textFieldSexo.getText().charAt(0),
+							textFieldCpf.getText(),textFieldIdentidade.getText(), textFieldEndereco.getText(),
+							textFieldTelefone.getText(), textFieldEmail.getText(), dataDeNascimento,
+							textFieldDepartamento.getText(),textFieldNprofessor.getText());
+					fachada.cadastrarUsuario(professor);
+					contaASerCadastrada = new Conta(professor, textFieldLogin.getText(), textFieldSenha.getText());
+					fachada.cadastrarConta(contaASerCadastrada);
+					JOptionPane.showMessageDialog(null, "Professor cadastrado com sucesso!");
+					dispose();
+					TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(conta); 
+					telaPrincipalADMGeral.setVisible(true);
+				}
+			}catch(CpfJaExistenteException e) {
+				JOptionPane.showMessageDialog(null, e.getMessage());
+				textFieldCpf.setText("");
+			}catch(ContaJaCadastradaException e){
+				JOptionPane.showMessageDialog(null, e.getMessage());
+			}
+		}
+		
 	}
 }
