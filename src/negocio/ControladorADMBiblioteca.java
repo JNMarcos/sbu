@@ -1,6 +1,7 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import classes_basicas.Divida;
 import dados.IRepositorioDivida;
@@ -101,5 +102,9 @@ public class ControladorADMBiblioteca {
 		
 		
 		
-	}	
+	}
+	
+	public List<Divida> listarDivida(){
+		return interfaceRepositorio.listarDividas();
+	}
 }

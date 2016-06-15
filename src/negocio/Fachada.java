@@ -4,6 +4,7 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import classes_basicas.Conta;
 import classes_basicas.Divida;
@@ -102,7 +103,7 @@ public class Fachada implements IFachada{
 
 	@Override
 	public void inserirCreditos(int valor, Conta conta) throws ContaNaoEncontradaException,
-	ValorInseridoNaoCondizException, SaldoInsuficienteException{
+	ValorInseridoNaoCondizException{
 		ctrConta.inserirCreditos(valor, conta);
 	}
 
@@ -171,6 +172,11 @@ public class Fachada implements IFachada{
 	public void removerDivida(Divida divida) throws DividaNaoEncontradaException{
 		ctrADMBiblioteca.removerDivida(divida);
 	}
+	
+	@Override
+	public List<Divida> listarDivida(){
+		return ctrADMBiblioteca.listarDivida();
+	}
 
 	@Override
 	public void verificarValorMultaBiblioteca(Conta conta) throws ContaNaoEncontradaException {
@@ -192,4 +198,5 @@ public class Fachada implements IFachada{
 	public int retornarIndice(Conta conta) {
 		return ctrConta.retornarIndice(conta);
 	}
+	
 }

@@ -4,6 +4,7 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import classes_basicas.Conta;
 import classes_basicas.Divida;
@@ -42,7 +43,7 @@ public interface IFachada {
 	public Conta procurarConta(String CPF);
 	public int retornarIndice(Conta conta);
 	void inserirCreditos(int valor, Conta conta) throws ContaNaoEncontradaException,
-	ValorInseridoNaoCondizException, SaldoInsuficienteException;
+	ValorInseridoNaoCondizException;
 	void verMovimentacoes(Conta conta) throws ContaNaoEncontradaException;
 	Conta verificarLogin(String nome, String senha) throws SenhaIncorretaException, 
 	UsuarioNaoEncontradoException;
@@ -61,4 +62,5 @@ public interface IFachada {
 	void adicionarDivida(Divida divida) throws DividaJaExistenteException;
 	void alterarDadosDivida(Divida divida) throws DividaNaoEncontradaException;
 	void removerDivida(Divida divida) throws DividaNaoEncontradaException;
+	List<Divida> listarDivida();
 }
