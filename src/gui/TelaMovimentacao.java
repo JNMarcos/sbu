@@ -40,7 +40,7 @@ public class TelaMovimentacao extends JFrame {
 	private static String[] nomes = {"Inserir Crédito", "Pagar Dívida", "Comprar Ficha RU", "Solicitar Documento DRCA"};
 	private JScrollPane painel;
 
-	public TelaMovimentacao() {
+	public TelaMovimentacao(Conta conta) {
 		super("$BU - Movimentações");
 		getContentPane().setLayout(null);
 		painel = new JScrollPane();
@@ -64,7 +64,7 @@ public class TelaMovimentacao extends JFrame {
 			dispose(); 
 			int index = lista.getSelectedIndex();
 			if(index == 0){
-				TelaInserirCredito telaInserirCredito = new TelaInserirCredito();
+				TelaInserirCredito telaInserirCredito = new TelaInserirCredito(conta);
 				telaInserirCredito.setVisible(true);
 			}
 			else if(index == 1){
