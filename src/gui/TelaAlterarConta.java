@@ -113,7 +113,7 @@ public class TelaAlterarConta extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(conta); 
+				TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(contaDosDadosAlterados); 
 				telaPrincipalADMGeral.setVisible(true);
 			}
 		});

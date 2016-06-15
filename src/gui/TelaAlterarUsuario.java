@@ -240,7 +240,7 @@ public class TelaAlterarUsuario extends JFrame {
 							fachada.alterarDadosUsuario(usuario);
 							JOptionPane.showMessageDialog(null, "Usuário alterado com sucesso!");								
 							dispose();
-							TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(this.conta); 
+							TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(contaDosDadosAlterados); 
 							telaPrincipalADMGeral.setVisible(true);
 						}
 						else if(contaDosDadosAlterados.getUsuario() instanceof Professor){
@@ -254,7 +254,7 @@ public class TelaAlterarUsuario extends JFrame {
 							fachada.alterarDadosUsuario(usuario);
 							JOptionPane.showMessageDialog(null, "Usuário alterado com sucesso!");	
 							dispose();
-							TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(this.conta); 
+							TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(contaDosDadosAlterados); 
 							telaPrincipalADMGeral.setVisible(true);
 
 
@@ -269,7 +269,7 @@ public class TelaAlterarUsuario extends JFrame {
 							fachada.alterarDadosUsuario(usuario);
 							JOptionPane.showMessageDialog(null, "Usuário alterado com sucesso!");
 							dispose();
-							TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(this.conta); 
+							TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(contaDosDadosAlterados); 
 							telaPrincipalADMGeral.setVisible(true);
 						}
 					}catch (UsuarioNaoEncontradoException e1) {
