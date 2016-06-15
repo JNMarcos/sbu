@@ -131,7 +131,7 @@ public class TelaSimularRU extends JFrame {
 	private class EventoBotaoVoltar implements ActionListener { 
 		public void actionPerformed(ActionEvent evento) { 
 			dispose();
-			TelaPrincipal telaPrincipal = new TelaPrincipal(); 
+			TelaInicio telaPrincipal = new TelaInicio(); 
 			telaPrincipal.setVisible(true);
 
 		}
