@@ -42,61 +42,50 @@ public class ControladorUsuario {
 
 		int index;
 
-		ArrayList<Usuario> repositorioUsuarioLocal = 
-
-				repositorioUsuario.listarUsuarios();
-
-		for(index = 0; index < repositorioUsuarioLocal.size(); index++)
-		{
-
-
-			if(repositorioUsuarioLocal.get(index).getCpf().equals
-
-					(usuario.getCpf()))
-			{
-				throw new CpfJaExistenteException();
-			}
-
-
-		}
-
+		ArrayList<Usuario> repositorioUsuarioLocal = repositorioUsuario.listarUsuarios();
+		
+		index = pesquisar(repositorioUsuarioLocal, usuario);
+		
+		if(index < 0)
 		repositorioUsuario.cadastrarUsuario(usuario);
-
+		
+		else
+			throw new CpfJaExistenteException();
+		
 	}
 
 	public int pesquisar(ArrayList<Usuario> user, Usuario usuario)
 	{
 
-		int i = 0;
+		int index = -1;
 
-		for(i = 0; i < user.size(); i++)
+		for(int i = 0; i < user.size(); i++)
 		{
 
 			if(user.get(i).getCpf().equals(usuario.getCpf()))
+			{
+				index = i;
 				break;
+			}
 
 
 		}
 
-		return i;
+		return index;
 
 	}
 
 	public void removerUsuario(Usuario usuario) throws UsuarioNaoEncontradoException
 	{
 
-		ArrayList<Usuario> repositorioUsuarioLocal = 
-
-				repositorioUsuario.listarUsuarios();
+		ArrayList<Usuario> repositorioUsuarioLocal = repositorioUsuario.listarUsuarios();
 		int index = pesquisar(repositorioUsuarioLocal, usuario);
 
-		if(index == 0)
+		if(index < 0)
 			throw new UsuarioNaoEncontradoException();
 
 		else
 			repositorioUsuario.removerUsuario(usuario);
-
-		return;
 
 
 	}
@@ -105,12 +94,10 @@ public class ControladorUsuario {
 	public void alterarDadosUsuario(Usuario usuario) throws UsuarioNaoEncontradoException
 	{
 
-		ArrayList<Usuario> repositorioUsuarioLocal = 
-
-				repositorioUsuario.listarUsuarios();
+		ArrayList<Usuario> repositorioUsuarioLocal = repositorioUsuario.listarUsuarios();
 		int index = pesquisar(repositorioUsuarioLocal, usuario);
 
-		if(index == 0)
+		if(index < 0)
 			throw new UsuarioNaoEncontradoException();
 
 		else

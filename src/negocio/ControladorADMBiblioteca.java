@@ -29,7 +29,7 @@ public class ControladorADMBiblioteca {
 	public int pesquisar(ArrayList<Divida> repositorioLocal, Divida divida)
 	{
 		
-		int index = 0;
+		int index = -1;
 		int i;
 		
 		for(i = 0; i < repositorioLocal.size(); i++)
@@ -48,7 +48,7 @@ public class ControladorADMBiblioteca {
 		}
 		
 		
-		return i;
+		return index;
 		
 	}
 	
@@ -62,7 +62,7 @@ public class ControladorADMBiblioteca {
 		int i = pesquisar(repositorioLocal, divida);
 		
 		
-		if(i == 0)
+		if(i < 0)
 			interfaceRepositorio.cadastrarDivida(divida);
 		else
 			throw new DividaJaExistenteException();
@@ -79,7 +79,7 @@ public class ControladorADMBiblioteca {
 		
 		int index = pesquisar(repositorioLocal, divida);
 		
-		if(index == 0)
+		if(index < 0)
 			throw new DividaNaoEncontradaException();
 		else
 			interfaceRepositorio.alterarDadosDivida(divida);
@@ -94,7 +94,7 @@ public class ControladorADMBiblioteca {
 		
 		int index = pesquisar(repositorioLocal, divida);
 		
-		if(index == 0)
+		if(index < 0 )
 			throw new DividaNaoEncontradaException();
 		else
 			interfaceRepositorio.removerDivida(divida);
@@ -107,4 +107,5 @@ public class ControladorADMBiblioteca {
 	public List<Divida> listarDivida(){
 		return interfaceRepositorio.listarDividas();
 	}
+	
 }
