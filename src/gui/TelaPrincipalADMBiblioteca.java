@@ -25,7 +25,7 @@ public class TelaPrincipalADMBiblioteca extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private Conta conta;
-	private TelaPrincipal telaPrincipal;
+	private TelaInicio telaPrincipal;
 	private DefaultTableModel modelo = new DefaultTableModel();
 	private Fachada fachada = Fachada.getInstance();
 	private JTextField txtValor;
@@ -226,7 +226,7 @@ public class TelaPrincipalADMBiblioteca extends JPanel {
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				telaPrincipal = new TelaPrincipal();
+				telaPrincipal = new TelaInicio();
 				telaPrincipal.setVisible(true);
 			
 			}

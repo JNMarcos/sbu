@@ -45,7 +45,7 @@ public class TelaLogin extends JFrame {
 	private TelaPrincipalADMBiblioteca telaPrincipalADMBiblioteca;
     private TelaPrincipalADMGeral telaPrincipalADMGeral;
     private TelaPrincipalNaoADM telaPrincipalNaoADM;
-    private TelaPrincipal telaPrincipal;
+    private TelaInicio telaPrincipal;
     private static Fachada fachada = Fachada.getInstance();
 	
 
@@ -132,7 +132,7 @@ public class TelaLogin extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
-				telaPrincipal = new TelaPrincipal();
+				telaPrincipal = new TelaInicio();
 				telaPrincipal.setVisible(true);
 			
 			}
