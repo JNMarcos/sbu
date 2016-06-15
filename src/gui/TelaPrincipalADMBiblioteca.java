@@ -15,6 +15,8 @@ import classes_basicas.Divida;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 public class TelaPrincipalADMBiblioteca extends JPanel {
 	/**
@@ -26,6 +28,10 @@ public class TelaPrincipalADMBiblioteca extends JPanel {
 	private TelaPrincipal telaPrincipal;
 	private DefaultTableModel modelo = new DefaultTableModel();
 	private Fachada fachada = Fachada.getInstance();
+	private JTextField txtValor;
+	private JTextField txtDescricao;
+	private JTextField txtCPF;
+	private JPanel panelAdicionarDivida;
 	
 	
 	public TelaPrincipalADMBiblioteca(Conta conta) {
@@ -37,11 +43,89 @@ public class TelaPrincipalADMBiblioteca extends JPanel {
 		btnAdicionarDivida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				
+				panelAdicionarDivida.setVisible(true);
 				
 				
 			}
 		});
+		
+		panelAdicionarDivida = new JPanel();
+		panelAdicionarDivida.setVisible(false);
+		panelAdicionarDivida.setBounds(10, 11, 430, 252);
+		add(panelAdicionarDivida);
+		panelAdicionarDivida.setLayout(null);
+		
+		txtValor = new JTextField();
+		txtValor.setBounds(132, 43, 180, 20);
+		panelAdicionarDivida.add(txtValor);
+		txtValor.setColumns(10);
+		
+		txtDescricao = new JTextField();
+		txtDescricao.setBounds(132, 85, 180, 56);
+		panelAdicionarDivida.add(txtDescricao);
+		txtDescricao.setColumns(10);
+		
+		JLabel lblValor = new JLabel("Valor:");
+		lblValor.setBounds(94, 46, 28, 14);
+		panelAdicionarDivida.add(lblValor);
+		
+		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
+		lblDescricao.setBounds(67, 88, 55, 14);
+		panelAdicionarDivida.add(lblDescricao);
+		
+		txtCPF = new JTextField();
+		txtCPF.setBounds(132, 167, 180, 20);
+		panelAdicionarDivida.add(txtCPF);
+		txtCPF.setColumns(10);
+		
+		JLabel lblCpf = new JLabel("CPF:");
+		lblCpf.setBounds(99, 170, 23, 14);
+		panelAdicionarDivida.add(lblCpf);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				panelAdicionarDivida.setVisible(false);
+				
+				
+			}
+		});
+		btnVoltar.setBounds(223, 218, 89, 23);
+		panelAdicionarDivida.add(btnVoltar);
+		
+		JButton btnAdicionardivida = new JButton("AdicionarDivida");
+		btnAdicionardivida.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				Divida divida;
+				
+				try
+				{
+					
+					
+					Conta conta = fachada.procurarConta(txtCPF.getText());
+					
+					divida = new Divida(conta, Double.parseDouble(txtValor.getText()), txtDescricao.getText());
+					divida.setDataEmissao();
+					divida.setHoraEmissao();
+					
+					fachada.adicionarDivida(divida);
+					
+					JOptionPane.showMessageDialog(null, "Divida cadastrada com sucesso.");
+					panelAdicionarDivida.setVisible(false);
+					
+				}
+				catch(Exception e2)
+				{
+					JOptionPane.showMessageDialog(null, e2.getMessage());
+					
+				}
+			
+			}
+		});
+		btnAdicionardivida.setBounds(91, 218, 105, 23);
+		panelAdicionarDivida.add(btnAdicionardivida);
 		btnAdicionarDivida.setBounds(10, 11, 109, 23);
 		add(btnAdicionarDivida);
 		
