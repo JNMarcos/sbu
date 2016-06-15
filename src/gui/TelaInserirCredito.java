@@ -174,12 +174,6 @@ public class TelaInserirCredito extends JFrame {
 								" Você inseriu credito em sua conta com sucesso");
 					}
 				}
-			} 
-			catch (SaldoInsuficienteException e) {
-				JOptionPane.showMessageDialog(null, e.getMessage());
-				dispose();
-				TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta); 
-				telaPrincipalNaoADM.setVisible(true);
 			} catch (ContaNaoEncontradaException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 				dispose();
