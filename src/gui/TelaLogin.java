@@ -35,12 +35,17 @@ import java.awt.event.ActionEvent;
 
 public class TelaLogin extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtCPF;
 	private JTextField textSenha;
 	private TelaPrincipalADMBiblioteca telaPrincipalADMBiblioteca;
     private TelaPrincipalADMGeral telaPrincipalADMGeral;
     private TelaPrincipalNaoADM telaPrincipalNaoADM;
+    private TelaPrincipal telaPrincipal;
     private static Fachada fachada = Fachada.getInstance();
 	
 
@@ -123,15 +128,16 @@ public class TelaLogin extends JFrame {
 		btnLogin.setBounds(88, 202, 89, 23);
 		contentPane.add(btnLogin);
 		
-		JButton btnFechar = new JButton("Fechar");
-		btnFechar.addActionListener(new ActionListener() {
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
-				System.exit(0);
+				telaPrincipal = new TelaPrincipal();
+				telaPrincipal.setVisible(true);
 			
 			}
 		});
-		btnFechar.setBounds(239, 202, 89, 23);
-		contentPane.add(btnFechar);
+		btnVoltar.setBounds(239, 202, 89, 23);
+		contentPane.add(btnVoltar);
 	}
 }
