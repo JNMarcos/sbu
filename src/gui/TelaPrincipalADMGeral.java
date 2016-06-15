@@ -14,6 +14,7 @@ import javax.swing.JList;
 import negocio.Fachada;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
 public class TelaPrincipalADMGeral extends JPanel {
 	
@@ -24,6 +25,7 @@ public class TelaPrincipalADMGeral extends JPanel {
 	private Fachada fachada = Fachada.getInstance();
 	private TelaLogin telaLogin;
 	private Conta conta;
+	private JTable table;
 	
 	public TelaPrincipalADMGeral(Conta conta) {
 		setLayout(null);
@@ -42,22 +44,22 @@ public class TelaPrincipalADMGeral extends JPanel {
 		btnAlterarUsuario.setBounds(264, 111, 133, 23);
 		add(btnAlterarUsuario);
 		
-		JList list = new JList();
-		list.setBounds(24, 59, 200, 132);
-		
-		add(list);
-		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				telaLogin = new TelaLogin();
 				telaLogin.setVisible(true);
-			
+		
+				
 			}
 		});
 		btnVoltar.setBounds(81, 250, 89, 23);
 		add(btnVoltar);
+		
+		table = new JTable();
+		table.setBounds(25, 21, 229, 203);
+		add(table);
 
 	}
 }
