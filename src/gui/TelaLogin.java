@@ -7,12 +7,6 @@ package gui;
  */
 
 
-import java.awt.BorderLayout;
-
-
-
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -28,7 +22,6 @@ import negocio.Fachada;
 import classes_basicas.ADMBiblioteca;
 import classes_basicas.ADMGeral;
 import classes_basicas.Conta;
-import classes_basicas.Servico;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -42,9 +35,9 @@ public class TelaLogin extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtCPF;
 	private JTextField textSenha;
-	private TelaPrincipalADM telaPrincipalADM;
+	private TelaPrincipalADMBiblioteca telaPrincipalADMBiblioteca;
     private TelaPrincipalADMGeral telaPrincipalADMGeral;
-    private TelaPrincipalNaoADM TelaPrincipalNaoADM;
+    private TelaPrincipalNaoADM telaPrincipalNaoADM;
     
     private static Fachada fachada = Fachada.getInstance();
 	
