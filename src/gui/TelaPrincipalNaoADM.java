@@ -55,9 +55,9 @@ public class TelaPrincipalNaoADM extends JFrame {
 		JComboBox comboBoxServico = new JComboBox();
 		comboBoxServico.setBounds(122, 126, 28, 20);
 		String[] opcoes = {"Comprar Ficha do R.U", "Pagar Multa da Biblioteca",
-							"Solicitar Documentos", "Inserir Credito, Ver Movimentações"};
+							"Solicitar Documentos", "Inserir Credito", "Ver Movimentações", "Exibir Informações"};
 		
-		for(int i = 0; i<5;i++)
+		for(int i = 0; i<6;i++)
 			comboBoxServico.addItem(opcoes[i]);
 		panel.add(comboBoxServico);
 		
@@ -89,6 +89,11 @@ public class TelaPrincipalNaoADM extends JFrame {
 					dispose();
 					TelaMovimentacao telaMovimentacao = new TelaMovimentacao(conta);
 					telaMovimentacao.setVisible(true);
+				}
+				else if(escolhido.equals("Exibir Informações")){
+					dispose();
+					TelaExibirInfoUsuario telaExibirInfoUsuario = new TelaExibirInfoUsuario(conta);
+					telaExibirInfoUsuario.setVisible(true);
 				}
 				else{
 					JOptionPane.showMessageDialog(null, "Escolha uma ação! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
