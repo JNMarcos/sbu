@@ -85,13 +85,13 @@ public class TelaAlterarConta extends JFrame {
 		JButton btnAtualizar = new JButton("Atualizar");
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(conta.getUsuario() instanceof Aluno || conta.getUsuario() instanceof Professor || conta.getUsuario() instanceof Tecnico){
+				if(contaDosDadosAlterados.getUsuario() instanceof Aluno || contaDosDadosAlterados.getUsuario() instanceof Professor || contaDosDadosAlterados.getUsuario() instanceof Tecnico){
 					if(textLogin.getText().equals("") || passwordFieldNova.getText().equals("")){
 						JOptionPane.showMessageDialog(TelaAlterarConta.this, "Digite seu login e sua nova senha");
 					}else{
-						conta = new Conta(conta.getUsuario(), textLogin.getText(),passwordFieldNova.getText());
+						contaDosDadosAlterados = new Conta(contaDosDadosAlterados.getUsuario(), textLogin.getText(),passwordFieldNova.getText());
 						try {
-							fachada.alterarDadosConta(conta);
+							fachada.alterarDadosConta(contaDosDadosAlterados);
 						} catch (ContaNaoEncontradaException e) {
 							JOptionPane.showMessageDialog(null, e.getMessage());
 						
