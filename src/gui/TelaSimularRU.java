@@ -44,7 +44,7 @@ public class TelaSimularRU extends JFrame {
 	public TelaSimularRU() {
 		setFont(new Font("Segoe UI", Font.PLAIN, 11));
 		setResizable(false);
-		setTitle("Simular RU");
+		setTitle("$BU - Simular RU");
 		getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 11));
 		getContentPane().setLayout(null);
 

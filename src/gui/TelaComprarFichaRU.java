@@ -54,7 +54,7 @@ public class TelaComprarFichaRU extends JFrame {
 		setConta(conta);
 		getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 11));
 		setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		setTitle("Comprar Ficha do RU");
+		setTitle("$BU - Comprar Ficha do RU");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
