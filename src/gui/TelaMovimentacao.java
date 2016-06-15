@@ -32,6 +32,9 @@ public class TelaMovimentacao extends JFrame {
 	 * @author Marcos Inacio de Paula Lima
 	 */
 
+	private IFachada fachada = Fachada.getInstance();
+	private Conta conta;
+	
 	private JList lista;
 	private JButton mbExibir;
 	private static String[] nomes = {"Inserir Crédito", "Pagar Dívida", "Comprar Ficha RU", "Solicitar Documento DRCA"};
@@ -59,8 +62,23 @@ public class TelaMovimentacao extends JFrame {
 	private class EventoBotaoExibir implements ActionListener { 
 		public void actionPerformed(ActionEvent evento) { 
 			dispose(); 
-			
-
+			int index = lista.getSelectedIndex();
+			if(index == 0){
+				TelaInserirCredito telaInserirCredito = new TelaInserirCredito();
+				telaInserirCredito.setVisible(true);
+			}
+			else if(index == 1){
+				TelaPagarDivida telaPagarDivida = new TelaPagarDivida(conta);
+				telaPagarDivida.setVisible(true);
+			}
+			else if(index == 2){
+				TelaComprarFichaRU telaComprarFichaRU = new TelaComprarFichaRU(conta);
+				telaComprarFichaRU.setVisible(true);
+			}
+			else{
+				TelaSolicitarDocumento telaSolicitarDocumento = new TelaSolicitarDocumento(conta);
+				telaSolicitarDocumento.setVisible(true);
+			}
 		}
 	}
 }
