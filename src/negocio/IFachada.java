@@ -42,7 +42,7 @@ public interface IFachada {
 	public Conta procurarConta(String CPF);
 	public int retornarIndice(Conta conta);
 	void inserirCreditos(int valor, Conta conta) throws ContaNaoEncontradaException,
-	ValorInseridoNaoCondizException;
+	ValorInseridoNaoCondizException, SaldoInsuficienteException;
 	void verMovimentacoes(Conta conta) throws ContaNaoEncontradaException;
 	Conta verificarLogin(String nome, String senha) throws SenhaIncorretaException, 
 	UsuarioNaoEncontradoException;

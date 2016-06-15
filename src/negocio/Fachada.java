@@ -102,7 +102,7 @@ public class Fachada implements IFachada{
 
 	@Override
 	public void inserirCreditos(int valor, Conta conta) throws ContaNaoEncontradaException,
-	ValorInseridoNaoCondizException{
+	ValorInseridoNaoCondizException, SaldoInsuficienteException{
 		ctrConta.inserirCreditos(valor, conta);
 	}
 
