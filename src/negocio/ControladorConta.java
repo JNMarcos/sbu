@@ -15,6 +15,7 @@ import dados.IRepositorioConta;
 import dados.RepositorioConta;
 import excecao.ContaJaCadastradaException;
 import excecao.ContaNaoEncontradaException;
+import excecao.SaldoInsuficienteException;
 import excecao.SenhaIncorretaException;
 import excecao.UsuarioNaoEncontradoException;
 import excecao.ValorInseridoNaoCondizException;
@@ -153,7 +154,7 @@ public class ControladorConta {
 		return valorDivida;
 	}
 	public void inserirCreditos(int valor, Conta conta) throws ContaNaoEncontradaException,
-	ValorInseridoNaoCondizException{
+	ValorInseridoNaoCondizException, SaldoInsuficienteException{
 		Movimentacao movimentacao;
 		ArrayList<Conta> repositorio = repositorioConta.listarContas();
 		Double saldo;

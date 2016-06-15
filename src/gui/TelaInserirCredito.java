@@ -5,7 +5,9 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
 import classes_basicas.Conta;
+import excecao.ContaNaoEncontradaException;
 import excecao.SaldoInsuficienteException;
+import excecao.ValorInseridoNaoCondizException;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -45,7 +47,7 @@ public class TelaInserirCredito extends JFrame {
 	public TelaInserirCredito() {
 		getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 11));
 		setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		setTitle("Inserir Credito");
+		setTitle("Inserir Crédito");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
@@ -87,7 +89,7 @@ public class TelaInserirCredito extends JFrame {
 		
 		lblEscolhaOValor = new JLabel("Escolha o valor desejado:");
 		lblEscolhaOValor.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		lblEscolhaOValor.setBounds(47, 23, 164, 14);
+		lblEscolhaOValor.setBounds(47, 23, 192, 17);
 		panel.add(lblEscolhaOValor);
 		
 		btnInserir = new JButton("Inserir");
@@ -122,7 +124,7 @@ public class TelaInserirCredito extends JFrame {
 	private class EventoBotaoCancelar implements ActionListener { 
 		public void actionPerformed(ActionEvent evento) { 
 			dispose(); 
-			telaPrincipalNaoADM = new TelaPrincipalNaoADM(); 
+			TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta); 
 			telaPrincipalNaoADM.setVisible(true);
 
 		}
@@ -160,22 +162,33 @@ public class TelaInserirCredito extends JFrame {
 			
 			JOptionPane painel;
 			try {
-				painel = new JOptionPane("Voce deseja inserir" + valorEscolhido + "em sua conta",
+				painel = new JOptionPane("Você deseja inserir " + valorEscolhido + " em sua conta",
 						JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
 				painel.setVisible(true);
 				Object valor = painel.getValue();
 				if (valor instanceof Integer){
 					if (((Integer) valor).intValue() == JOptionPane.YES_OPTION){
-						fachada.inserirCreditos(valor, conta);
+						int preco = (int)valor;
+						fachada.inserirCreditos(preco, conta);
 						JOptionPane.showMessageDialog(null, "Operação realizada com sucesso." + 
 								" Você inseriu credito em sua conta com sucesso");
 					}
-				
+				}
 			} 
 			catch (SaldoInsuficienteException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 				dispose();
-				telaPrincipalNaoADM = new TelaPrincipalNaoADM(); 
+				TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta); 
+				telaPrincipalNaoADM.setVisible(true);
+			} catch (ContaNaoEncontradaException e) {
+				JOptionPane.showMessageDialog(null, e.getMessage());
+				dispose();
+				TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta); 
+				telaPrincipalNaoADM.setVisible(true);
+			} catch (ValorInseridoNaoCondizException e) {
+				JOptionPane.showMessageDialog(null, e.getMessage());
+				dispose();
+				TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta); 
 				telaPrincipalNaoADM.setVisible(true);
 			}
 		}
