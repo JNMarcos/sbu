@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,18 +40,24 @@ public class TelaPrincipalNaoADM extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblSaldo = new JLabel("");
-		lblSaldo.setBounds(406, 36, 67, 14);
-		lblSaldo.setText("R$: " + conta.getSaldo());
-		panel.add(lblSaldo);
+		JLabel lblR$ = new JLabel("R$");
+		lblR$.setFont(new Font("Segoe UI", Font.ITALIC, 19));
+		lblR$.setBounds(398, 30, 37, 20);
+		panel.add(lblR$);
 		
+		JLabel lblSaldo = new JLabel("");
+		lblSaldo.setForeground(new Color(0, 204, 0));
+		lblSaldo.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 24));
+		lblSaldo.setText(String.valueOf(conta.getSaldo()));
+		lblSaldo.setBounds(435, 29, 46, 19);
+		panel.add(lblSaldo);
 		
 		JComboBox comboBoxServico = new JComboBox();
 		comboBoxServico.setBounds(122, 126, 28, 20);
 		String[] opcoes = {"Comprar Ficha do R.U", "Pagar Multa da Biblioteca",
-							"Solicitar Documentos"};
+							"Solicitar Documentos", "Inserir Credito, Ver Movimentações"};
 		
-		for(int i = 0; i<3;i++)
+		for(int i = 0; i<5;i++)
 			comboBoxServico.addItem(opcoes[i]);
 		panel.add(comboBoxServico);
 		
@@ -73,6 +80,16 @@ public class TelaPrincipalNaoADM extends JFrame {
 					TelaSolicitarDocumento telaSolicitarDocumento = new TelaSolicitarDocumento(conta);
 					telaSolicitarDocumento.setVisible(true);
 				}
+				else if(escolhido.equals("Inserir Credito")){
+					dispose();
+					TelaInserirCredito telaInserirCredito = new TelaInserirCredito(conta);
+					telaInserirCredito.setVisible(true);
+				}
+				else if(escolhido.equals("Ver Movimentações")){
+					dispose();
+					TelaMovimentacao telaMovimentacao = new TelaMovimentacao(conta);
+					telaMovimentacao.setVisible(true);
+				}
 				else{
 					JOptionPane.showMessageDialog(null, "Escolha uma ação! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
 				}
@@ -80,6 +97,8 @@ public class TelaPrincipalNaoADM extends JFrame {
 		});
 		btnConfirmar.setBounds(310, 125, 89, 23);
 		panel.add(btnConfirmar);
+		
+		
 		
 		
 		

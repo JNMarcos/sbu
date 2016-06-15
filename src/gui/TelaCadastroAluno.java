@@ -49,7 +49,7 @@ public class TelaCadastroAluno extends JFrame {
 		setConta(conta);
 		getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 11));
 		setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		setTitle("Cadastrar Professor");
+		setTitle("$BU - Cadastrar Professor");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);

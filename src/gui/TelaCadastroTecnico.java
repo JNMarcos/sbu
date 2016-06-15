@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import classes_basicas.ADMBiblioteca;
 import classes_basicas.Conta;
 import classes_basicas.Tecnico;
+import excecao.ContaJaCadastradaException;
 import excecao.CpfJaExistenteException;
 import negocio.Fachada;
 
@@ -49,7 +50,7 @@ public class TelaCadastroTecnico extends JFrame {
 		setConta(conta);
 		getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 11));
 		setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		setTitle("Cadastrar Técnico");
+		setTitle("$BU - Cadastrar Técnico");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
@@ -256,6 +257,8 @@ public class TelaCadastroTecnico extends JFrame {
 				}catch(CpfJaExistenteException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 					textFieldCpf.setText("");
+				}catch(ContaJaCadastradaException e){
+					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
 			}
 		});
