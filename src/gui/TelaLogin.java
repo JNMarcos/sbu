@@ -7,6 +7,13 @@ package gui;
  */
 
 
+import java.awt.BorderLayout;
+
+import gui.TelaPrincipalADMGeral;
+import gui.TelaPrincipalNaoADM;
+
+import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -28,19 +35,32 @@ import java.awt.event.ActionEvent;
 
 public class TelaLogin extends JFrame {
 
-	/** 
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtCPF;
 	private JTextField textSenha;
 	private TelaPrincipalADMBiblioteca telaPrincipalADMBiblioteca;
     private TelaPrincipalADMGeral telaPrincipalADMGeral;
     private TelaPrincipalNaoADM telaPrincipalNaoADM;
-    
     private static Fachada fachada = Fachada.getInstance();
 	
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaLogin frame = new TelaLogin();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+
 	public TelaLogin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
