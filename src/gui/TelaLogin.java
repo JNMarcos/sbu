@@ -9,9 +9,7 @@ package gui;
 
 import java.awt.BorderLayout;
 
-import gui.TelaPrincipalADMGeral;
-import gui.TelaPrincipalADM;
-import gui.TelaPrincipalNaoADM;
+
 
 import java.awt.EventQueue;
 
@@ -37,7 +35,7 @@ import java.awt.event.ActionEvent;
 
 public class TelaLogin extends JFrame {
 
-	/**
+	/** 
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -94,20 +92,20 @@ public class TelaLogin extends JFrame {
 					
 					if(conta.getUsuario() instanceof ADMGeral)
 					{
-						telaPrincipalADMGeral = new TelaPrincipalADMGeral();
+						telaPrincipalADMGeral = new TelaPrincipalADMGeral(conta);
 						contentPane.setVisible(false);
 						telaPrincipalADMGeral.setVisible(true);
 					}	
 					else if(conta.getUsuario()  instanceof ADMBiblioteca)
 					{	
-						telaPrincipalADMBiblioteca = new TelaPrincipalADMBiblioteca();
+						telaPrincipalADMBiblioteca = new TelaPrincipalADMBiblioteca(conta);
 						contentPane.setVisible(false);
 						telaPrincipalADMBiblioteca.setVisible(true);
 				
 					}
 					else
 					{
-						telaPrincipalNaoADM = new TelaPrincipalNaoADM();
+						telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta);
 						contentPane.setVisible(false);
 						telaPrincipalNaoADM.setVisible(true);
 					}
