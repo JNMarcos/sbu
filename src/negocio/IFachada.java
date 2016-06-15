@@ -39,6 +39,8 @@ public interface IFachada {
 	Conta exibirConta(Usuario usuario) throws ContaNaoEncontradaException;
 	void consultarSaldo(Conta conta) throws ContaNaoEncontradaException;
 	public boolean procurarConta (Conta conta);
+	public Conta procurarConta(String CPF);
+	public int retornarIndice(Conta conta);
 	void inserirCreditos(int valor, Conta conta) throws ContaNaoEncontradaException,
 	ValorInseridoNaoCondizException;
 	void verMovimentacoes(Conta conta) throws ContaNaoEncontradaException;

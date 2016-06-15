@@ -14,6 +14,8 @@ public interface IRepositorioConta {
 	public void verMovimentacoes(Conta conta);		
 	public ArrayList<Conta> listarContas();
 	public boolean procurarConta (Conta conta);
+	public Conta procurarConta(String CPF);
+	public int retornarIndice(Conta conta);
 	public boolean verificarNomeUsuarioJaExiste(String nomeUsuario);
 	public boolean verificarSenhaJaExiste(String senha);
 	public Conta verificarLogin(String nome, String senha);

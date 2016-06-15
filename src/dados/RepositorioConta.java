@@ -130,7 +130,6 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 				contas.get(i).getSaldo();			
 			}
 		}
-		
 	}
 	
 	public void verMovimentacoes(Conta conta){
@@ -183,5 +182,28 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 		}
 		return conta;
 	}
-	
+
+	@Override
+	public Conta procurarConta(String CPF) {
+		Conta conta = null;
+		for(int i = 0; i < contas.size(); i++){
+			if(contas.get(i).getUsuario().getCpf().equals(CPF)){
+				conta = contas.get(i);	
+				break;
+			}
+		}
+		return conta;
+	}
+
+	@Override
+	public int retornarIndice(Conta conta) {
+		int posicao = -1;
+		for(int i = 0; i < contas.size(); i++){
+			if(contas.get(i).equals(conta)){
+				posicao = i;
+				break;
+			}
+		}
+		return posicao;
+	}
 }

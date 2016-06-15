@@ -171,6 +171,14 @@ public class ControladorConta {
 	public boolean procurarConta(Conta conta) {
 		return repositorioConta.procurarConta(conta);
 	}
+	
+	public Conta procurarConta(String CPF){
+		return repositorioConta.procurarConta(CPF);
+	}
+	
+	public int retornarIndice(Conta conta){
+		return repositorioConta.retornarIndice(conta);
+	}
 }
 
 

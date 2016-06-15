@@ -182,4 +182,14 @@ public class Fachada implements IFachada{
 	public boolean procurarConta(Conta conta) {
 		return ctrConta.procurarConta(conta);
 	}
+
+	@Override
+	public Conta procurarConta(String CPF) {
+		return ctrConta.procurarConta(CPF);
+	}
+
+	@Override
+	public int retornarIndice(Conta conta) {
+		return ctrConta.retornarIndice(conta);
+	}
 }
