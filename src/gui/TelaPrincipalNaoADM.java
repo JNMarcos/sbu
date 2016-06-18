@@ -98,7 +98,7 @@ public class TelaPrincipalNaoADM extends JFrame {
 					telaMovimentacao.setVisible(true);
 				}
 				else if(escolhido.equals("Exibir Informações")){
-					dispose();
+					//dispose();
 					TelaExibirInfoUsuario telaExibirInfoUsuario = new TelaExibirInfoUsuario(conta);
 					telaExibirInfoUsuario.setVisible(true);
 				}

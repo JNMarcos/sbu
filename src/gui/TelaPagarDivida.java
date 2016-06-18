@@ -41,7 +41,6 @@ public class TelaPagarDivida extends JFrame {
 		getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 11));
 		setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		setTitle("$BU - Multas da Biblioteca");
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		fachada = Fachada.getInstance();
@@ -55,8 +54,10 @@ public class TelaPagarDivida extends JFrame {
 		
 		
 		panel = new JPanel();
-		panel.setBounds(0, 0, 590, 494);
-		getContentPane().add(panel);
+		//panel.setBounds(0, 0, 590, 494);
+		setBounds(100, 100, 413, 272); //AQUI É A SOLUÇÃO
+		setContentPane(panel); //AQUI É A SOLUÇÃO
+		//getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		

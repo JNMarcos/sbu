@@ -52,8 +52,11 @@ public class TelaInserirCredito extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
+		
 		panel = new JPanel();
-		panel.setBounds(0, 0, 333, 215);
+		//panel.setBounds(0, 0, 333, 215);
+		setBounds(100, 100, 413, 272); //AQUI É A SOLUÇÃO
+		setContentPane(panel); //AQUI É A SOLUÇÃO
 		getContentPane().add(panel);
 		panel.setLayout(null);
 

@@ -31,15 +31,17 @@ public class TelaSolicitarDocumento extends JFrame {
 		getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 11));
 		setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		setTitle("$BU - Solicitar Documento");
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		fachada = Fachada.getInstance();
 		controladorServico = new ControladorServico();
 		
+			
 		panel = new JPanel();
-		panel.setBounds(0, 0, 534, 266);
-		getContentPane().add(panel);
+		//panel.setBounds(0, 0, 534, 266);
+		setBounds(100, 100, 413, 272); //AQUI É A SOLUÇÃO
+		setContentPane(panel); //AQUI É A SOLUÇÃO
+		//getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		
