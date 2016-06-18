@@ -104,9 +104,11 @@ public class TelaPrincipalADMBiblioteca extends JFrame {
 					divida.setHoraEmissao();
 					
 					fachada.adicionarDivida(divida);
-					
 					JOptionPane.showMessageDialog(null, "Divida cadastrada com sucesso.");
-					panelAdicionarDivida.setVisible(false);
+					dispose();
+					TelaPrincipalADMBiblioteca telaPrincipalADMBiblioteca = new TelaPrincipalADMBiblioteca(conta);
+					telaPrincipalADMBiblioteca.setVisible(true);
+					//panelAdicionarDivida.setVisible(false);
 					
 				}
 				catch(Exception e2)
