@@ -49,7 +49,7 @@ public class TelaPrincipalADMGeral extends JPanel {
 		JButton btnCadastrarAluno = new JButton("Cadastrar Aluno");
 		btnCadastrarAluno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+				
 				telaCadastrarAluno = new TelaCadastroAluno(conta);
 				telaCadastrarAluno.setVisible(true);
 				
@@ -61,7 +61,7 @@ public class TelaPrincipalADMGeral extends JPanel {
 		JButton btnRemoverUsuario = new JButton("Remover Usuario");
 		btnRemoverUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+				
 				int linhaSelecionada = table.getSelectedRow();
 				
 	           	Usuario user = null;

@@ -1,134 +1,115 @@
-/**
- * 
- */
 package gui;
 
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
+import javax.swing.border.EmptyBorder;
 
 import classes_basicas.Aluno;
 import classes_basicas.Conta;
 import classes_basicas.Servico;
 import excecao.ContaNaoEncontradaException;
 import excecao.SaldoInsuficienteException;
-import gui.TelaPrincipalNaoADM;
 import negocio.Fachada;
 import negocio.IFachada;
 
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JRadioButton;
+import javax.swing.JSpinner;
+import java.awt.Color;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import java.awt.Color;
 
 /**
  * @author JN
  *
  */
+
 public class TelaComprarFichaRU extends JFrame {
-	/**
-	 * 
-	 */
+
+	private JPanel contentPane;
 	private static final long serialVersionUID = 1L;
 
 	private IFachada fachada = Fachada.getInstance();
 	private Conta conta;
-
-	private JPanel panel ;
-	private JLabel lblQuantidadeDeTiquetes;
 	private JRadioButton rdbtnAlmoco;
-	private JRadioButton rdbtnJantar;
-	private ButtonGroup escolhaRefeicao;
-	private JButton btnComprar;
-	private JButton btnCancelar;
 	private JSpinner spinnerQtdTiquetes;
+	private final ButtonGroup escolhaRefeicao = new ButtonGroup();
+
 
 	public TelaComprarFichaRU(Conta conta) {
 		setConta(conta);
-		getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 11));
-		setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		setTitle("$BU - Comprar Ficha do RU");
-		setResizable(false);
+		setTitle("$BU - Comprar ficha do RU");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
-
-		panel = new JPanel();
-		panel.setBounds(0, 0, 444, 271);
-		getContentPane().add(panel);
-		panel.setLayout(null);
-
-		rdbtnAlmoco = new JRadioButton("Almoço");
-		rdbtnAlmoco.setSelected(true);
-		rdbtnAlmoco.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		rdbtnAlmoco.setBounds(29, 105, 109, 23);
-		panel.add(rdbtnAlmoco);
-
-		rdbtnJantar = new JRadioButton("Jantar");
-		rdbtnJantar.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		rdbtnJantar.setBounds(29, 137, 109, 23);
-		panel.add(rdbtnJantar);
-
-		escolhaRefeicao = new ButtonGroup();
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblEscolhaOTipo = new JLabel("Escolha o tipo de almo\u00E7o que quer comprar:");
+		lblEscolhaOTipo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblEscolhaOTipo.setBounds(28, 76, 309, 19);
+		contentPane.add(lblEscolhaOTipo);
+		
+		JRadioButton rdbtnAlmoco = new JRadioButton("Almo\u00E7o");
 		escolhaRefeicao.add(rdbtnAlmoco);
+		rdbtnAlmoco.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		rdbtnAlmoco.setBounds(44, 112, 109, 23);
+		contentPane.add(rdbtnAlmoco);
+		
+		JRadioButton rdbtnJantar = new JRadioButton("Jantar");
 		escolhaRefeicao.add(rdbtnJantar);
-
-		spinnerQtdTiquetes = new JSpinner();
-		spinnerQtdTiquetes.setModel(new SpinnerNumberModel(new Short((short) 1), new Short((short) 1), new Short((short) 3), new Short((short) 1)));
-		spinnerQtdTiquetes.setFont(new Font("Segoe UI", Font.PLAIN, 11));
-		spinnerQtdTiquetes.setBounds(351, 177, 41, 20);
-		panel.add(spinnerQtdTiquetes);
-
-		JLabel lblEscolhaOTipo = new JLabel("Escolha o tipo de refei\u00E7\u00E3o que deseja comprar:");
-		lblEscolhaOTipo.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		lblEscolhaOTipo.setBounds(29, 78, 381, 23);
-		panel.add(lblEscolhaOTipo);
-
-		btnComprar = new JButton("Comprar");
-		btnComprar.setFont(new Font("Segoe UI", Font.PLAIN, 11));
-		btnComprar.setBounds(334, 237, 89, 23);
-		panel.add(btnComprar);
+		rdbtnJantar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		rdbtnJantar.setBounds(44, 141, 109, 23);
+		contentPane.add(rdbtnJantar);
+		
+		JLabel lblQuantidadeDeTiquetes = new JLabel("Quantidade de t\u00EDquetes");
+		lblQuantidadeDeTiquetes.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblQuantidadeDeTiquetes.setBounds(152, 171, 163, 19);
+		contentPane.add(lblQuantidadeDeTiquetes);
+		
+		JSpinner spinnerQTDTiquetes = new JSpinner();
+		spinnerQTDTiquetes.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		spinnerQTDTiquetes.setBounds(312, 172, 29, 20);
+		contentPane.add(spinnerQTDTiquetes);
+		
+		JLabel lblR$ = new JLabel("R$");
+		lblR$.setFont(new Font("Tahoma", Font.ITALIC, 21));
+		lblR$.setBounds(255, 29, 39, 25);
+		contentPane.add(lblR$);
+		
+		JLabel lblSaldo = new JLabel("0.0");
+		lblSaldo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
+		lblSaldo.setForeground(new Color(0, 128, 0));
+		lblSaldo.setBounds(297, 28, 46, 23);
+		contentPane.add(lblSaldo);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		btnCancelar.setBounds(154, 214, 99, 23);
+		contentPane.add(btnCancelar);
+		
+		EventoBotaoCancelar acaoCancelar = new EventoBotaoCancelar(); 
+		btnCancelar.addActionListener(acaoCancelar);
+		
+		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		btnConfirmar.setBounds(285, 214, 109, 23);
+		contentPane.add(btnConfirmar);
 		
 		EventoBotaoConfirmar acaoConfirmar = new EventoBotaoConfirmar(); 
-		btnComprar.addActionListener(acaoConfirmar);
-
-		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setFont(new Font("Segoe UI", Font.PLAIN, 11));
-		btnCancelar.setBounds(211, 237, 89, 23);
-		panel.add(btnCancelar);
-
-		EventoBotaoCancelar acaoCancelar = new EventoBotaoCancelar(); 
-		btnCancelar.addActionListener(acaoCancelar); 
-
-
-		lblQuantidadeDeTiquetes = new JLabel("Quantidade de tíquetes");
-		lblQuantidadeDeTiquetes.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		lblQuantidadeDeTiquetes.setBounds(198, 180, 143, 14);
-		panel.add(lblQuantidadeDeTiquetes);
-
-		JLabel lblSaldo = new JLabel("SALDO");
-		lblSaldo.setForeground(new Color(0, 204, 0));
-		lblSaldo.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 24));
-		lblSaldo.setText(String.valueOf(conta.getSaldo()));
-		lblSaldo.setBounds(323, 35, 100, 29);
-		panel.add(lblSaldo);
-
-		JLabel lblR$ = new JLabel("R$");
-		lblR$.setFont(new Font("Segoe UI", Font.ITALIC, 19));
-		lblR$.setBounds(288, 37, 25, 28);
-		panel.add(lblR$);
+		btnConfirmar.addActionListener(acaoConfirmar);
 	}
-
 	public void setConta(Conta conta){
 		this.conta = conta;
 	}
-
 	private class EventoBotaoCancelar implements ActionListener { 
 		public void actionPerformed(ActionEvent evento) { 
 			dispose(); 
@@ -193,3 +174,4 @@ public class TelaComprarFichaRU extends JFrame {
 		}
 	}
 }
+

@@ -40,24 +40,24 @@ public class TelaPrincipalNaoADM extends JFrame {
 		fachada = Fachada.getInstance();
 
 		panel = new JPanel();
-		panel.setBounds(0, 0, 543, 187);
+		panel.setBounds(0, 0, 444, 271);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblR$ = new JLabel("R$");
 		lblR$.setFont(new Font("Segoe UI", Font.ITALIC, 19));
-		lblR$.setBounds(398, 30, 37, 20);
+		lblR$.setBounds(306, 30, 37, 20);
 		panel.add(lblR$);
 		
 		JLabel lblSaldo = new JLabel("");
 		lblSaldo.setForeground(new Color(0, 204, 0));
 		lblSaldo.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 24));
 		lblSaldo.setText(String.valueOf(conta.getSaldo()));
-		lblSaldo.setBounds(435, 29, 46, 19);
+		lblSaldo.setBounds(353, 29, 46, 19);
 		panel.add(lblSaldo);
 		
 		comboBoxServico = new JComboBox<String>();
-		comboBoxServico.setBounds(122, 126, 28, 20);
+		comboBoxServico.setBounds(121, 227, 28, 20);
 		String[] opcoes = {"Comprar Ficha do R.U", "Pagar Multa da Biblioteca",
 							"Solicitar Documentos", "Inserir Credito", "Ver Movimentações", "Exibir Informações"};
 		
@@ -104,7 +104,7 @@ public class TelaPrincipalNaoADM extends JFrame {
 				}
 			}
 		});
-		btnConfirmar.setBounds(310, 125, 89, 23);
+		btnConfirmar.setBounds(310, 226, 89, 23);
 		panel.add(btnConfirmar);
 		
 		

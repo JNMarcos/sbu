@@ -1,23 +1,29 @@
+
+/**
+ * 
+ */
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import classes_basicas.Servico;
-import javax.swing.JLabel;
+import javax.swing.JPanel;
 import java.awt.Font;
+import javax.swing.JLabel;
+import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+/**
+ * @author JN
+ *
+ */
 
 public class TelaInicio2 extends JFrame {
-
-	private JPanel contentPane;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -34,17 +40,34 @@ public class TelaInicio2 extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public TelaInicio2() {
-		setTitle("$BU - Inicio");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 333);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		setFont(new Font("Segoe UI", Font.PLAIN, 11));
+		setResizable(false);
+		setTitle("$BU - In\u00EDcio");
+		getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 444, 261);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel label = new JLabel("$");
+		label.setForeground(new Color(0, 128, 0));
+		label.setBounds(151, 38, 72, 82);
+		label.setFont(new Font("Segoe UI", Font.BOLD, 90));
+		panel.add(label);
+		
+		JLabel lblBu = new JLabel("BU");
+		lblBu.setForeground(new Color(0, 128, 128));
+		lblBu.setFont(new Font("Segoe UI", Font.PLAIN, 53));
+		lblBu.setBounds(187, 38, 137, 98);
+		panel.add(lblBu);
+		
+		JLabel lbleuBancoUniversitrio = new JLabel("$eu banco universit\u00E1rio.");
+		lbleuBancoUniversitrio.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lbleuBancoUniversitrio.setBounds(118, 122, 153, 14);
+		panel.add(lbleuBancoUniversitrio);
 		
 		JButton btnLogar = new JButton("Logar");
 		btnLogar.addActionListener(new ActionListener() {
@@ -54,9 +77,8 @@ public class TelaInicio2 extends JFrame {
 				telaLogin.setVisible(true);
 			}
 		});
-		contentPane.setLayout(null);
-		btnLogar.setBounds(114, 199, 89, 29);
-		contentPane.add(btnLogar);
+		btnLogar.setBounds(46, 202, 89, 23);
+		panel.add(btnLogar);
 		
 		JButton btnEntrarNoRu = new JButton("Entrar no RU");
 		btnEntrarNoRu.addActionListener(new ActionListener() {
@@ -66,14 +88,13 @@ public class TelaInicio2 extends JFrame {
 				telaSimularRU.setVisible(true);
 			}
 		});
-		btnEntrarNoRu.setBounds(266, 197, 109, 32);
-		contentPane.add(btnEntrarNoRu);
-		
-		JLabel lblSeuBancoUniversitario = new JLabel("Seu banco Universitario");
-		lblSeuBancoUniversitario.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblSeuBancoUniversitario.setBounds(120, 129, 166, 14);
-		contentPane.add(lblSeuBancoUniversitario);
+		btnEntrarNoRu.setBounds(284, 202, 126, 23);
+		panel.add(btnEntrarNoRu);
 	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 }
-
-
+ 

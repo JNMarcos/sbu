@@ -84,7 +84,7 @@ public class TelaLogin extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			
+				dispose(); 
 				Conta conta = null;
 				
 				try
@@ -131,7 +131,7 @@ public class TelaLogin extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			
+				dispose(); 
 				telaPrincipal = new TelaInicio();
 				telaPrincipal.setVisible(true);
 			
