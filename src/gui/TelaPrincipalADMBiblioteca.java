@@ -36,63 +36,55 @@ public class TelaPrincipalADMBiblioteca extends JFrame {
 	
 	
 	public TelaPrincipalADMBiblioteca(Conta conta) {
-		setLayout(null);
+		getContentPane().setLayout(null);
 		
 		this.conta = conta;
 		
-		JButton btnAdicionarDivida = new JButton("Adicionar Divida");
-		btnAdicionarDivida.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			
-				panelAdicionarDivida.setVisible(true);
-				
-				
-			}
-		});
-		
 		panelAdicionarDivida = new JPanel();
 		//panelAdicionarDivida.setVisible(false);
-		setBounds(10, 11, 430, 252);
+		setBounds(10, 11, 430, 358);
 		setContentPane(panelAdicionarDivida);
 		panelAdicionarDivida.setLayout(null);
 		
 		txtValor = new JTextField();
-		txtValor.setBounds(132, 43, 180, 20);
+		txtValor.setBounds(132, 8, 180, 20);
 		panelAdicionarDivida.add(txtValor);
 		txtValor.setColumns(10);
 		
 		txtDescricao = new JTextField();
-		txtDescricao.setBounds(132, 85, 180, 56);
+		txtDescricao.setBounds(132, 48, 180, 56);
 		panelAdicionarDivida.add(txtDescricao);
 		txtDescricao.setColumns(10);
 		
 		JLabel lblValor = new JLabel("Valor:");
-		lblValor.setBounds(94, 46, 28, 14);
+		lblValor.setBounds(74, 11, 47, 14);
 		panelAdicionarDivida.add(lblValor);
 		
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
-		lblDescricao.setBounds(67, 88, 55, 14);
+		lblDescricao.setBounds(48, 48, 74, 14);
 		panelAdicionarDivida.add(lblDescricao);
 		
 		txtCPF = new JTextField();
-		txtCPF.setBounds(132, 167, 180, 20);
+		txtCPF.setBounds(132, 119, 180, 20);
 		panelAdicionarDivida.add(txtCPF);
 		txtCPF.setColumns(10);
 		
 		JLabel lblCpf = new JLabel("CPF:");
-		lblCpf.setBounds(99, 170, 23, 14);
+		lblCpf.setBounds(91, 122, 28, 14);
 		panelAdicionarDivida.add(lblCpf);
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+				dispose(); 
+				telaPrincipal = new TelaInicio();
+				telaPrincipal.setVisible(true);
 				panelAdicionarDivida.setVisible(false);
 				
 				
 			}
 		});
-		btnVoltar.setBounds(223, 218, 89, 23);
+		btnVoltar.setBounds(282, 285, 89, 23);
 		panelAdicionarDivida.add(btnVoltar);
 		
 		JButton btnAdicionardivida = new JButton("AdicionarDivida");
@@ -125,10 +117,8 @@ public class TelaPrincipalADMBiblioteca extends JFrame {
 			
 			}
 		});
-		btnAdicionardivida.setBounds(91, 218, 105, 23);
+		btnAdicionardivida.setBounds(132, 285, 124, 23);
 		panelAdicionarDivida.add(btnAdicionardivida);
-		btnAdicionarDivida.setBounds(10, 11, 109, 23);
-		add(btnAdicionarDivida);
 		
 		JButton btnRemoverDivida = new JButton("Remover Divida");
 		btnRemoverDivida.addActionListener(new ActionListener() {
@@ -169,8 +159,8 @@ public class TelaPrincipalADMBiblioteca extends JFrame {
 			
 			}
 		});
-		btnRemoverDivida.setBounds(10, 54, 109, 23);
-		add(btnRemoverDivida);
+		btnRemoverDivida.setBounds(13, 217, 109, 23);
+		getContentPane().add(btnRemoverDivida);
 		
 		JButton btnAlterarDivida = new JButton("Alterar Divida");
 		btnAlterarDivida.addActionListener(new ActionListener() {
@@ -220,8 +210,8 @@ public class TelaPrincipalADMBiblioteca extends JFrame {
 			
 			}
 		});
-		btnAlterarDivida.setBounds(10, 99, 109, 23);
-		add(btnAlterarDivida);
+		btnAlterarDivida.setBounds(13, 251, 109, 23);
+		getContentPane().add(btnAlterarDivida);
 		
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.addActionListener(new ActionListener() {
@@ -232,8 +222,8 @@ public class TelaPrincipalADMBiblioteca extends JFrame {
 			
 			}
 		});
-		btnLogout.setBounds(10, 240, 89, 23);
-		add(btnLogout);
+		btnLogout.setBounds(10, 285, 89, 23);
+		getContentPane().add(btnLogout);
 		
 		modelo.setRowCount(0);
 		modelo.addColumn("Valor");
@@ -247,8 +237,8 @@ public class TelaPrincipalADMBiblioteca extends JFrame {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		JScrollPane barraRolagem = new JScrollPane(table);
-		barraRolagem.setBounds(125, 14, 315, 249);
-		add(barraRolagem);
+		barraRolagem.setBounds(125, 150, 279, 113);
+		getContentPane().add(barraRolagem);
 		
 		
 		ArrayList<Divida> dividas = (ArrayList<Divida>) fachada.listarDivida();
