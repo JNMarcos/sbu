@@ -46,22 +46,6 @@ public class TelaAlterarConta extends JFrame {
 		this.contaDosDadosAlterados = conta;
 	}
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaAlterarConta frame = new TelaAlterarConta();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public TelaAlterarConta() {
 		setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		setTitle("Alterar Dados da Conta");
