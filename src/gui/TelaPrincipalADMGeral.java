@@ -1,4 +1,12 @@
 package gui;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 /*
  * 
  * author @ramices
@@ -6,26 +14,16 @@ package gui;
  */
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
-import classes_basicas.Aluno;
-import classes_basicas.Conta;
-import classes_basicas.Divida;
-import classes_basicas.Professor;
-import classes_basicas.Usuario;
-
-import javax.swing.JButton;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-
-import negocio.Fachada;
-import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class TelaPrincipalADMGeral extends JPanel {
+import classes_basicas.Aluno;
+import classes_basicas.Conta;
+import classes_basicas.Professor;
+import classes_basicas.Usuario;
+import negocio.Fachada;
+
+public class TelaPrincipalADMGeral extends JFrame {
 	
 	 /**
 	 * 
@@ -40,23 +38,35 @@ public class TelaPrincipalADMGeral extends JPanel {
 	private TelaCadastroProfessor telaCadastrarProfessor;
 	private TelaCadastroTecnico telaCadastrarTecnico;
 	private TelaAlterarUsuario telaAlterarUsuario;
+	private JPanel panel;
 	
 	public TelaPrincipalADMGeral(Conta conta) {
-		setLayout(null);
+		setConta(conta);
+		getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 11));
+		setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		setTitle("$BU");
+		setResizable(true);
+		getContentPane().setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		this.conta = conta;
+		
+		
+		panel = new JPanel();
+		panel.setBounds(0, 0, 490, 336);
+		getContentPane().add(panel);
+		panel.setLayout(null);
 		
 		JButton btnCadastrarAluno = new JButton("Cadastrar Aluno");
 		btnCadastrarAluno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				dispose();
 				telaCadastrarAluno = new TelaCadastroAluno(conta);
 				telaCadastrarAluno.setVisible(true);
 				
 			}
 		});
 		btnCadastrarAluno.setBounds(264, 117, 133, 23);
-		add(btnCadastrarAluno);
+		panel.add(btnCadastrarAluno);
 		
 		JButton btnRemoverUsuario = new JButton("Remover Usuario");
 		btnRemoverUsuario.addActionListener(new ActionListener() {
@@ -96,7 +106,7 @@ public class TelaPrincipalADMGeral extends JPanel {
 			}
 		});
 		btnRemoverUsuario.setBounds(264, 24, 133, 23);
-		add(btnRemoverUsuario);
+		panel.add(btnRemoverUsuario);
 		
 		JButton btnAlterarUsuario = new JButton("Alterar Usuario");
 		btnAlterarUsuario.addActionListener(new ActionListener() {
@@ -119,7 +129,7 @@ public class TelaPrincipalADMGeral extends JPanel {
 			
 		});
 		btnAlterarUsuario.setBounds(264, 58, 133, 23);
-		add(btnAlterarUsuario);
+		panel.add(btnAlterarUsuario);
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
@@ -132,7 +142,7 @@ public class TelaPrincipalADMGeral extends JPanel {
 			}
 		});
 		btnVoltar.setBounds(264, 247, 133, 23);
-		add(btnVoltar);
+		panel.add(btnVoltar);
 		
 		
 		modelo.setRowCount(0);
@@ -151,7 +161,7 @@ public class TelaPrincipalADMGeral extends JPanel {
 		
 		JScrollPane barraRolagem = new JScrollPane(table);
 		barraRolagem.setBounds(24, 24, 228, 246);
-		add(barraRolagem);
+		panel.add(barraRolagem);
 		
 		carregarTabela(modelo, (ArrayList<Usuario>) fachada.listarUsuarios());
 		
@@ -166,7 +176,7 @@ public class TelaPrincipalADMGeral extends JPanel {
 			}
 		});
 		btnCadastrarProfessor.setBounds(264, 151, 133, 23);
-		add(btnCadastrarProfessor);
+		panel.add(btnCadastrarProfessor);
 		
 		JButton btnCadastrarTcnico = new JButton("Cadastrar T\u00E9cnico");
 		btnCadastrarTcnico.addActionListener(new ActionListener() {
@@ -178,7 +188,7 @@ public class TelaPrincipalADMGeral extends JPanel {
 			}
 		});
 		btnCadastrarTcnico.setBounds(264, 185, 136, 23);
-		add(btnCadastrarTcnico);
+		panel.add(btnCadastrarTcnico);
 		
 		
 	
@@ -220,6 +230,8 @@ public class TelaPrincipalADMGeral extends JPanel {
 		}
 
 	}
-		
+	private void setConta(Conta conta) {
+		this.conta = conta;
+	}	
 }
 	
