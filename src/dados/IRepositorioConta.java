@@ -6,7 +6,7 @@ import classes_basicas.Conta;
 import classes_basicas.Usuario;
 
 public interface IRepositorioConta {
-	public void cadastrarConta(Conta conta);
+	public boolean cadastrarConta(Conta conta);
 	public void removerConta(Conta conta);
 	public void alterarDadosConta(Conta conta) ;
 	public Conta exibirConta(Usuario usuario);	

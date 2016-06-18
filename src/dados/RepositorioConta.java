@@ -83,9 +83,18 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 		}
 	}
 
- 	public void cadastrarConta(Conta conta){        
-		contas.add(conta);
-        gravarArquivo();
+ 	public boolean cadastrarConta(Conta conta){ 
+ 		
+ 		if (this.contas.contains(conta)) {
+			return false;
+		} 
+		else {
+			this.contas.add(conta);
+			contas.add(conta);
+			gravarArquivo();
+
+			return true;
+		}
 	}
 	
 	
