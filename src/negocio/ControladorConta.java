@@ -111,17 +111,17 @@ public class ControladorConta {
 		return repositorioConta.listarContas();
 	}
 
-	public Conta verificarLogin(String nome, String senha) throws SenhaIncorretaException, 
+	public Conta verificarLogin(String login, String senha) throws SenhaIncorretaException, 
 	UsuarioNaoEncontradoException{
 		Conta conta = null;
 		boolean senhaU = false;
 		boolean nomeU = false;
 		
 		if (!senha.equals("")) senhaU = repositorioConta.verificarSenhaJaExiste(senha);
-		if (!nome.equals("")) nomeU = repositorioConta.verificarNomeUsuarioJaExiste(nome);
+		if (!login.equals("")) nomeU = repositorioConta.verificarNomeUsuarioJaExiste(login);
 
 		if (senhaU && nomeU){
-			conta = repositorioConta.verificarLogin(nome, senha);
+			conta = repositorioConta.verificarLogin(login, senha);
 		} else if (nomeU == false && senhaU){
 			throw new UsuarioNaoEncontradoException();
 		} else if (nomeU && senhaU == false){

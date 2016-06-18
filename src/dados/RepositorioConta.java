@@ -148,7 +148,7 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 		if (nomeUsuario != null){
 			if (contas.size() > 0){
 				for (int i = 0; i < contas.size(); i++){
-					if (contas.get(i).getUsuario().getNome().equals(nomeUsuario)){
+					if (contas.get(i).getLogin().equals(nomeUsuario)){
 						nomeUsuarioJaExiste = true;
 						break;
 					}
@@ -172,10 +172,10 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 	}
 
 	
-	public Conta verificarLogin(String nome, String senha) {
+	public Conta verificarLogin(String login, String senha) {
 		Conta conta = null;
 		for (int i = 0; i < contas.size(); i++){
-			if (contas.get(i).getUsuario().getNome().equals(nome) && contas.get(i).getSenha().equals(senha)){
+			if (contas.get(i).getLogin().equals(login) && contas.get(i).getSenha().equals(senha)){
 				conta = contas.get(i);
 				break;
 			}
