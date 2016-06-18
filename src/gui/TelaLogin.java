@@ -94,9 +94,9 @@ public class TelaLogin extends JFrame {
 					
 					if(conta.getUsuario() instanceof ADMGeral)
 					{
-						telaPrincipalADMGeral = new TelaPrincipalADMGeral(conta);
+						telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta);
 						contentPane.setVisible(false);
-						telaPrincipalADMGeral.setVisible(true);
+						telaPrincipalNaoADM.setVisible(true);
 					}	
 					else if(conta.getUsuario()  instanceof ADMBiblioteca)
 					{	

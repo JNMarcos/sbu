@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import classes_basicas.Aluno;
 import classes_basicas.Conta;
@@ -38,10 +39,12 @@ public class TelaPrincipalNaoADM extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		fachada = Fachada.getInstance();
-
+		
 		panel = new JPanel();
-		panel.setBounds(0, 0, 444, 271);
-		getContentPane().add(panel);
+		//panel.setBounds(0, 0, 444, 271); O PROBLEMA ESTÁ AQUI
+		setBounds(100, 100, 413, 272); //AQUI É A SOLUÇÃO
+		setContentPane(panel); //AQUI É A SOLUÇÃO
+		//getContentPane().add(panel);  O PROBLEMA ESTÁ AQUI
 		panel.setLayout(null);
 		
 		JLabel lblR$ = new JLabel("R$");
@@ -57,7 +60,7 @@ public class TelaPrincipalNaoADM extends JFrame {
 		panel.add(lblSaldo);
 		
 		comboBoxServico = new JComboBox<String>();
-		comboBoxServico.setBounds(121, 227, 28, 20);
+		comboBoxServico.setBounds(118, 168, 156, 20);
 		String[] opcoes = {"Comprar Ficha do R.U", "Pagar Multa da Biblioteca",
 							"Solicitar Documentos", "Inserir Credito", "Ver Movimentações", "Exibir Informações"};
 		
@@ -104,7 +107,7 @@ public class TelaPrincipalNaoADM extends JFrame {
 				}
 			}
 		});
-		btnConfirmar.setBounds(310, 226, 89, 23);
+		btnConfirmar.setBounds(294, 167, 101, 23);
 		panel.add(btnConfirmar);
 		
 		
