@@ -55,7 +55,7 @@ public class TelaLogin extends JFrame {
 		contentPane.add(txtCPF);
 		txtCPF.setColumns(10);
 		
-		JLabel lblCPF = new JLabel("CPF:");
+		JLabel lblCPF = new JLabel("Login:");
 		lblCPF.setBounds(88, 94, 46, 14);
 		contentPane.add(lblCPF);
 		
