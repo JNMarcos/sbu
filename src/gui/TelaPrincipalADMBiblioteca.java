@@ -1,24 +1,25 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import classes_basicas.Conta;
-import negocio.Fachada;
 import classes_basicas.Divida;
+import negocio.Fachada;
 
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-
-public class TelaPrincipalADMBiblioteca extends JPanel {
+public class TelaPrincipalADMBiblioteca extends JFrame {
 	/**
 	 * 
 	 */
@@ -50,9 +51,9 @@ public class TelaPrincipalADMBiblioteca extends JPanel {
 		});
 		
 		panelAdicionarDivida = new JPanel();
-		panelAdicionarDivida.setVisible(false);
-		panelAdicionarDivida.setBounds(10, 11, 430, 252);
-		add(panelAdicionarDivida);
+		//panelAdicionarDivida.setVisible(false);
+		setBounds(10, 11, 430, 252);
+		setContentPane(panelAdicionarDivida);
 		panelAdicionarDivida.setLayout(null);
 		
 		txtValor = new JTextField();

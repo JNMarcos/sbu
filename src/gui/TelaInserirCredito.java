@@ -57,7 +57,6 @@ public class TelaInserirCredito extends JFrame {
 		//panel.setBounds(0, 0, 333, 215);
 		setBounds(100, 100, 413, 272); //AQUI É A SOLUÇÃO
 		setContentPane(panel); //AQUI É A SOLUÇÃO
-		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		rdbtnR = new JRadioButton("R$ 5,00");

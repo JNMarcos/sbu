@@ -55,7 +55,7 @@ public class TelaPagarDivida extends JFrame {
 		
 		panel = new JPanel();
 		//panel.setBounds(0, 0, 590, 494);
-		setBounds(100, 100, 413, 272); //AQUI É A SOLUÇÃO
+		setBounds(100, 100, 640, 560); //AQUI É A SOLUÇÃO
 		setContentPane(panel); //AQUI É A SOLUÇÃO
 		//getContentPane().add(panel);
 		panel.setLayout(null);

@@ -42,7 +42,7 @@ public class TelaPrincipalNaoADM extends JFrame {
 		
 		panel = new JPanel();
 		//panel.setBounds(0, 0, 444, 271); O PROBLEMA ESTÁ AQUI
-		setBounds(100, 100, 413, 272); //AQUI É A SOLUÇÃO
+		setBounds(100, 100, 444, 272); //AQUI É A SOLUÇÃO
 		setContentPane(panel); //AQUI É A SOLUÇÃO
 		//getContentPane().add(panel);  O PROBLEMA ESTÁ AQUI
 		panel.setLayout(null);

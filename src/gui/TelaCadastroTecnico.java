@@ -63,8 +63,8 @@ public class TelaCadastroTecnico extends JFrame {
 		fachada = Fachada.getInstance();
 
 		panel = new JPanel();
-		panel.setBounds(0, 0, 473, 666);
-		getContentPane().add(panel);
+		setBounds(0, 0, 473, 666);
+		setContentPane(panel);
 		panel.setLayout(null);
 
 		JLabel lblNome = new JLabel("Nome:");

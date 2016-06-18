@@ -1,37 +1,24 @@
 package gui;
 
-/**
- * 
- * @author ramices
- * 
- */
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-
-import java.awt.BorderLayout;
-
-import gui.TelaPrincipalADMGeral;
-import gui.TelaPrincipalNaoADM;
-
-import java.awt.EventQueue;
-
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-
-import java.awt.Font;
-
 import javax.swing.JTextField;
-import javax.swing.JButton;
+import javax.swing.border.EmptyBorder;
 
-import negocio.Fachada;
 import classes_basicas.ADMBiblioteca;
 import classes_basicas.ADMGeral;
+import classes_basicas.Aluno;
 import classes_basicas.Conta;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import classes_basicas.Professor;
+import classes_basicas.Tecnico;
+import negocio.Fachada;
 
 public class TelaLogin extends JFrame {
 
@@ -94,9 +81,9 @@ public class TelaLogin extends JFrame {
 					
 					if(conta.getUsuario() instanceof ADMGeral)
 					{
-						telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta);
+						telaPrincipalADMGeral = new TelaPrincipalADMGeral(conta);
 						contentPane.setVisible(false);
-						telaPrincipalNaoADM.setVisible(true);
+						telaPrincipalADMGeral.setVisible(true);
 					}	
 					else if(conta.getUsuario()  instanceof ADMBiblioteca)
 					{	
@@ -105,7 +92,8 @@ public class TelaLogin extends JFrame {
 						telaPrincipalADMBiblioteca.setVisible(true);
 				
 					}
-					else
+					else if(conta.getUsuario() instanceof Tecnico || conta.getUsuario() instanceof Aluno
+							|| conta.getUsuario() instanceof Professor)
 					{
 						telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta);
 						contentPane.setVisible(false);

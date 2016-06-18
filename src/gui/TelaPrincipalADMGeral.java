@@ -52,8 +52,8 @@ public class TelaPrincipalADMGeral extends JFrame {
 		
 		
 		panel = new JPanel();
-		panel.setBounds(0, 0, 490, 336);
-		getContentPane().add(panel);
+		setBounds(100, 100, 490, 336);
+		setContentPane(panel);
 		panel.setLayout(null);
 		
 		JButton btnCadastrarAluno = new JButton("Cadastrar Aluno");
