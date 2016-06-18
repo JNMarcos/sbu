@@ -28,6 +28,7 @@ public class TelaPrincipalNaoADM extends JFrame {
 	private Conta conta;
 	private JPanel panel;
 	private JComboBox<String> comboBoxServico;
+	private TelaLogin telaLogin;
 	
 	
 	public TelaPrincipalNaoADM(Conta conta) {
@@ -49,18 +50,18 @@ public class TelaPrincipalNaoADM extends JFrame {
 		
 		JLabel lblR$ = new JLabel("R$");
 		lblR$.setFont(new Font("Segoe UI", Font.ITALIC, 19));
-		lblR$.setBounds(306, 30, 37, 20);
+		lblR$.setBounds(237, 30, 37, 20);
 		panel.add(lblR$);
 		
 		JLabel lblSaldo = new JLabel("");
 		lblSaldo.setForeground(new Color(0, 204, 0));
 		lblSaldo.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 24));
 		lblSaldo.setText(String.valueOf(conta.getSaldo()));
-		lblSaldo.setBounds(353, 29, 46, 19);
+		lblSaldo.setBounds(284, 29, 117, 19);
 		panel.add(lblSaldo);
 		
 		comboBoxServico = new JComboBox<String>();
-		comboBoxServico.setBounds(118, 168, 156, 20);
+		comboBoxServico.setBounds(48, 96, 156, 20);
 		String[] opcoes = {"Comprar Ficha do R.U", "Pagar Multa da Biblioteca",
 							"Solicitar Documentos", "Inserir Credito", "Ver Movimentações", "Exibir Informações"};
 		
@@ -73,29 +74,34 @@ public class TelaPrincipalNaoADM extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String escolhido = comboBoxServico.getSelectedItem().toString();
 				if(escolhido.equals("Comprar Ficha do R.U")){
-					dispose();
+					
 					TelaComprarFichaRU telaComprarFichaRU = new TelaComprarFichaRU(conta); 
 					telaComprarFichaRU.setVisible(true);
+					dispose();
 				}
 				else if(escolhido.equals("Pagar Multa da Biblioteca")){
-					dispose();
+					
 					TelaPagarDivida telaPagarDivida = new TelaPagarDivida(conta);
 					telaPagarDivida.setVisible(true);
+					dispose();
 				}
 				else if(escolhido.equals("Solicitar Documentos")){
-					dispose();
+					
 					TelaSolicitarDocumento telaSolicitarDocumento = new TelaSolicitarDocumento(conta);
 					telaSolicitarDocumento.setVisible(true);
+					dispose();
 				}
 				else if(escolhido.equals("Inserir Credito")){
-					dispose();
+					
 					TelaInserirCredito telaInserirCredito = new TelaInserirCredito(conta);
 					telaInserirCredito.setVisible(true);
+					dispose();
 				}
 				else if(escolhido.equals("Ver Movimentações")){
-					dispose();
+					
 					TelaMovimentacao telaMovimentacao = new TelaMovimentacao(conta);
 					telaMovimentacao.setVisible(true);
+					dispose();
 				}
 				else if(escolhido.equals("Exibir Informações")){
 					//dispose();
@@ -107,8 +113,21 @@ public class TelaPrincipalNaoADM extends JFrame {
 				}
 			}
 		});
-		btnConfirmar.setBounds(294, 167, 101, 23);
+		btnConfirmar.setBounds(282, 95, 101, 23);
 		panel.add(btnConfirmar);
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			
+				telaLogin = new TelaLogin();
+				telaLogin.setVisible(true);
+				dispose();
+				
+			}
+		});
+		btnLogout.setBounds(282, 174, 101, 23);
+		panel.add(btnLogout);
 		
 		
 		

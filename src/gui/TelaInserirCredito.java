@@ -45,6 +45,9 @@ public class TelaInserirCredito extends JFrame {
 	private JButton btnCancelar;
 	
 	public TelaInserirCredito(Conta conta) {
+		
+		this.conta = conta;
+		
 		getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 11));
 		setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		setTitle("$BU - Inserir Crédito");
@@ -134,48 +137,48 @@ public class TelaInserirCredito extends JFrame {
 	
 	private class EventoBotaoInserir implements ActionListener { 
 		public void actionPerformed(ActionEvent evento) { 
-			dispose();
-			double valorEscolhido;
+		
+			int valorEscolhido;
+			
 			if(rdbtnR.isSelected()){
-				valorEscolhido = 5.00;
-				conta.getSaldo();
-				conta.setSaldo(conta.getSaldo()+valorEscolhido);
+				valorEscolhido = 5;
+		
 			}
 			else if(rdbtnR_1.isSelected()){
-				valorEscolhido = 10.00;
-				conta.getSaldo();
-				conta.setSaldo(conta.getSaldo()+valorEscolhido);
+				valorEscolhido = 10;
+				
 			}
 			else if(rdbtnR_2.isSelected()){
-				valorEscolhido = 20.00;
-				conta.getSaldo();
-				conta.setSaldo(conta.getSaldo()+valorEscolhido);
+				valorEscolhido = 20;
+				
 			}
 			else if(rdbtnR_3.isSelected()){
-				valorEscolhido = 50.00;
-				conta.getSaldo();
-				conta.setSaldo(conta.getSaldo()+valorEscolhido);
+				valorEscolhido = 5;
+				
+				
 			}
 			else{
-				valorEscolhido = 2.00;
-				conta.getSaldo();
-				conta.setSaldo(conta.getSaldo()+valorEscolhido);
+				valorEscolhido = 2;
+				
 			}
 			
-			JOptionPane painel;
 			try {
-				painel = new JOptionPane("Você deseja inserir " + valorEscolhido + " em sua conta",
-						JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
-				painel.setVisible(true);
-				Object valor = painel.getValue();
-				if (valor instanceof Integer){
-					if (((Integer) valor).intValue() == JOptionPane.YES_OPTION){
-						int preco = (int)valor;
-						fachada.inserirCreditos(preco, conta);
+					
+					int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente inserir " + Integer.toString(valorEscolhido) +
+					"  créditos na sua conta?", "Confirmação", JOptionPane.YES_NO_OPTION);
+					
+		
+					if (resposta  == JOptionPane.YES_OPTION){
+						
+						fachada.inserirCreditos(valorEscolhido, conta);
 						JOptionPane.showMessageDialog(null, "Operação realizada com sucesso." + 
-								" Você inseriu credito em sua conta com sucesso");
+								" Você inseriu "+ Integer.toString(valorEscolhido) + " creditos em sua conta.");
+					
+						TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta);
+						telaPrincipalNaoADM.setVisible(true);
+						dispose();
 					}
-				}
+				
 			} catch (ContaNaoEncontradaException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 				dispose();
@@ -186,6 +189,15 @@ public class TelaInserirCredito extends JFrame {
 				dispose();
 				TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta); 
 				telaPrincipalNaoADM.setVisible(true);
+			}
+			catch(Exception e)
+			{
+				
+				JOptionPane.showMessageDialog(null, e.getMessage());
+				dispose();
+				TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta); 
+				telaPrincipalNaoADM.setVisible(true);
+				
 			}
 		}
 	}	

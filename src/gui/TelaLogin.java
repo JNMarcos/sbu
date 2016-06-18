@@ -87,7 +87,8 @@ public class TelaLogin extends JFrame {
 					
 					conta = fachada.verificarLogin(txtLogin.getText(), textSenha.getText());
 					
-				
+					
+					
 					
 					if(conta.getUsuario() instanceof ADMGeral)
 					{	

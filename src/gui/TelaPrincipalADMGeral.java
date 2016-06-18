@@ -88,8 +88,10 @@ public class TelaPrincipalADMGeral extends JFrame {
 	            				
 	            					user = fachada.procurarPorCpf((String) table.getValueAt(linhaSelecionada, 2));
 	            				 	
-	            				 	fachada.removerUsuario(user);
+	            					
 	            				 	fachada.removerConta(fachada.exibirConta(user));
+	            				 	fachada.removerUsuario(user);
+	            				 	
 	            				 	carregarTabela(modelo, (ArrayList<Usuario>)fachada.listarUsuarios());
 	            				 	
 	            				 	JOptionPane.showMessageDialog(null, "Usuario removido com sucesso!");

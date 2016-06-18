@@ -163,6 +163,9 @@ public class ControladorConta {
 				repositorio.get(i).setSaldo(saldo);
 				movimentacao = new Movimentacao("Inserir crédito", "Inserção de R$ " + valor + " em sua conta." );
 				conta.getHistorico().add(movimentacao);
+				
+				repositorioConta.alterarDadosConta(conta);
+				
 			}
 		}
 		
