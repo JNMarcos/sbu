@@ -5,6 +5,7 @@ import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -223,8 +224,20 @@ public class TelaAlterarUsuario extends JFrame {
 					try{
 						if(contaDosDadosAlterados.getUsuario() instanceof Aluno){
 
-							LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
-							usuario = new Aluno(textNome.getText(), textSexo.getText().charAt(0),
+
+							DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+					
+					int mesInteiro = comboBoxMes.getSelectedIndex();
+					String mes;
+					
+					if(mesInteiro < 10)
+						mes ="0" + Integer.toString(mesInteiro);
+					else
+						mes = Integer.toString(mesInteiro);
+					
+					LocalDate dataDeNascimento = LocalDate.parse( ((String)comboBoxAno.getSelectedItem()) + "-" + mes + "-" + ((String)comboBoxDia.getSelectedItem()), formato);
+					
+					usuario = new Aluno(textNome.getText(), textSexo.getText().charAt(0),
 									textCPF.getText(),textID.getText(), textEnd.getText(),
 									textTel.getText(), textEmail.getText(), dataDeNascimento,
 									textMat.getText(),textCurso.getText(),textAd.getText(),
@@ -238,7 +251,19 @@ public class TelaAlterarUsuario extends JFrame {
 						}
 						else if(contaDosDadosAlterados.getUsuario() instanceof Professor){
 
-							LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
+
+							DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+					
+							int mesInteiro = comboBoxMes.getSelectedIndex();
+							String mes;
+					
+							if(mesInteiro < 10)
+								mes ="0" + Integer.toString(mesInteiro);
+							else
+							mes = Integer.toString(mesInteiro);
+						
+							LocalDate dataDeNascimento = LocalDate.parse( ((String)comboBoxAno.getSelectedItem()) + "-" + mes + "-" + ((String)comboBoxDia.getSelectedItem()), formato);
+						
 							usuario = new Professor(textNome.getText(), textSexo.getText().charAt(0),
 									textCPF.getText(),textID.getText(), textEnd.getText(),
 									textTel.getText(), textEmail.getText(), dataDeNascimento,
@@ -255,7 +280,18 @@ public class TelaAlterarUsuario extends JFrame {
 
 						}else if(contaDosDadosAlterados.getUsuario() instanceof Tecnico){
 
-							LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
+
+							DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+							
+							int mesInteiro = comboBoxMes.getSelectedIndex();
+							String mes;
+							
+							if(mesInteiro < 10)
+								mes ="0" + Integer.toString(mesInteiro);
+							else
+								mes = Integer.toString(mesInteiro);
+							
+							LocalDate dataDeNascimento = LocalDate.parse( ((String)comboBoxAno.getSelectedItem()) + "-" + mes + "-" + ((String)comboBoxDia.getSelectedItem()), formato);
 							usuario = new Tecnico(textNome.getText(), textSexo.getText().charAt(0),
 									textCPF.getText(),textID.getText(), textEnd.getText(),
 									textTel.getText(), textEmail.getText(), dataDeNascimento,

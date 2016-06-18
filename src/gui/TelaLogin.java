@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 
 import classes_basicas.ADMBiblioteca;
 import classes_basicas.ADMGeral;
@@ -26,39 +25,47 @@ public class TelaLogin extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField txtCPF;
+	private JTextField txtLogin;
 	private JTextField textSenha;
 	private TelaPrincipalADMBiblioteca telaPrincipalADMBiblioteca;
     private TelaPrincipalADMGeral telaPrincipalADMGeral;
     private TelaPrincipalNaoADM telaPrincipalNaoADM;
     private TelaInicio telaPrincipal;
     private static Fachada fachada = Fachada.getInstance();
+    private JPanel contentPane;
 	
 
 
 	public TelaLogin() {
+		
+		
+		
+		getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 11));
+		setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(null);
+		fachada = Fachada.getInstance();
+		
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBounds(0, 0, 418, 294);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
 		
 		JLabel lblTitulo = new JLabel("$BU");
 		lblTitulo.setFont(new Font("Verdana", Font.ITALIC, 26));
 		lblTitulo.setBounds(179, 11, 65, 57);
 		contentPane.add(lblTitulo);
 		
-		txtCPF = new JTextField();
-		txtCPF.setBounds(166, 91, 162, 20);
-		contentPane.add(txtCPF);
-		txtCPF.setColumns(10);
+		txtLogin = new JTextField();
+		txtLogin.setBounds(166, 91, 162, 20);
+		contentPane.add(txtLogin);
+		txtLogin.setColumns(10);
 		
-		JLabel lblCPF = new JLabel("Login:");
-		lblCPF.setBounds(88, 94, 46, 14);
-		contentPane.add(lblCPF);
-		
+		JLabel lblLogin = new JLabel("Login:");
+		lblLogin.setBounds(88, 94, 46, 14);
+		contentPane.add(lblLogin);
 		JLabel lblSenha = new JLabel("Senha:");
 		lblSenha.setBounds(88, 139, 46, 14);
 		contentPane.add(lblSenha);
@@ -71,34 +78,42 @@ public class TelaLogin extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				dispose(); 
+				
+			
 				Conta conta = null;
 				
 				try
 				{
 					
-					conta = fachada.verificarLogin(txtCPF.getText(), textSenha.getText());
+					conta = fachada.verificarLogin(txtLogin.getText(), textSenha.getText());
+					
+				
 					
 					if(conta.getUsuario() instanceof ADMGeral)
-					{
+					{	
+						
 						telaPrincipalADMGeral = new TelaPrincipalADMGeral(conta);
-						contentPane.setVisible(false);
 						telaPrincipalADMGeral.setVisible(true);
+						dispose();
+						
 					}	
 					else if(conta.getUsuario()  instanceof ADMBiblioteca)
 					{	
 						telaPrincipalADMBiblioteca = new TelaPrincipalADMBiblioteca(conta);
 						contentPane.setVisible(false);
 						telaPrincipalADMBiblioteca.setVisible(true);
-				
+						dispose();
+						
 					}
 					else if(conta.getUsuario() instanceof Tecnico || conta.getUsuario() instanceof Aluno
 							|| conta.getUsuario() instanceof Professor)
 					{
 						telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta);
-						contentPane.setVisible(false);
 						telaPrincipalNaoADM.setVisible(true);
+						dispose();
+					
 					}
+				
 				}
 				
 				catch(Exception e)
@@ -129,3 +144,7 @@ public class TelaLogin extends JFrame {
 		contentPane.add(btnVoltar);
 	}
 }
+
+
+
+

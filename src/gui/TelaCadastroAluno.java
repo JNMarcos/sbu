@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -285,7 +286,19 @@ public class TelaCadastroAluno extends JFrame {
 				}
 				else{
 					Conta contaACadastrar;
-					LocalDate dataDeNascimento = LocalDate.parse(((String)comboBoxDia.getSelectedItem()) + comboBoxMes.getSelectedIndex() + ((String)comboBoxAno.getSelectedItem()));
+
+					DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+					
+					int mesInteiro = comboBoxMes.getSelectedIndex();
+					String mes;
+					
+					if(mesInteiro < 10)
+						mes ="0" + Integer.toString(mesInteiro);
+					else
+						mes = Integer.toString(mesInteiro);
+					
+					LocalDate dataDeNascimento = LocalDate.parse( ((String)comboBoxAno.getSelectedItem()) + "-" + mes + "-" + ((String)comboBoxDia.getSelectedItem()), formato);
+					
 					aluno = new Aluno(textFieldNome.getText(), textFieldSexo.getText().charAt(0),
 							textFieldCpf.getText(),textFieldIdentidade.getText(), textFieldEndereco.getText(),
 							textFieldTelefone.getText(), textFieldEmail.getText(), dataDeNascimento,

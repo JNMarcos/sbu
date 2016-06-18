@@ -52,7 +52,7 @@ public class TelaPrincipalADMGeral extends JFrame {
 		
 		
 		panel = new JPanel();
-		setBounds(100, 100, 490, 336);
+		setBounds(100, 100, 800, 550);
 		setContentPane(panel);
 		panel.setLayout(null);
 		
@@ -65,7 +65,7 @@ public class TelaPrincipalADMGeral extends JFrame {
 				
 			}
 		});
-		btnCadastrarAluno.setBounds(264, 117, 133, 23);
+		btnCadastrarAluno.setBounds(641, 202, 133, 23);
 		panel.add(btnCadastrarAluno);
 		
 		JButton btnRemoverUsuario = new JButton("Remover Usuario");
@@ -89,9 +89,11 @@ public class TelaPrincipalADMGeral extends JFrame {
 	            					user = fachada.procurarPorCpf((String) table.getValueAt(linhaSelecionada, 2));
 	            				 	
 	            				 	fachada.removerUsuario(user);
+	            				 	fachada.removerConta(fachada.exibirConta(user));
 	            				 	carregarTabela(modelo, (ArrayList<Usuario>)fachada.listarUsuarios());
 	            				 	
-	            				 	JOptionPane.showMessageDialog(null, "Usuário removido com sucesso!");
+	            				 	JOptionPane.showMessageDialog(null, "Usuario removido com sucesso!");
+
 								
 	            				} 
 	            				catch (Exception e1) {
@@ -105,7 +107,7 @@ public class TelaPrincipalADMGeral extends JFrame {
 			
 			}
 		});
-		btnRemoverUsuario.setBounds(264, 24, 133, 23);
+		btnRemoverUsuario.setBounds(641, 34, 133, 23);
 		panel.add(btnRemoverUsuario);
 		
 		JButton btnAlterarUsuario = new JButton("Alterar Usuario");
@@ -120,7 +122,7 @@ public class TelaPrincipalADMGeral extends JFrame {
 	            				} 
 	            				catch (Exception e1) {
 							
-	            					JOptionPane.showMessageDialog(null, e1.getMessage(), "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
+	            					JOptionPane.showMessageDialog(null, e1.getMessage());
 
 	            				}
 	                    
@@ -128,12 +130,13 @@ public class TelaPrincipalADMGeral extends JFrame {
 			}
 			
 		});
-		btnAlterarUsuario.setBounds(264, 58, 133, 23);
+		btnAlterarUsuario.setBounds(641, 68, 133, 23);
 		panel.add(btnAlterarUsuario);
 		
-		JButton btnVoltar = new JButton("Voltar");
+		JButton btnVoltar = new JButton("Logout");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+
 				dispose();
 				telaLogin = new TelaLogin();
 				telaLogin.setVisible(true);
@@ -141,7 +144,7 @@ public class TelaPrincipalADMGeral extends JFrame {
 				
 			}
 		});
-		btnVoltar.setBounds(264, 247, 133, 23);
+		btnVoltar.setBounds(641, 446, 133, 23);
 		panel.add(btnVoltar);
 		
 		
@@ -160,7 +163,7 @@ public class TelaPrincipalADMGeral extends JFrame {
 		table.setBounds(25, 21, 229, 203);
 		
 		JScrollPane barraRolagem = new JScrollPane(table);
-		barraRolagem.setBounds(24, 24, 228, 246);
+		barraRolagem.setBounds(24, 24, 607, 466);
 		panel.add(barraRolagem);
 		
 		carregarTabela(modelo, (ArrayList<Usuario>) fachada.listarUsuarios());
@@ -175,7 +178,7 @@ public class TelaPrincipalADMGeral extends JFrame {
 				
 			}
 		});
-		btnCadastrarProfessor.setBounds(264, 151, 133, 23);
+		btnCadastrarProfessor.setBounds(641, 247, 133, 23);
 		panel.add(btnCadastrarProfessor);
 		
 		JButton btnCadastrarTcnico = new JButton("Cadastrar T\u00E9cnico");
@@ -187,7 +190,7 @@ public class TelaPrincipalADMGeral extends JFrame {
 				
 			}
 		});
-		btnCadastrarTcnico.setBounds(264, 185, 136, 23);
+		btnCadastrarTcnico.setBounds(638, 292, 136, 23);
 		panel.add(btnCadastrarTcnico);
 		
 		
