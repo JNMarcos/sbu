@@ -91,7 +91,7 @@ public class TelaPrincipalADMGeral extends JFrame {
 	            				 	fachada.removerUsuario(user);
 	            				 	carregarTabela(modelo, (ArrayList<Usuario>)fachada.listarUsuarios());
 	            				 	
-	            				 	JOptionPane.showMessageDialog(null, "Dívida removida com sucesso!");
+	            				 	JOptionPane.showMessageDialog(null, "Usuário removido com sucesso!");
 								
 	            				} 
 	            				catch (Exception e1) {
@@ -134,7 +134,7 @@ public class TelaPrincipalADMGeral extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				dispose();
 				telaLogin = new TelaLogin();
 				telaLogin.setVisible(true);
 		
