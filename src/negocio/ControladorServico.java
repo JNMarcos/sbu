@@ -33,7 +33,7 @@ public class ControladorServico {
 	} 
 
 	//opção: almoço ou jantar
-	public void comprarFichaRU(Conta conta, boolean isAlmoco, short quantidadeFichas) throws SaldoInsuficienteException, ContaNaoEncontradaException{
+	public void comprarFichaRU(Conta conta, boolean isAlmoco, int quantidadeFichas) throws SaldoInsuficienteException, ContaNaoEncontradaException{
 		Movimentacao movimentacao;
 		if (repositorioConta.procurarConta(conta)){
 			if(conta.getUsuario() instanceof Aluno){

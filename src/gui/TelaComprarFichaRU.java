@@ -25,6 +25,7 @@ import java.awt.Color;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.SpinnerNumberModel;
 
 /**
  * @author JN
@@ -39,8 +40,11 @@ public class TelaComprarFichaRU extends JFrame {
 	private IFachada fachada = Fachada.getInstance();
 	private Conta conta;
 	private JRadioButton rdbtnAlmoco;
+	private JRadioButton rdbtnJantar;
 	private JSpinner spinnerQtdTiquetes;
 	private final ButtonGroup escolhaRefeicao = new ButtonGroup();
+	private JButton btnCancelar;
+	private JButton btnConfirmar;
 
 
 	public TelaComprarFichaRU(Conta conta) {
@@ -52,58 +56,61 @@ public class TelaComprarFichaRU extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblEscolhaOTipo = new JLabel("Escolha o tipo de almo\u00E7o que quer comprar:");
 		lblEscolhaOTipo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblEscolhaOTipo.setBounds(28, 76, 309, 19);
 		contentPane.add(lblEscolhaOTipo);
-		
-		JRadioButton rdbtnAlmoco = new JRadioButton("Almo\u00E7o");
+
+		rdbtnAlmoco = new JRadioButton("Almo\u00E7o");
+		rdbtnAlmoco.setSelected(true);
 		escolhaRefeicao.add(rdbtnAlmoco);
 		rdbtnAlmoco.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		rdbtnAlmoco.setBounds(44, 112, 109, 23);
 		contentPane.add(rdbtnAlmoco);
-		
-		JRadioButton rdbtnJantar = new JRadioButton("Jantar");
+
+		rdbtnJantar = new JRadioButton("Jantar");
 		escolhaRefeicao.add(rdbtnJantar);
 		rdbtnJantar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		rdbtnJantar.setBounds(44, 141, 109, 23);
 		contentPane.add(rdbtnJantar);
-		
+
 		JLabel lblQuantidadeDeTiquetes = new JLabel("Quantidade de t\u00EDquetes");
 		lblQuantidadeDeTiquetes.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblQuantidadeDeTiquetes.setBounds(152, 171, 163, 19);
 		contentPane.add(lblQuantidadeDeTiquetes);
-		
-		JSpinner spinnerQTDTiquetes = new JSpinner();
-		spinnerQTDTiquetes.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		spinnerQTDTiquetes.setBounds(312, 172, 29, 20);
-		contentPane.add(spinnerQTDTiquetes);
-		
+
+		spinnerQtdTiquetes = new JSpinner();
+		spinnerQtdTiquetes.setModel(new SpinnerNumberModel(1, 1, 3, 1));
+		spinnerQtdTiquetes.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		spinnerQtdTiquetes.setBounds(312, 172, 29, 20);
+		contentPane.add(spinnerQtdTiquetes);
+
 		JLabel lblR$ = new JLabel("R$");
 		lblR$.setFont(new Font("Tahoma", Font.ITALIC, 21));
-		lblR$.setBounds(255, 29, 39, 25);
+		lblR$.setBounds(255, 40, 39, 25);
 		contentPane.add(lblR$);
-		
+
 		JLabel lblSaldo = new JLabel("0.0");
+		lblSaldo.setText("" + conta.getSaldo());
 		lblSaldo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
 		lblSaldo.setForeground(new Color(0, 128, 0));
-		lblSaldo.setBounds(297, 28, 46, 23);
+		lblSaldo.setBounds(297, 31, 114, 38);
 		contentPane.add(lblSaldo);
-		
-		JButton btnCancelar = new JButton("Cancelar");
+
+		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		btnCancelar.setBounds(154, 214, 99, 23);
 		contentPane.add(btnCancelar);
-		
+
 		EventoBotaoCancelar acaoCancelar = new EventoBotaoCancelar(); 
 		btnCancelar.addActionListener(acaoCancelar);
-		
-		JButton btnConfirmar = new JButton("Confirmar");
+
+		btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		btnConfirmar.setBounds(285, 214, 109, 23);
 		contentPane.add(btnConfirmar);
-		
+
 		EventoBotaoConfirmar acaoConfirmar = new EventoBotaoConfirmar(); 
 		btnConfirmar.addActionListener(acaoConfirmar);
 	}
@@ -119,18 +126,17 @@ public class TelaComprarFichaRU extends JFrame {
 		}
 	}
 
-	//faz a compra do tíquete
+	//faz a compra do tÃ­quete
 	private class EventoBotaoConfirmar implements ActionListener { 
-		public void actionPerformed(ActionEvent evento) { 
-			dispose();
-			//se radiobutton de Almoço está selecionado é porque 
-			//é para comprar um tíquete almoço
+		public void actionPerformed(ActionEvent evento) {
+			//se radiobutton de AlmoÃ§o estÃ¡ selecionado Ã© porque 
+			//Ã© para comprar um tÃ­quete almoÃ§o
 			boolean isAlmoco = rdbtnAlmoco.isSelected();
 			String escolha;
 			double valorServico;
 
 			if (isAlmoco){
-				escolha = "almoço";
+				escolha = "almoÃ§o";
 				if (conta.getUsuario() instanceof Aluno)
 					valorServico = Servico.getPrecos().get("almocoAlunoRU");
 				else 
@@ -144,34 +150,30 @@ public class TelaComprarFichaRU extends JFrame {
 					valorServico = Servico.getPrecos().get("jantaFuncionarioRU");
 			}
 
-			short quantidadeTiquetes = (Short) spinnerQtdTiquetes.getValue();
-			JOptionPane painel;
+			int quantidadeTiquetes = (int) spinnerQtdTiquetes.getValue();
 			try{
-				painel = new JOptionPane("Você deseja confirmar a compra de " 
-						+ quantidadeTiquetes + " do tipo " + escolha + "?", 
-						JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
-				painel.setVisible(true);
-				Object valor = painel.getValue();
-				if (valor instanceof Integer){
-					if (((Integer) valor).intValue() == JOptionPane.YES_OPTION){
-						fachada.comprarFichaRU(conta, isAlmoco, quantidadeTiquetes);
-						JOptionPane.showMessageDialog(null, "Operação realizada com sucesso." + 
-								" Você comprou " + quantidadeTiquetes + " tipo " + escolha + ". Valor total da operação: " 
-								+  (valorServico*quantidadeTiquetes) + ". Seu saldo é: " + conta.getSaldo());
-					}
-				}
-			} catch (SaldoInsuficienteException e){
-				JOptionPane.showMessageDialog(null, e.getMessage());
+			
+				fachada.comprarFichaRU(conta, isAlmoco, quantidadeTiquetes);
+				JOptionPane.showMessageDialog(null, "OperaÃ§Ã£o realizada com sucesso." + 
+						" VocÃª comprou " + quantidadeTiquetes + " tipo " + escolha + ". Valor total da operaÃ§Ã£o: " 
+					+  (valorServico*quantidadeTiquetes) + ". Seu saldo Ã©: " + conta.getSaldo());
+			
 				dispose();
-				TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta); 
-				telaPrincipalNaoADM.setVisible(true);
-			} catch (ContaNaoEncontradaException e){
-				JOptionPane.showMessageDialog(null, e.getMessage());
-				dispose();
-				TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta); 
-				telaPrincipalNaoADM.setVisible(true);
-			}
+				TelaPrincipalNaoADM tela = new TelaPrincipalNaoADM(conta);
+				tela.setVisible(true);
+		} catch (SaldoInsuficienteException e){
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			dispose();
+			TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta); 
+			telaPrincipalNaoADM.setVisible(true);
+		} catch (ContaNaoEncontradaException e){
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			dispose();
+			TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta); 
+			telaPrincipalNaoADM.setVisible(true);
 		}
+			
 	}
+}
 }
 

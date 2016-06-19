@@ -46,22 +46,22 @@ public abstract class Servico {
 	}
 
 	// serviços RU
-	public static void comprarAlmocoAluno(Conta conta, short quantidadeFichas){
+	public static void comprarAlmocoAluno(Conta conta, int quantidadeFichas){
 		conta.setSaldo(conta.getSaldo() - (Servico.getPrecos().get("almocoAlunoRU") * quantidadeFichas));
 		conta.getnPorcoes()[0] = conta.getnPorcoes()[0] + quantidadeFichas;
 	}
 
-	public static void comprarAlmocoFuncionario(Conta conta, short quantidadeFichas){
+	public static void comprarAlmocoFuncionario(Conta conta, int quantidadeFichas){
 		conta.setSaldo(conta.getSaldo() - (Servico.getPrecos().get("almocoFuncionarioRU") * quantidadeFichas));
 		conta.getnPorcoes()[0] = conta.getnPorcoes()[0] + quantidadeFichas;
 	}
 
-	public static void comprarJantaAluno(Conta conta, short quantidadeFichas){
+	public static void comprarJantaAluno(Conta conta, int quantidadeFichas){
 		conta.setSaldo(conta.getSaldo() - (Servico.getPrecos().get("jantaAlunoRU") * quantidadeFichas));
 		conta.getnPorcoes()[1] = conta.getnPorcoes()[1] + quantidadeFichas;
 	}
 
-	public static void comprarJantaFuncionario(Conta conta, short quantidadeFichas){
+	public static void comprarJantaFuncionario(Conta conta, int quantidadeFichas){
 		conta.setSaldo(conta.getSaldo() - (Servico.getPrecos().get("jantaFuncionarioRU") * quantidadeFichas));
 		conta.getnPorcoes()[1] = conta.getnPorcoes()[1] + quantidadeFichas;
 	}

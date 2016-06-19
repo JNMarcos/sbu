@@ -54,7 +54,7 @@ public class Fachada implements IFachada{
 	}
 
 	@Override
-	public void comprarFichaRU(Conta conta, boolean isAlmoco, short quantidadeFichas) throws SaldoInsuficienteException, ContaNaoEncontradaException{
+	public void comprarFichaRU(Conta conta, boolean isAlmoco, int quantidadeFichas) throws SaldoInsuficienteException, ContaNaoEncontradaException{
 		ctrServico.comprarFichaRU(conta, isAlmoco, quantidadeFichas);
 	}
 
