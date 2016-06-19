@@ -90,7 +90,7 @@ public class Conta implements Comparable<Conta>, Serializable{
 		this.permissoesServico.put("Biblioteca", true);
 	}
 	public int[] getnPorcoes() {
-		return nPorcoes;
+			return nPorcoes;	
 	}
 	public void setnPorcoes() {
 		this.nPorcoes = new int[2];

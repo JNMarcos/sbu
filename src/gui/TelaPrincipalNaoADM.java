@@ -61,7 +61,7 @@ public class TelaPrincipalNaoADM extends JFrame {
 		panel.add(lblSaldo);
 		
 		comboBoxServico = new JComboBox<String>();
-		comboBoxServico.setBounds(48, 96, 156, 20);
+		comboBoxServico.setBounds(38, 96, 166, 20);
 		String[] opcoes = {"Comprar Ficha do R.U", "Pagar Multa da Biblioteca",
 							"Solicitar Documentos", "Inserir Credito", "Ver Movimentações", "Exibir Informações"};
 		
@@ -128,6 +128,16 @@ public class TelaPrincipalNaoADM extends JFrame {
 		});
 		btnLogout.setBounds(282, 174, 101, 23);
 		panel.add(btnLogout);
+		
+		JLabel lblNrFichasAlmoco = new JLabel();
+		lblNrFichasAlmoco.setBounds(44, 159, 201, 14);
+		lblNrFichasAlmoco.setText("Numero de fichas de almo\u00E7o: " + conta.getnPorcoes()[0]);
+		panel.add(lblNrFichasAlmoco);
+		
+		JLabel lblNrDeFichasJantar = new JLabel();
+		lblNrDeFichasJantar.setBounds(44, 197, 201, 14);
+		lblNrDeFichasJantar.setText("Numero de fichas de jantar: " + conta.getnPorcoes()[1]);
+		panel.add(lblNrDeFichasJantar);
 		
 		
 		
