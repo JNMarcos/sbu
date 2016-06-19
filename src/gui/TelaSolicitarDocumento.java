@@ -39,15 +39,17 @@ public class TelaSolicitarDocumento extends JFrame {
 			
 		panel = new JPanel();
 		//panel.setBounds(0, 0, 534, 266);
-		setBounds(100, 100, 413, 272); //AQUI É A SOLUÇÃO
+		setBounds(100, 100, 499, 308); //AQUI É A SOLUÇÃO
 		setContentPane(panel); //AQUI É A SOLUÇÃO
 		//getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		
+		
+		
 		if(conta.getUsuario() instanceof Aluno){
 			JComboBox comboBoxSolicitaDocumento = new JComboBox();
-			comboBoxSolicitaDocumento.setBounds(261, 84, 28, 20);
+			comboBoxSolicitaDocumento.setBounds(131, 85, 178, 20);
 			String[] servicos = {"Comprovante de Matricula", "Diploma para Graduação", "Diploma para Pós Graduação",
 									"Histório Completo da Graduação", "Histórico Completo da Pós Graduação",
 									"Certificado de Conclusão de Curso", "Transferencia Interna",
@@ -337,7 +339,7 @@ public class TelaSolicitarDocumento extends JFrame {
 				}
 				}
 			});
-			btnConfirmar.setBounds(118, 126, 89, 23);
+			btnConfirmar.setBounds(118, 126, 95, 23);
 			panel.add(btnConfirmar);
 			
 			JButton btnCancelar = new JButton("Cancelar");
@@ -348,14 +350,14 @@ public class TelaSolicitarDocumento extends JFrame {
 					telaPrincipalNaoADM.setVisible(true);
 				}
 			});
-			btnCancelar.setBounds(335, 126, 89, 23);
+			btnCancelar.setBounds(335, 126, 95, 23);
 			panel.add(btnCancelar);
 		}
 		
 		else if(conta.getUsuario() instanceof Professor){
 			JComboBox comboBoxSolicitaDocumento = new JComboBox();
 			comboBoxSolicitaDocumento.addItem("Carteira de Professor");
-			comboBoxSolicitaDocumento.setBounds(261, 84, 28, 20);
+			comboBoxSolicitaDocumento.setBounds(131, 85, 171, 20);
 			panel.add(comboBoxSolicitaDocumento);
 			
 			JButton btnConfirmar = new JButton("Confirmar");
@@ -393,7 +395,7 @@ public class TelaSolicitarDocumento extends JFrame {
 					}
 				}
 			});
-			btnConfirmar.setBounds(118, 126, 89, 23);
+			btnConfirmar.setBounds(118, 126, 95, 23);
 			panel.add(btnConfirmar);
 			
 			JButton btnCancelar = new JButton("Cancelar");
@@ -404,12 +406,12 @@ public class TelaSolicitarDocumento extends JFrame {
 					telaPrincipalNaoADM.setVisible(true);
 				}
 			});
-			btnCancelar.setBounds(335, 126, 89, 23);
+			btnCancelar.setBounds(335, 126, 95, 23);
 			panel.add(btnCancelar);
 		}
 		else if(conta.getUsuario() instanceof Tecnico){
 			JComboBox comboBoxSolicitaDocumento = new JComboBox();
-			comboBoxSolicitaDocumento.setBounds(261, 84, 28, 20);
+			comboBoxSolicitaDocumento.setBounds(131, 85, 171, 20);
 			comboBoxSolicitaDocumento.addItem("Carteira de Técnico");
 			panel.add(comboBoxSolicitaDocumento);
 			
@@ -445,7 +447,7 @@ public class TelaSolicitarDocumento extends JFrame {
 				}
 				}
 			});
-			btnConfirmar.setBounds(118, 126, 89, 23);
+			btnConfirmar.setBounds(118, 126, 95, 23);
 			panel.add(btnConfirmar);
 			
 			JButton btnCancelar = new JButton("Cancelar");
@@ -456,7 +458,7 @@ public class TelaSolicitarDocumento extends JFrame {
 					telaPrincipalNaoADM.setVisible(true);
 				}
 			});
-			btnCancelar.setBounds(335, 126, 89, 23);
+			btnCancelar.setBounds(335, 126, 95, 23);
 			panel.add(btnCancelar);
 		}
 		
