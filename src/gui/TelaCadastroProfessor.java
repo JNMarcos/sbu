@@ -57,7 +57,7 @@ public class TelaCadastroProfessor extends JFrame {
 		fachada = Fachada.getInstance();
 		
 		panel = new JPanel();
-		setBounds(0, 0, 593, 666);
+		setBounds(0, 0, 565, 744);
 		setContentPane(panel);
 		panel.setLayout(null);
 	
@@ -199,7 +199,7 @@ public class TelaCadastroProfessor extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		EventoCadastrar acaoCadastrar = new EventoCadastrar();
 		btnCadastrar.addActionListener(acaoCadastrar);
-		btnCadastrar.setBounds(144, 615, 89, 23);
+		btnCadastrar.setBounds(144, 615, 101, 23);
 		panel.add(btnCadastrar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -210,7 +210,7 @@ public class TelaCadastroProfessor extends JFrame {
 				telaPrincipalADMGeral.setVisible(true);
 			}
 		});
-		btnCancelar.setBounds(362, 615, 89, 23);
+		btnCancelar.setBounds(362, 615, 101, 23);
 		panel.add(btnCancelar);
 	}
 

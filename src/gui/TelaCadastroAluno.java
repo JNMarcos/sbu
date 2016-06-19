@@ -60,7 +60,7 @@ public class TelaCadastroAluno extends JFrame {
 		fachada = Fachada.getInstance();
 		
 		panel = new JPanel();
-		setBounds(0, 0, 543, 728);
+		setBounds(0, 0, 547, 764);
 		setContentPane(panel);
 		panel.setLayout(null);
 		
@@ -218,7 +218,7 @@ public class TelaCadastroAluno extends JFrame {
 		textFieldSenha.setColumns(10);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setBounds(155, 669, 89, 23);
+		btnCadastrar.setBounds(155, 669, 98, 23);
 		panel.add(btnCadastrar);
 		EventoCadastrar acaoCadastrar = new EventoCadastrar();
 		btnCadastrar.addActionListener(acaoCadastrar);
@@ -231,7 +231,7 @@ public class TelaCadastroAluno extends JFrame {
 				telaPrincipalADMGeral.setVisible(true);
 			}
 		});
-		btnCancelar.setBounds(386, 669, 89, 23);
+		btnCancelar.setBounds(386, 669, 98, 23);
 		panel.add(btnCancelar);
 		
 		

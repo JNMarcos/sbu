@@ -64,7 +64,7 @@ public class TelaCadastroTecnico extends JFrame {
 		fachada = Fachada.getInstance();
 
 		panel = new JPanel();
-		setBounds(0, 0, 473, 666);
+		setBounds(0, 0, 508, 702);
 		setContentPane(panel);
 		panel.setLayout(null);
 
@@ -101,37 +101,37 @@ public class TelaCadastroTecnico extends JFrame {
 		panel.add(lblDataDeNascimento);
 
 		textFieldNome = new JTextField();
-		textFieldNome.setBounds(94, 26, 340, 20);
+		textFieldNome.setBounds(132, 26, 302, 20);
 		panel.add(textFieldNome);
 		textFieldNome.setColumns(10);
 
 		textFieldSexo = new JTextField();
-		textFieldSexo.setBounds(94, 61, 340, 20);
+		textFieldSexo.setBounds(132, 61, 302, 20);
 		panel.add(textFieldSexo);
 		textFieldSexo.setColumns(10);
 
 		textFieldCpf = new JTextField();
-		textFieldCpf.setBounds(94, 98, 340, 20);
+		textFieldCpf.setBounds(132, 98, 302, 20);
 		panel.add(textFieldCpf);
 		textFieldCpf.setColumns(10);
 
 		textFieldIdentidade = new JTextField();
-		textFieldIdentidade.setBounds(113, 140, 321, 20);
+		textFieldIdentidade.setBounds(132, 140, 302, 20);
 		panel.add(textFieldIdentidade);
 		textFieldIdentidade.setColumns(10);
 
 		textFieldEndereco = new JTextField();
-		textFieldEndereco.setBounds(102, 178, 332, 20);
+		textFieldEndereco.setBounds(132, 178, 302, 20);
 		panel.add(textFieldEndereco);
 		textFieldEndereco.setColumns(10);
 
 		textFieldTelefone = new JTextField();
-		textFieldTelefone.setBounds(102, 226, 332, 20);
+		textFieldTelefone.setBounds(132, 226, 302, 20);
 		panel.add(textFieldTelefone);
 		textFieldTelefone.setColumns(10);
 
 		textFieldEmail = new JTextField();
-		textFieldEmail.setBounds(87, 264, 347, 20);
+		textFieldEmail.setBounds(132, 264, 302, 20);
 		panel.add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 
@@ -148,7 +148,7 @@ public class TelaCadastroTecnico extends JFrame {
 		panel.add(lblNtecnico);
 
 		textFieldArea = new JTextField();
-		textFieldArea.setBounds(94, 351, 340, 20);
+		textFieldArea.setBounds(132, 351, 302, 20);
 		panel.add(textFieldArea);
 		textFieldArea.setColumns(10);
 
@@ -158,7 +158,7 @@ public class TelaCadastroTecnico extends JFrame {
 		textFieldDepartamento.setColumns(10);
 
 		textFieldNtecnico = new JTextField();
-		textFieldNtecnico.setBounds(142, 434, 292, 20);
+		textFieldNtecnico.setBounds(132, 434, 302, 20);
 		panel.add(textFieldNtecnico);
 		textFieldNtecnico.setColumns(10);
 
@@ -204,7 +204,7 @@ public class TelaCadastroTecnico extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		EventoCadastrar acaoCadastrar = new EventoCadastrar();
 		btnCadastrar.addActionListener(acaoCadastrar);
-		btnCadastrar.setBounds(160, 610, 89, 23);
+		btnCadastrar.setBounds(152, 610, 97, 23);
 		panel.add(btnCadastrar);
 
 		JButton btnCancelar = new JButton("Cancelar");
@@ -215,7 +215,7 @@ public class TelaCadastroTecnico extends JFrame {
 				telaPrincipalADMGeral.setVisible(true);
 			}
 		});
-		btnCancelar.setBounds(345, 610, 89, 23);
+		btnCancelar.setBounds(337, 610, 97, 23);
 		panel.add(btnCancelar);
 
 		JLabel lblTipo = new JLabel("Tipo:");
@@ -232,12 +232,12 @@ public class TelaCadastroTecnico extends JFrame {
 
 		textFieldLogin = new JTextField();
 		textFieldLogin.setColumns(10);
-		textFieldLogin.setBounds(87, 477, 347, 20);
+		textFieldLogin.setBounds(132, 477, 302, 20);
 		panel.add(textFieldLogin);
 
 		textFieldSenha = new JTextField();
 		textFieldSenha.setColumns(10);
-		textFieldSenha.setBounds(87, 518, 347, 20);
+		textFieldSenha.setBounds(132, 518, 302, 20);
 		panel.add(textFieldSenha);
 	}
 

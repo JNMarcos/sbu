@@ -52,7 +52,7 @@ public class TelaPrincipalADMGeral extends JFrame {
 		
 		
 		panel = new JPanel();
-		setBounds(100, 100, 800, 550);
+		setBounds(100, 100, 852, 552);
 		setContentPane(panel);
 		panel.setLayout(null);
 		
@@ -65,7 +65,7 @@ public class TelaPrincipalADMGeral extends JFrame {
 				
 			}
 		});
-		btnCadastrarAluno.setBounds(641, 202, 133, 23);
+		btnCadastrarAluno.setBounds(641, 202, 168, 23);
 		panel.add(btnCadastrarAluno);
 		
 		JButton btnRemoverUsuario = new JButton("Remover Usuario");
@@ -109,7 +109,7 @@ public class TelaPrincipalADMGeral extends JFrame {
 			
 			}
 		});
-		btnRemoverUsuario.setBounds(641, 34, 133, 23);
+		btnRemoverUsuario.setBounds(641, 34, 168, 23);
 		panel.add(btnRemoverUsuario);
 		
 		JButton btnAlterarUsuario = new JButton("Alterar Usuario");
@@ -132,19 +132,19 @@ public class TelaPrincipalADMGeral extends JFrame {
 			}
 			
 		});
-		btnAlterarUsuario.setBounds(641, 68, 133, 23);
+		btnAlterarUsuario.setBounds(641, 68, 168, 23);
 		panel.add(btnAlterarUsuario);
 		
 		JButton btnVoltar = new JButton("Logout");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				dispose();
 				telaLogin = new TelaLogin();
 				telaLogin.setVisible(true);	
-				dispose();
+				
 			}
 		});
-		btnVoltar.setBounds(641, 446, 133, 23);
+		btnVoltar.setBounds(641, 446, 168, 23);
 		panel.add(btnVoltar);
 		
 		
@@ -172,25 +172,25 @@ public class TelaPrincipalADMGeral extends JFrame {
 		JButton btnCadastrarProfessor = new JButton("Cadastrar Professor");
 		btnCadastrarProfessor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+				dispose();
 				telaCadastrarProfessor = new TelaCadastroProfessor(conta);
 				telaCadastrarProfessor.setVisible(true);
 				
 			}
 		});
-		btnCadastrarProfessor.setBounds(641, 247, 133, 23);
+		btnCadastrarProfessor.setBounds(641, 247, 168, 23);
 		panel.add(btnCadastrarProfessor);
 		
 		JButton btnCadastrarTcnico = new JButton("Cadastrar T\u00E9cnico");
 		btnCadastrarTcnico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+				dispose();
 				telaCadastrarTecnico = new TelaCadastroTecnico(conta);
 				telaCadastrarTecnico.setVisible(true);
 				
 			}
 		});
-		btnCadastrarTcnico.setBounds(638, 292, 136, 23);
+		btnCadastrarTcnico.setBounds(638, 292, 171, 23);
 		panel.add(btnCadastrarTcnico);
 		
 		
