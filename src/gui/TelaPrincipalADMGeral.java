@@ -138,12 +138,10 @@ public class TelaPrincipalADMGeral extends JFrame {
 		JButton btnVoltar = new JButton("Logout");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
-				dispose();
-				telaLogin = new TelaLogin();
-				telaLogin.setVisible(true);
-		
 				
+				telaLogin = new TelaLogin();
+				telaLogin.setVisible(true);	
+				dispose();
 			}
 		});
 		btnVoltar.setBounds(641, 446, 133, 23);

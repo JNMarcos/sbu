@@ -195,7 +195,8 @@ public class TelaCadastroTecnico extends JFrame {
 		panel.add(comboBoxAno);
 
 		comboBoxTipo = new JComboBox<String>();
-		comboBoxTipo.setBounds(392, 559, 28, 20);
+		comboBoxTipo.setBounds(307, 559, 113, 20);
+		comboBoxTipo.addItem("");
 		comboBoxTipo.addItem(tipo[0]);
 		comboBoxTipo.addItem(tipo[1]);
 		panel.add(comboBoxTipo);
