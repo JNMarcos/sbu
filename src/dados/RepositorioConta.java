@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import classes_basicas.Conta;
 import classes_basicas.Usuario;
@@ -18,23 +19,23 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private ArrayList<Conta> contas;
 	private static RepositorioConta instancia;
-	
-	
-    public RepositorioConta() {
-        this.contas = new ArrayList<>();
-    }
-    
-    public static RepositorioConta getInstancia(){
-    	if(instancia == null){
-    		instancia = lerArquivo();
-    	}
-    	return instancia;
-    }
-    
-    private static RepositorioConta lerArquivo() {
+
+
+	public RepositorioConta() {
+		this.contas = new ArrayList<>();
+	}
+
+	public static RepositorioConta getInstancia(){
+		if(instancia == null){
+			instancia = lerArquivo();
+		}
+		return instancia;
+	}
+
+	private static RepositorioConta lerArquivo() {
 		RepositorioConta instanciaLocal = null;
 
 		File in = new File("repositorioConta.dat");
@@ -58,8 +59,8 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 
 		return instanciaLocal;
 	}
-    
-    private static void gravarArquivo() {
+
+	private static void gravarArquivo() {
 		if (instancia == null) {
 			return;
 		}
@@ -83,34 +84,33 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 		}
 	}
 
- 	public boolean cadastrarConta(Conta conta){ 
- 		
- 		if (this.contas.contains(conta)) {
+	public boolean cadastrarConta(Conta conta){ 
+
+		if (this.contas.contains(conta)) {
 			return false;
 		} 
 		else {
-			this.contas.add(conta);
 			contas.add(conta);
 			gravarArquivo();
 
 			return true;
 		}
 	}
-	
-	
+
+
 	public void removerConta(Conta conta){		
 		contas.remove(conta);
 		gravarArquivo();
-	
-    }
-	
-	
+
+	}
+
+
 	public void alterarDadosConta(Conta conta){
 		int i = contas.indexOf(conta);
 		contas.set(i, conta);
 		gravarArquivo();
 	}	
-	
+
 	public Conta exibirConta(Usuario usuario){
 		Conta encontra = null;
 		for(int i = 0; i < contas.size(); i++){
@@ -121,7 +121,7 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 		}
 		return encontra;
 	}	
-	
+
 	public boolean procurarConta (Conta conta){
 		boolean contaExiste = false;
 		for (Conta c : contas){
@@ -132,7 +132,7 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 		}
 		return contaExiste;
 	}
-	
+
 	public void consultarSaldo(Conta conta){	
 		for(int i = 0; i < contas.size(); i++){
 			if(contas.get(i).getUsuario().equals(conta.getUsuario())){
@@ -140,18 +140,22 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 			}
 		}
 	}
-	
+
 	public void verMovimentacoes(Conta conta){
 		for(int i = 0; i < contas.size(); i++){
 			if(contas.get(i).getUsuario().equals(conta.getUsuario())){
 				contas.get(i).getHistorico();
 			}
 		}			
-}
-	public ArrayList<Conta> listarContas(){		
-		return contas;		
 	}
-	
+	public ArrayList<Conta> listarContas(){	
+		if(contas!=null){
+			Collections.sort(contas);
+
+		}
+		return contas;	
+	}
+
 	public boolean verificarNomeUsuarioJaExiste(String nomeUsuario) {
 		boolean nomeUsuarioJaExiste = false;
 		if (nomeUsuario != null){
@@ -180,7 +184,7 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 		return senhaJaExiste;
 	}
 
-	
+
 	public Conta verificarLogin(String login, String senha) {
 		Conta conta = null;
 		for (int i = 0; i < contas.size(); i++){

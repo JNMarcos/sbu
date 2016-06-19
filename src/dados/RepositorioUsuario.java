@@ -34,7 +34,7 @@ public class RepositorioUsuario implements IRepositorioUsuario, Serializable {
 			return false;
 		} 
 		else {
-			this.usuarios.add(usuario);
+			usuarios.add(usuario);
 			gravarArquivo();
 
 			return true;
@@ -42,7 +42,7 @@ public class RepositorioUsuario implements IRepositorioUsuario, Serializable {
 	}
 
 	public void removerUsuario(Usuario usuario) {
-		this.usuarios.remove(usuario);
+		usuarios.remove(usuario);
 		gravarArquivo();
 	}
 
@@ -104,7 +104,7 @@ public class RepositorioUsuario implements IRepositorioUsuario, Serializable {
 
 	
 	public ArrayList<Usuario> listarUsuarios(){
-		if(this.usuarios!=null){
+		if(usuarios!=null){
 			Collections.sort(usuarios);
 		}
 		return usuarios;
