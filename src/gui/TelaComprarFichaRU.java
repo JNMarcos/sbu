@@ -158,6 +158,7 @@ public class TelaComprarFichaRU extends JFrame {
 						" Você comprou " + quantidadeTiquetes + " tipo " + escolha + ". Valor total da operação: " 
 					+  (valorServico*quantidadeTiquetes) + ". Seu saldo é: " + conta.getSaldo());
 			
+				fachada.alterarDadosConta(conta) ;
 				dispose();
 				TelaPrincipalNaoADM tela = new TelaPrincipalNaoADM(conta);
 				tela.setVisible(true);
