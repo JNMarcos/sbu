@@ -79,12 +79,12 @@ public class ControladorServico {
 		if (repositorioConta.procurarConta(conta)){
 			if (isAlmoco){
 				podeEntrar = Servico.simularEntradaAlmocoRU(conta);
-				if (!podeEntrar){
+				if (podeEntrar == false){
 					throw new FichasInsuficientesException();
 				}
 			} else {
 				podeEntrar = Servico.simularEntradaJantarRU(conta);
-				if (!podeEntrar){
+				if (podeEntrar == false){
 					throw new FichasInsuficientesException();
 				}
 			}

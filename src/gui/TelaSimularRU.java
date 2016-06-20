@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import classes_basicas.Conta;
 import excecao.ContaNaoEncontradaException;
 import excecao.FichasInsuficientesException;
 import excecao.SenhaIncorretaException;
@@ -30,7 +31,8 @@ public class TelaSimularRU extends JFrame {
 
 	private IFachada fachada = Fachada.getInstance();
 	private JRadioButton rdbtnAlmoco;
-	private final ButtonGroup escolhaRefeicaoo = new ButtonGroup();
+	private JRadioButton rdbtnJantar;
+	private final ButtonGroup escolhaRefeicao = new ButtonGroup();
 
 	public TelaSimularRU() {
 		setTitle("$BU - Simular RU");
@@ -57,14 +59,14 @@ public class TelaSimularRU extends JFrame {
 		EventoBotaoVoltar acaoVoltar = new EventoBotaoVoltar();
 		btnVoltar.addActionListener(acaoVoltar);
 		
-		JRadioButton rdbtnAlmoco = new JRadioButton("Almo\u00E7o");
-		escolhaRefeicaoo.add(rdbtnAlmoco);
+		rdbtnAlmoco = new JRadioButton("Almo\u00E7o");
+		escolhaRefeicao.add(rdbtnAlmoco);
 		rdbtnAlmoco.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		rdbtnAlmoco.setBounds(19, 114, 109, 23);
 		contentPane.add(rdbtnAlmoco);
 		
-		JRadioButton rdbtnJantar = new JRadioButton("Jantar");
-		escolhaRefeicaoo.add(rdbtnJantar);
+		rdbtnJantar = new JRadioButton("Jantar");
+		escolhaRefeicao.add(rdbtnJantar);
 		rdbtnJantar.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		rdbtnJantar.setBounds(130, 114, 109, 23);
 		contentPane.add(rdbtnJantar);
@@ -96,11 +98,14 @@ public class TelaSimularRU extends JFrame {
 			dispose();
 			boolean isAlmoco = rdbtnAlmoco.isSelected();
 			try {
-				fachada.simularRU(fachada.verificarLogin(textFieldLogin.getText(), textFieldSenha.getText()),
-						isAlmoco );
+				Conta contaAEntrar = fachada.verificarLogin(textFieldLogin.getText(), textFieldSenha.getText());
+				fachada.simularRU(contaAEntrar,	isAlmoco );
 				JOptionPane.showMessageDialog(null, "Tudo certo, pode entrar na RUlândia!");
+				TelaSimularRU telaRU = new TelaSimularRU(); 
+				telaRU.setVisible(true);
 			} catch (SenhaIncorretaException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
+				textFieldSenha.setText("");
 			} catch (ContaNaoEncontradaException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			} catch (FichasInsuficientesException e) {
@@ -108,8 +113,6 @@ public class TelaSimularRU extends JFrame {
 			} catch (UsuarioNaoEncontradoException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
-			textFieldLogin.setText("");
-			textFieldSenha.setText("");
 		}
 	}
 

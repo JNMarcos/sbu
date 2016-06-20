@@ -49,28 +49,29 @@ public abstract class Servico {
 	// serviços RU
 	public static void comprarAlmocoAluno(Conta conta, int quantidadeFichas){
 		conta.setSaldo(conta.getSaldo() - (Servico.getPrecos().get("almocoAlunoRU") * quantidadeFichas));
-		conta.getnPorcoes()[0] = conta.getnPorcoes()[0] + quantidadeFichas;
+		conta.setarNPorcoes(conta.getnPorcoes()[0] + quantidadeFichas, 0);
 	}
 
 	public static void comprarAlmocoFuncionario(Conta conta, int quantidadeFichas){
 		conta.setSaldo(conta.getSaldo() - (Servico.getPrecos().get("almocoFuncionarioRU") * quantidadeFichas));
-		conta.getnPorcoes()[0] = conta.getnPorcoes()[0] + quantidadeFichas;
+		conta.setarNPorcoes(conta.getnPorcoes()[0] + quantidadeFichas, 0);
 	}
 
 	public static void comprarJantaAluno(Conta conta, int quantidadeFichas){
 		conta.setSaldo(conta.getSaldo() - (Servico.getPrecos().get("jantaAlunoRU") * quantidadeFichas));
-		conta.getnPorcoes()[1] = conta.getnPorcoes()[1] + quantidadeFichas;
+		conta.setarNPorcoes(conta.getnPorcoes()[1] + quantidadeFichas, 1);
 	}
 
 	public static void comprarJantaFuncionario(Conta conta, int quantidadeFichas){
 		conta.setSaldo(conta.getSaldo() - (Servico.getPrecos().get("jantaFuncionarioRU") * quantidadeFichas));
-		conta.getnPorcoes()[1] = conta.getnPorcoes()[1] + quantidadeFichas;
+		conta.setarNPorcoes(conta.getnPorcoes()[1] + quantidadeFichas, 1);
 	}
 
 	public static boolean simularEntradaAlmocoRU(Conta conta){
 		boolean podeEntrar = false;
-		if(conta.getnPorcoes()[0] > 0){
-			conta.getnPorcoes()[0] = conta.getnPorcoes()[0] - 1;
+		int novoValor = conta.getnPorcoes()[0] - 1;
+		if(conta.getnPorcoes()[0] >= 1){
+			conta.setarNPorcoes(novoValor, 0);
 			podeEntrar = true;
 		}
 		return podeEntrar;
@@ -78,8 +79,8 @@ public abstract class Servico {
 
 	public static boolean simularEntradaJantarRU(Conta conta){
 		boolean podeEntrar = false;
-		if(conta.getnPorcoes()[1] > 0){
-			conta.getnPorcoes()[1] = conta.getnPorcoes()[1] - 1;
+		if(conta.getnPorcoes()[1] >= 1){
+			conta.setarNPorcoes(conta.getnPorcoes()[1] - 1, 1);
 			podeEntrar = true;
 		}
 		return podeEntrar;

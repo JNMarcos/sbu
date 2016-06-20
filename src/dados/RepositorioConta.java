@@ -60,7 +60,7 @@ public class RepositorioConta implements IRepositorioConta, Serializable {
 		return instanciaLocal;
 	}
 
-	private static void gravarArquivo() {
+	public static void gravarArquivo() {
 		if (instancia == null) {
 			return;
 		}

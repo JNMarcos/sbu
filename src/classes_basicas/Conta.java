@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import dados.RepositorioConta;
+
 /**
  * @author JN
  *
@@ -16,6 +18,7 @@ public class Conta implements Comparable<Conta>, Serializable{
 	/**
 	 * 
 	 */
+
 	private static final long serialVersionUID = 1L;
 	private Usuario usuario;
 	private String login;
@@ -96,6 +99,11 @@ public class Conta implements Comparable<Conta>, Serializable{
 		this.nPorcoes = new int[2];
 		nPorcoes[0] = 0; // n° de porções almoço
 		nPorcoes[1] = 0; // nº de porções jantar
+	}
+	
+	public void setarNPorcoes(int novoValor, int posicao){
+		this.nPorcoes[posicao] = novoValor;
+		RepositorioConta.gravarArquivo();
 	}
 
 	@Override
