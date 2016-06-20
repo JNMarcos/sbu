@@ -8,6 +8,7 @@ import java.util.List;
 
 import classes_basicas.Conta;
 import classes_basicas.Divida;
+import classes_basicas.Servico;
 import classes_basicas.Usuario;
 import excecao.ContaJaCadastradaException;
 import excecao.ContaNaoEncontradaException;
@@ -51,6 +52,7 @@ public class Fachada implements IFachada{
 	@Override
 	public void pagarDivida(Conta conta, Divida divida) throws SaldoInsuficienteException, DividaNaoEncontradaException, ContaNaoEncontradaException{
 		ctrServico.pagarDivida(conta,divida);
+		
 	}
 
 	@Override
@@ -59,7 +61,7 @@ public class Fachada implements IFachada{
 	}
 
 	@Override
-	public void solicitarDocumento(Conta conta, boolean[] isSolicitar) throws SaldoInsuficienteException, ContaNaoEncontradaException{
+	public void solicitarDocumento(Conta conta, String isSolicitar) throws SaldoInsuficienteException, ContaNaoEncontradaException{
 		ctrServico.solicitarDocumento(conta, isSolicitar);
 	}
 

@@ -43,11 +43,11 @@ public class TelaCadastroProfessor extends JFrame {
 	private JComboBox<String> comboBoxDia;
 	private JComboBox<String> comboBoxMes;
 	private JComboBox<String> comboBoxAno;
-	/**
-	 * Create the panel.
-	 */
+
+	
 	public TelaCadastroProfessor(Conta conta) {
-		setConta(conta);
+
+		this.conta = conta;
 		getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 11));
 		setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		setTitle("$BU - Cadastrar Professor");
@@ -214,9 +214,8 @@ public class TelaCadastroProfessor extends JFrame {
 		panel.add(btnCancelar);
 	}
 
-	private void setConta(Conta conta) {
-	this.conta = conta;
-	}
+	
+
 	
 	private class EventoCadastrar implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
@@ -255,7 +254,7 @@ public class TelaCadastroProfessor extends JFrame {
 					JOptionPane.showMessageDialog(null, "O campo 'Senha' se encontra vazio! ", "Mensagem de alerta", JOptionPane.ERROR_MESSAGE);
 				}
 				else{
-					Conta contaASerCadastrada;
+					
 
 					DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 					
@@ -269,25 +268,30 @@ public class TelaCadastroProfessor extends JFrame {
 					
 					LocalDate dataDeNascimento = LocalDate.parse( ((String)comboBoxAno.getSelectedItem()) + "-" + mes + "-" + ((String)comboBoxDia.getSelectedItem()), formato);
 					
+					
 					professor = new Professor(textFieldNome.getText(), textFieldSexo.getText().charAt(0),
 							textFieldCpf.getText(),textFieldIdentidade.getText(), textFieldEndereco.getText(),
 							textFieldTelefone.getText(), textFieldEmail.getText(), dataDeNascimento,
 							textFieldDepartamento.getText(),textFieldNprofessor.getText());
 					fachada.cadastrarUsuario(professor);
-					contaASerCadastrada = new Conta(professor, textFieldLogin.getText(), textFieldSenha.getText());
+					
+					Conta contaASerCadastrada = new Conta(professor, textFieldLogin.getText(), textFieldSenha.getText());
 					fachada.cadastrarConta(contaASerCadastrada);
-					JOptionPane.showMessageDialog(null, "Professor cadastrado com sucesso!");
-					dispose();
+					JOptionPane.showMessageDialog(null, "Professor cadastrado com sucesso!");	
 					TelaPrincipalADMGeral telaPrincipalADMGeral = new TelaPrincipalADMGeral(conta); 
 					telaPrincipalADMGeral.setVisible(true);
+					dispose();
 				}
 			}catch(CpfJaExistenteException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 				textFieldCpf.setText("");
 			}catch(ContaJaCadastradaException e){
 				JOptionPane.showMessageDialog(null, e.getMessage());
+			}	
+			catch(Exception e){
+				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
-		}
 		
 	}
+   }
 }

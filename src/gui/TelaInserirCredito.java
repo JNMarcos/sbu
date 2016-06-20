@@ -173,7 +173,7 @@ public class TelaInserirCredito extends JFrame {
 						fachada.inserirCreditos(valorEscolhido, conta);
 						JOptionPane.showMessageDialog(null, "Operação realizada com sucesso." + 
 								" Você inseriu "+ Integer.toString(valorEscolhido) + " creditos em sua conta.");
-					
+						
 						TelaPrincipalNaoADM telaPrincipalNaoADM = new TelaPrincipalNaoADM(conta);
 						telaPrincipalNaoADM.setVisible(true);
 						dispose();

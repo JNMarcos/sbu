@@ -96,10 +96,10 @@ public class ControladorServico {
 
 	//array que indica ee documento foi solicitado
 	//cada posição é um documento
-	public void solicitarDocumento(Conta conta, boolean[] isSolicitado)throws SaldoInsuficienteException, ContaNaoEncontradaException{
+	public void solicitarDocumento(Conta conta, String isSolicitado)throws SaldoInsuficienteException, ContaNaoEncontradaException{
 		Movimentacao movimentacao;
 		if (repositorioConta.procurarConta(conta)){
-			if(isSolicitado[0]){
+			if(isSolicitado.equals("comprovanteMatricula")){
 				if (conta.getSaldo() >= Servico.getPrecos().get("comprovanteMatricula")){
 					Servico.solicitarComprovanteMatricula(conta);
 					movimentacao = new Movimentacao("Solicitação de documento", "Você solciitou o documento de Comprovante de Matrícula.");
@@ -107,7 +107,7 @@ public class ControladorServico {
 				} else
 					throw new SaldoInsuficienteException();
 			}
-			if(isSolicitado[1]){
+			if(isSolicitado.equals("diplomaGraducao")){
 				if (conta.getSaldo() >= Servico.getPrecos().get("diplomaGraducao")){
 					Servico.solicitarDiplomaGraduacao(conta);
 					movimentacao = new Movimentacao("Solicitação de documento", "Você solciitou o documento de Diploma de Graduação.");
@@ -115,7 +115,7 @@ public class ControladorServico {
 				} else
 					throw new SaldoInsuficienteException();
 			}
-			if(isSolicitado[2]){
+			if(isSolicitado.equals("diplomaPosGraducao")){
 				if (conta.getSaldo() >= Servico.getPrecos().get("diplomaPosGraducao")){
 					Servico.solicitarDiplomaPosGraduacao(conta);
 					movimentacao = new Movimentacao("Solicitação de documento", "Você solciitou o documento de Diploma de Pós-graduação.");
@@ -123,7 +123,7 @@ public class ControladorServico {
 				} else
 					throw new SaldoInsuficienteException();
 			}
-			if(isSolicitado[3]){
+			if(isSolicitado.equals("historicoCompletoGraducao")){
 				if (conta.getSaldo() >= Servico.getPrecos().get("historicoCompletoGraducao")){
 					Servico.solicitarHistoricoCompletoGraduacao(conta);
 					movimentacao = new Movimentacao("Solicitação de documento", "Você solciitou o documento de Histórico Completo da Graducação.");
@@ -131,7 +131,7 @@ public class ControladorServico {
 				} else
 					throw new SaldoInsuficienteException();
 			}
-			if(isSolicitado[4]){
+			if(isSolicitado.equals("historicoCompletoPosGraducao")){
 				if (conta.getSaldo() >= Servico.getPrecos().get("historicoCompletoPosGraducao")){
 					Servico.solicitarHistoricoCompletoPosGraduacao(conta);
 					movimentacao = new Movimentacao("Solicitação de documento", "Você solciitou o documento de Histórico Completo da Pós-graduação.");
@@ -139,7 +139,7 @@ public class ControladorServico {
 				} else
 					throw new SaldoInsuficienteException();
 			}
-			if(isSolicitado[5]){
+			if(isSolicitado.equals("certificadoConclusaoCurso")){
 				if (conta.getSaldo() >= Servico.getPrecos().get("certificadoConclusaoCurso")){
 					Servico.solicitarCertificadoConclusaoCurso(conta);
 					movimentacao = new Movimentacao("Solicitação de documento", "Você solciitou o documento de Certificado de Conclusão de Curso.");
@@ -147,7 +147,7 @@ public class ControladorServico {
 				} else
 					throw new SaldoInsuficienteException();
 			}
-			if(isSolicitado[6]){
+			if(isSolicitado.equals("transderenciaInterna")){
 				if (conta.getSaldo() >= Servico.getPrecos().get("transderenciaInterna")){
 					Servico.solicitarTransferenciaInterna(conta);
 					movimentacao = new Movimentacao("Solicitação de documento", "Você solciitou o documento de Transferência Interna.");
@@ -155,7 +155,7 @@ public class ControladorServico {
 				} else
 					throw new SaldoInsuficienteException();
 			}
-			if(isSolicitado[7]){
+			if(isSolicitado.equals("transderenciaExterna")){
 				if (conta.getSaldo() >= Servico.getPrecos().get("transderenciaExterna")){
 					Servico.solicitarTransferenciaExterna(conta);
 					movimentacao = new Movimentacao("Solicitação de documento", "Você solciitou o documento de Transferência Externa.");
@@ -163,7 +163,7 @@ public class ControladorServico {
 				} else
 					throw new SaldoInsuficienteException();
 			}
-			if(isSolicitado[8]){
+			if(isSolicitado.equals("transferenciaParaOutraInstituicao")){
 				if (conta.getSaldo() >= Servico.getPrecos().get("transferenciaParaOutraInstituicao")){
 					Servico.solicitarTransferenciaParaOutraInstituicao(conta);
 					movimentacao = new Movimentacao("Solicitação de documento", "Você solciitou o documento de Transferência para outra Instituição.");

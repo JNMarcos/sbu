@@ -20,6 +20,7 @@ public abstract class Servico {
 	public static Hashtable<String, Double> getPrecos() {
 		return precos;
 	}
+	
 	public static void setPrecos() {
 		precos = new Hashtable<String, Double>();
 		precos.put("almocoAlunoRU", 2.0);

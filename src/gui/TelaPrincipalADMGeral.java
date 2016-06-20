@@ -119,8 +119,9 @@ public class TelaPrincipalADMGeral extends JFrame {
 	                    
 	            			try {
 	            				 	telaAlterarUsuario = new TelaAlterarUsuario(conta);
+	            					telaAlterarUsuario.setVisible(true);
+	            					dispose();
 	            					
-	            				
 	            				} 
 	            				catch (Exception e1) {
 							

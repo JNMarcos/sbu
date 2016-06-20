@@ -29,7 +29,7 @@ public interface IFachada {
 	//serviços
 	void pagarDivida(Conta conta, Divida divida) throws ContaNaoEncontradaException,DividaNaoEncontradaException, SaldoInsuficienteException;
 	void comprarFichaRU(Conta conta, boolean isAlmoco, int quantidadeFichas) throws ContaNaoEncontradaException, SaldoInsuficienteException;
-	void solicitarDocumento(Conta conta, boolean[] isSolicitado) throws ContaNaoEncontradaException, SaldoInsuficienteException;
+	void solicitarDocumento(Conta conta, String isSolicitado) throws ContaNaoEncontradaException, SaldoInsuficienteException;
 	void solicitarCarteira(Conta conta) throws ContaNaoEncontradaException, SaldoInsuficienteException;
 	void simularRU(Conta conta, boolean isAlmoco) throws ContaNaoEncontradaException, FichasInsuficientesException;
 	
