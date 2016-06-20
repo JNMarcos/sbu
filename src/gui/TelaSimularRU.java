@@ -95,14 +95,12 @@ public class TelaSimularRU extends JFrame {
 	}
 	private class EventoBotaoConfirmar implements ActionListener { 
 		public void actionPerformed(ActionEvent evento) { 
-			dispose();
+
 			boolean isAlmoco = rdbtnAlmoco.isSelected();
 			try {
 				Conta contaAEntrar = fachada.verificarLogin(textFieldLogin.getText(), textFieldSenha.getText());
 				fachada.simularRU(contaAEntrar,	isAlmoco );
 				JOptionPane.showMessageDialog(null, "Tudo certo, pode entrar na RUlândia!");
-				TelaSimularRU telaRU = new TelaSimularRU(); 
-				telaRU.setVisible(true);
 			} catch (SenhaIncorretaException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 				textFieldSenha.setText("");
