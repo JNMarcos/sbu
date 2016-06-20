@@ -42,12 +42,12 @@ public class TelaMovimentacao extends JFrame {
 		getContentPane().setLayout(null);
 		
 		panel = new JPanel();
-		setBounds(0, 0, 418, 343);
+		setBounds(0, 0, 445, 315);
 		setContentPane(panel);
 		panel.setLayout(null);
 		
 		painel = new JScrollPane();
-		painel.setBounds(41, 46, 151, 66);
+		painel.setBounds(10, 46, 419, 147);
 		panel.add(painel);
 		
 		
@@ -57,12 +57,14 @@ public class TelaMovimentacao extends JFrame {
 		LocalDateTime[] data = new LocalDateTime[historico.size()];
 		Movimentacao movimentacao;
 		String[] total = new String[historico.size()];
-		for(int i = 0; i < historico.size();i++){
+		int contador = 0;
+		for(int i = historico.size()-1; i > 0 ;i--){
 			movimentacao = historico.get(i);
 			nomeServicos[i] = movimentacao.getNomeServico();
 			descricao[i] = movimentacao.getDescricao();
 			data[i] = movimentacao.getDataHora();
-			total[i] =  nomeServicos[i] +","+ descricao[i]+ "," + data[i].toString()+"\n";
+			total[contador] =  nomeServicos[i] +", "+ descricao[i] + " " + data[i].toString()+"\n";
+			contador++;
 		}
 		
 		lista = new JList(total);
@@ -71,7 +73,7 @@ public class TelaMovimentacao extends JFrame {
 		lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(225, 60, 87, 23);
+		btnCancelar.setBounds(176, 232, 87, 23);
 		EventoBotaoCancelar acaoCancelar = new EventoBotaoCancelar(); 
 		btnCancelar.addActionListener(acaoCancelar);
 		panel.add(btnCancelar);
