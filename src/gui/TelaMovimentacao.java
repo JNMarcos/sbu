@@ -39,13 +39,25 @@ public class TelaMovimentacao extends JFrame {
 	private JButton mbExibir;
 	private static String[] nomes = {"Inserir Crédito", "Pagar Dívida", "Comprar Ficha RU", "Solicitar Documento DRCA"};
 	private JScrollPane painel;
+	private JPanel panel;
 
 	public TelaMovimentacao(Conta conta) {
-		super("$BU - Movimentações");
+		setConta(conta);
+		getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 11));
+		setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		setTitle("$BU - Movimentações");
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
+		
+		panel = new JPanel();
+		setBounds(0, 0, 418, 343);
+		setContentPane(panel);
+		panel.setLayout(null);
+		
 		painel = new JScrollPane();
-		painel.setBounds(41, 46, 151, 37);
-		getContentPane().add(painel);
+		painel.setBounds(41, 46, 151, 66);
+		panel.add(painel);
 		
 		lista = new JList(nomes);
 		painel.setViewportView(lista);
@@ -53,12 +65,14 @@ public class TelaMovimentacao extends JFrame {
 		lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		mbExibir = new JButton("Exibir");
-		mbExibir.setBounds(225, 60, 65, 23);
+		mbExibir.setBounds(225, 60, 87, 23);
 		EventoBotaoExibir acaoExibir = new EventoBotaoExibir(); 
 		mbExibir.addActionListener(acaoExibir);
-		getContentPane().add(mbExibir);
+		panel.add(mbExibir);
 	}
-	
+	private void setConta(Conta conta) {
+		this.conta = conta;
+	}
 	private class EventoBotaoExibir implements ActionListener { 
 		public void actionPerformed(ActionEvent evento) { 
 			dispose(); 
